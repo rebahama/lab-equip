@@ -4,15 +4,19 @@
 
 ## Project Description
 
-**Project Name:** *[Your project name]*
+**Project Name:** *Lab Equipment Knowledge Hub (LEKH)*
 
-**Customer Name:** *[Your customer's name]*
+**Customer Name:** *Zeth Danielsson*
 
-**Student Full Name:** *[Your full name. This helps match your repository to you, even if your GitHub handle does not identify you.]*
+**Student Full Name:** *Rebaz Mohammad Ahmad*
 
 ### Project Aim and Objectives
 
-*[A short description of your project's goals and benefits. Bullet points or 1–2 paragraphs.]*
+* Project is about learning to work in an agile enviorment
+* Plan a software project with the intention of following the
+  planned sprints.
+* Learn to prioritize software work.
+* Learn to fullfill requirements from customer. 
 
 ### User Personas
 
