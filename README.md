@@ -12,7 +12,7 @@
 
 ### Project Aim and Objectives
 
-* Project is about learning to work in an agile enviorment
+* Project is about learning to work in an agile environment
 * Plan a software project with the intention of following the
   planned sprints.
 * Learn to prioritize software work.
@@ -22,17 +22,28 @@
 
 | Name | Characteristics | Needs and Expectations | How will they use the system? |
 |---|---|---|---|
-| *[Name]* | *[Age, background, technical skill level, etc.]* | *[What they need from the system]* | *[How they'll interact with it]* |
+| *John Doe* | *Age: 20, background: student, technical skill level 6/10, etc.* | *Need to quickly find avalible equitment for projects without unnecessary paperwork, expects clear instruction about equipment condition* | *Search for equipment,report faults, check availability* |
+
+
+
+
+| Name | Characteristics | Needs and Expectations | How will they use the system? |
+|---|---|---|---|
+| *Alice* | *Age: 35, background: caretaker, technical skill level 5/10, etc.* | *Needs an overview of borrowed equipment, stocks and overdue items * | *Register equipment,update status, approve or reject borrowed items * |
+
+
 
 ### Software Requirements
 
 **Functional Requirements**
-- *[Requirement 1]*
-- *[Requirement 2]*
+- *User regristration and login*
+- *Diffrent user permissions*
+- *Equipment registration*
+- *Equipment search and filtering*
 
 **Non-Functional Requirements**
-- *[Requirement 1]*
-- *[Requirement 2]*
+- *Security, system have the right auth permission for the right role*
+- *Data validation, system should validate inputed data.*
 
 ---
 
@@ -41,6 +52,15 @@
 Your backlog lives in two places, working together:
 
 ### 1. GitHub Issues (the content)
+
+Link to Github issues for this project can be found here:
+[Github Issues for this project](https://github.com/dipt-pa1493-ht26/pa1493-reah23-lekh-zda/issues)
+
+
+
+Link to the Agile backlog for this project:
+[Github Agile board](https://github.com/orgs/dipt-pa1493-ht26/projects/10/views/1)
+
 
 For every user story, feature, and task, create a GitHub Issue with a clear title and description. Use the issue template provided in this repository (see `.github/ISSUE_TEMPLATE/`).
 
