@@ -98,4 +98,3 @@ Your repository must remain **Private** for the entire course. This protects you
 Once Sprint 2 begins, add a **User Manual** section to this README, covering:
 - **Installing** — what's needed to set up your project locally (dependencies, environment, etc.)
 - **Running** — how to start/execute the application
-
