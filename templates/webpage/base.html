@@ -21,6 +21,16 @@
                     {% if user.is_authenticated %}
                     <li class="nav-item"> <a class="nav-link" href="/">Home</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="/accounts/logout/">Log out</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="/manage-roles/">Manage roles </a> </li>
+                    {% if user.is_superuser %}
+                    <span class="text-white">Logged in as: Admin</span>
+
+                    {% elif user.groups.all.0.name == "Caretaker" %}
+                    <span class="text-white">Logged in as: Caretaker</span>
+
+                    {% elif user.groups.all.0.name == "Student" %}
+                    <span class="text-white">Logged in as: Student</span>
+                    {% endif %}
                     {% else %}
                     <li class="nav-item"> <a class="nav-link" href="/accounts/login/">Login</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="/accounts/signup/">Register account</a> </li>
