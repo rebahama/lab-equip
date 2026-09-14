@@ -3,9 +3,13 @@ import os
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
 
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
+
+if os.path.exists("env.py"):
+    import env
 
 
 DEBUG = True
@@ -40,7 +44,7 @@ ROOT_URLCONF = "lab_equipment.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [TEMPLATES_DIR],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -56,6 +60,10 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
+
+
+SITE_ID = 1
+
 
 WSGI_APPLICATION = "lab_equipment.wsgi.application"
 
@@ -101,3 +109,7 @@ MAILERS = {
         "BACKEND": "django.core.mail.backends.console.EmailBackend",
     },
 }
+
+STATIC_URL = "/static/"
+
+STATICFILES_DIRS = [BASE_DIR / "static"]
