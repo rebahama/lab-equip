@@ -1,3 +1,7 @@
+"""Class for mangeing roles and
+   giving permission to diffrent groups,
+   in this case student and caretaker.
+"""
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import TemplateView
@@ -32,3 +36,8 @@ class ManageRolesView(UserPassesTestMixin, TemplateView):
         context["groups"] = Group.objects.filter(name__in=["Student", "Caretaker"])
 
         return context
+
+    def handle_no_permission(self):
+        return TemplateView.as_view(template_name="webpage/no_permission.html")(
+            self.request
+        )
