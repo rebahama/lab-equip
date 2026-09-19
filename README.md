@@ -36,10 +36,15 @@
 ### Software Requirements
 
 **Functional Requirements**
-- *User regristration and login*
-- *Diffrent user permissions*
-- *Equipment registration*
-- *Equipment search and filtering*
+- *User registration and login, User can register using email, username and password*
+
+- *Diffrent user permissions, The system supports student,admin and caretaker roles*
+
+
+- *Equipment registration, caretaker must be able to register new equipment.*
+
+
+- *Equipment search and filtering, students must be able to search by name and filter by category*
 
 **Non-Functional Requirements**
 - *Security, system have the right auth permission for the right role*
@@ -98,14 +103,37 @@ Your repository must remain **Private** for the entire course. This protects you
 ### Installing
 - Python 3.14.2
 - Git
-- Visual studio
+- Visual studio code
 
   #### 1. Clone the repository
-git clone https://github.com/dipt-pa1493-ht26/pa1493-reah23-lekh-zda
-cd repository folder
+  * git clone https://github.com/dipt-pa1493-ht26/* pa1493-reah23-lekh-zda
+  * cd repository folder
 
-  #### 2. Create and activate
+  #### 2. Create and activate virtual enviorment.
+  * python -m venv .venv
+  * Run .venv\Scripts\Activate to activate the virtual enviorment.
+  * Run deactivate to close the terminal for the virtual enviorment.
+ 
 
-Once Sprint 2 begins, add a **User Manual** section to this README, covering:
-- **Installing** — what's needed to set up your project locally (dependencies, environment, etc.)
-- **Running** — how to start/execute the application
+  #### 3. Install dependencies
+  * pip install -r requirements.txt
+
+  
+  #### 4 Enviorment variables
+  Project requires Django enviorment variables. Create an env.py file in the same folder as manage.py and add the following:
+  
+  SECRET_KEY = your-secret-key
+
+
+### Running the app
+
+  * Apply database migration first by running "python manage.py migrate in the root folder (same folder as manage.py)"
+  * Create admin account by running "python manage.py createsuperuser"
+  * To start the application run: "python manage.py runserver" in the root folder
+
+
+### Used Technology
+
+1. Django==6.1.1 as web framework
+2. django-allauth==65.19.3 for auth handling
+3. 
