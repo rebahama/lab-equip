@@ -93,7 +93,18 @@ Your repository must remain **Private** for the entire course. This protects you
 
 ---
 
-## Documenting Your Project
+## User manual
+
+### Installing
+- Python 3.14.2
+- Git
+- Visual studio
+
+  #### 1. Clone the repository
+git clone https://github.com/dipt-pa1493-ht26/pa1493-reah23-lekh-zda
+cd repository folder
+
+  #### 2. Create and activate
 
 Once Sprint 2 begins, add a **User Manual** section to this README, covering:
 - **Installing** — what's needed to set up your project locally (dependencies, environment, etc.)
