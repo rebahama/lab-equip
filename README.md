@@ -40,21 +40,37 @@
 
 - *Diffrent user permissions, The system supports student,admin and caretaker roles*
 
+- *Equipment registration, caretaker registers name, category, description, location and status.*
 
-- *Equipment registration, caretaker must be able to register new equipment.*
+- *Equipment handling and categories, caretaker will create,read,update and delete the equipments and categories.*
 
+- *Booking equipment, students can book an equipment in a form that will be displayed to caretaker.*
+
+- *Equipment viewing, caretaker and students will be able to view detalied page of each equipment.*
 
 - *Equipment search and filtering, students must be able to search by name and filter by category*
 
+- *Equipment fault reporting, students can report faults on diffrent equipment, caretaker will be able to view the reported fault.*
+
+- *Uploading Equipment images, caretakers can upload images and pdf files.*
+
 **Non-Functional Requirements**
-- *Security, system have the right auth permission for the right role*
-- *Data validation, system should validate inputed data.*
+- *Security, system have the right auth permission for the right roles: "students and caretakers".*
+
+- *Data validation, system should validate inputed data when using login, register account and crud operations*
+
+- *Usability, the system should have a consistent interface.*
+
+- *The system should support diffrent formats like tablets and mobile screens.*
+
+- *Images should be optimized for performance and loading times.*
+
 
 ---
 
-## Your Backlog
+## Backlog
 
-Your backlog lives in two places, working together:
+
 
 ### 1. GitHub Issues (the content)
 
@@ -67,36 +83,9 @@ Link to the Agile backlog for this project:
 [Github Agile board](https://github.com/orgs/dipt-pa1493-ht26/projects/10/views/1)
 
 
-For every user story, feature, and task, create a GitHub Issue with a clear title and description. Use the issue template provided in this repository (see `.github/ISSUE_TEMPLATE/`).
-
-Write them in this order:
-1. All **user stories** first (format: *"As [a user], I want [action] so that [goal]"*)
-2. Then all **features**
-3. Then all **tasks**
-
-### 2. Project Board (the backlog itself)
-
-Add every Issue to a Project board. The board is your backlog, not the issue text.
-
-Your repository does not come with a board already set up — see **[PROJECT_BOARD.md](PROJECT_BOARD.md)** for step-by-step instructions on creating your board and setting up the required fields (Priority, Estimated Effort, Sprint). 
-
-You'll need a working board by the end of Sprint 1, as Status Report 3 requires it.
-
 
 ---
 
-## Development
-
-From Week 38 onward:
-- Set up your development environment and start development.
-- You're free to organise your code however works best for you — for example, using `src/` and `docs/` folders, or any other structure. There's no required folder layout; 
-- At the end of each sprint, your work will be demonstrated to the customer at that sprint's Demo
-- Keep this README as the one place that always explains how to install and run your project.
-
-
-Your repository must remain **Private** for the entire course. This protects your customer's requirements and your own work.
-
----
 
 ## User manual
 
@@ -106,13 +95,13 @@ Your repository must remain **Private** for the entire course. This protects you
 - Visual studio code
 
   #### 1. Clone the repository
-  * git clone https://github.com/dipt-pa1493-ht26/* pa1493-reah23-lekh-zda
+  * git clone https://github.com/dipt-pa1493-ht26/pa1493-reah23-lekh-zda
   * cd repository folder
 
   #### 2. Create and activate virtual enviorment.
   * python -m venv .venv
   * Run .venv\Scripts\Activate to activate the virtual enviorment.
-  * Run deactivate to close the terminal for the virtual enviorment.
+  * To deactivate, run deactivate to close the terminal for the virtual enviorment
  
 
   #### 3. Install dependencies
@@ -122,7 +111,9 @@ Your repository must remain **Private** for the entire course. This protects you
   #### 4 Enviorment variables
   Project requires Django enviorment variables. Create an env.py file in the same folder as manage.py and add the following:
   
-  SECRET_KEY = your-secret-key
+  1. SECRET_KEY = your-secret-key
+
+  2. 
 
 
 ### Running the app
