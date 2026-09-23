@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView
+from django.shortcuts import redirect
 
-# Create your views here.
+class CreatePageCaretakerView(TemplateView):
+    template_name = "webpage/caretaker/create_caretaker.html"
