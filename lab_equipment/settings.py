@@ -23,9 +23,11 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "cloudinary_storage",
     "django.contrib.staticfiles",
     "allauth",
     "allauth.account",
+    "cloudinary",
 
     "accounts",
     "equipment",
@@ -33,6 +35,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -103,9 +106,24 @@ USE_I18N = True
 
 USE_TZ = True
 
+MEDIA_URL = '/images/'
 
-STATIC_URL = "static/"
+CLOUDINARY_STORAGE = {
+    "CLOUDINARY_URL": os.environ.get("CLOUDINARY_URL")
+}
 
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MAILERS = {
     "default": {
