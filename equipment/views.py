@@ -40,6 +40,23 @@ class CreatePageCaretakerView(
         return context
 
     def handle_no_permission(self):
-            return TemplateView.as_view(template_name="webpage/no_permission.html")(
-                self.request
-            )
+        return TemplateView.as_view(template_name="webpage/no_permission.html")(
+            self.request
+        )
+
+
+class ViewAllStudent(LoginRequiredMixin, TemplateView):
+    """Display all equipment to users"""
+
+    model = Equipment
+    template_name = "webpage/student/view_all.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        equipment = Equipment.objects.all().order_by("-created_at")
+
+        context["equipment"] = equipment
+
+        return context
+
