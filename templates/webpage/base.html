@@ -15,11 +15,12 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/studentpage.css' %}">
     <link rel="stylesheet" href="{% static 'css/detailpage.css' %}">
+    <link rel="stylesheet" href="{% static 'css/caretakerdash.css' %}">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg newnavbar">
-        <div class="container"> <a class="navbar-brand" href="/">Lab Equipment</a> <button class="navbar-toggler"
+        <div class="container"> <a class="navbar-brand" href="/"> <i class="fa-solid fa-desktop"></i> Lab Equipment</a> <button class="navbar-toggler"
                 type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"> <span
                     class="navbar-toggler-icon"></span> </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -36,9 +37,9 @@
                     <li class="nav-item"> <a class="nav-link" href="/create"> <i class="fa-solid fa-plus"></i> Create equipment </a> </li>
                     <li class="nav-item"> <a class="nav-link" href="/accounts/logout/"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Log out</a> </li>
                     <span class="text-white">Logged in as: Admin</span> <i class="fa-solid fa-user"> </i>
-
                     {% elif user.groups.all.0.name == "Caretaker" %}
                     <li class="nav-item"> <a class="nav-link" href="/create"> <i class="fa-solid fa-plus"></i> Create equipment </a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="/caretakerdash"> <i class="fa-solid fa-gauge"></i> Dashboard </a> </li>
                     <li class="nav-item"> <a class="nav-link" href="/category"> <i class="fa-solid fa-layer-group"> </i> Categories</a> </li>
                     <li class="nav-item"> <a class="nav-link" href="/showall"> <i class="fa-solid fa-table-list me-1"></i> All equipments </a> </li>
                     <li class="nav-item"> <a class="nav-link" href="/accounts/logout/"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Log out</a> </li>

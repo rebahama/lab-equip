@@ -6,6 +6,9 @@ from .views import (
     ViewCategoryPage,
     ViewCategoryDetailPage,
 )
+from .views_caretaker import(
+    CareTakerDashboard
+)
 
 urlpatterns = [
     path("create", CreatePageCaretakerView.as_view(), name="create"),
@@ -13,4 +16,5 @@ urlpatterns = [
     path("detail/<int:pk>", ViewAllDetailPage.as_view(), name="show-detail"),
     path("category", ViewCategoryPage.as_view(), name="show-category"),
     path("category/<int:pk>/",ViewCategoryDetailPage.as_view(), name="category-detail",),
+    path("caretakerdash", CareTakerDashboard.as_view(), name="show-dashboard"),
 ]

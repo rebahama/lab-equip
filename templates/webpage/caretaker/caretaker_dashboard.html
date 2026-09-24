@@ -1,0 +1,64 @@
+{% extends "webpage/base.html" %}
+{% block title %}Caretaker Dashboard{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="caretaker-dashboard-header text-center mb-5">
+        <h1>
+            Caretaker Dashboard
+        </h1>
+        <p>
+            Manage equipment, categories and bookings
+        </p>
+    </div>
+    <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-4">
+            <div class="caretaker-dashboard-card">
+                <div class="caretaker-dashboard-icon">
+                    <i class="fa-solid fa-toolbox"></i>
+                </div>
+                <h4>
+                    Equipment
+                </h4>
+                <p>
+                    Edit or delete laboratory equipment.
+                </p>
+                <a href="{% url 'show-student' %}" class="caretaker-dashboard-button">
+                    Manage Equipment
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="caretaker-dashboard-card">
+                <div class="caretaker-dashboard-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <h4>
+                    Categories
+                </h4>
+                <p>
+                    Edit or delete equipment categories.
+                </p>
+                <a href="{% url 'show-category' %}" class="caretaker-dashboard-button">
+                    Manage Categories
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="caretaker-dashboard-card">
+                <div class="caretaker-dashboard-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <h4>
+                    Bookings
+                </h4>
+                <p>
+                    View and manage equipment bookings.
+                </p>
+                  <a href="#" class="caretaker-dashboard-button">
+                    Manage Bookings
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

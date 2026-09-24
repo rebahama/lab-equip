@@ -39,7 +39,7 @@
                         {% endif %}
                     </p>
                     <span class="badge bg-light text-dark mb-2">
-                        Serial: {{ item.serial_number|default:"Not specified" }}
+                        Serial number: {{ item.serial_number|default:"Not specified" }}
                     </span>
                     <a href="{% url 'show-detail' item.pk %}"
                         class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
