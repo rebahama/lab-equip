@@ -20,9 +20,14 @@
                         {{ category.name }}
                     </h5>
                     <p class="card-text text-muted small mb-3">
+                        {% if category.description %}
                         {{ category.description|truncatewords:12 }}
+                        {% else %}
+                        <span>No description</span>
+                        {% endif %}
                     </p>
-                    <a href="#" class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
+                    <a href="{% url 'category-detail' category.pk %}"
+                        class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
                         View
                     </a>
                     <span class="badge bg-light text-dark mb-2">

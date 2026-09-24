@@ -27,10 +27,14 @@
                         {{ equipment.equipment_type.name }}
                     </h5>
                     <p class="card-text text-muted small mb-3">
+                        {% if equipment.description %}
                         {{ equipment.description|truncatewords:12 }}
+                        {% else %}
+                        <span>No description</span>
+                        {% endif %}
                     </p>
                     <span class="badge bg-light text-dark mb-2">
-                       Category: {{ equipment.equipment_type.category.name }}
+                        Category: {{ equipment.equipment_type.category.name }}
                     </span>
                     <a href="{% url 'show-detail' equipment.pk %}"
                         class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">

@@ -36,11 +36,13 @@
 
                     {% elif user.groups.all.0.name == "Caretaker" %}
                     <li class="nav-item"> <a class="nav-link" href="/create">Create equipment </a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="/showall">Show equipments</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="/category">Categories</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="/showall">View all equipments </a> </li>
                     <span class="text-white">Logged in as: Caretaker</span>
 
                     {% elif user.groups.all.0.name == "Student" %}
-                    <li class="nav-item"> <a class="nav-link" href="/showall">Show equipments</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="/category">Categories</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="/showall">View all equipments </a> </li>
                     <span class="text-white">Logged in as: Student</span>
                     {% endif %}
                     {% else %}
