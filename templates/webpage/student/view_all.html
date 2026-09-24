@@ -1,5 +1,5 @@
 {% extends "webpage/base.html" %}
-{% block title %}Equipment{% endblock %}
+{% block title %}View all{% endblock %}
 {% block content %}
 <div class="container py-5">
 
@@ -18,7 +18,7 @@
                     <img src="{{ equipment.image.url }}" class="equipment-image" alt="{{ equipment.name }}">
                     {% else %}
                     <div class="equipment-no-image">
-                        <span>No image</span>
+                        <span>No image <i class="fa-solid fa-image"></i> </span>
                     </div>
                     {% endif %}
                 </div>
