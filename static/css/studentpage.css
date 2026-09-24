@@ -37,6 +37,7 @@
     border: none;
     color: #ffffff;
     font-weight: 500;
+    margin-top: 20px;
     padding: 8px 16px;
     transition: all 0.2s ease;
 }
