@@ -1,0 +1,21 @@
+{% extends "webpage/base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<h1>{{ equipment.name }}</h1>
+
+<p>{{ equipment.description }}</p>
+
+<p>
+    Available: {{ available_count }} / {{ total_count }}
+</p>
+
+<p>
+    On loan: {{ on_loan_count }}
+</p>
+
+<p>
+    Status: {{ equipment.get_status_display }}
+</p>
+{% endblock %}
