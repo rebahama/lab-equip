@@ -1,0 +1,48 @@
+{% extends "webpage/base.html" %}
+{% block title %}Categories{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="fw-bold mb-2">
+            Equipment Categories
+        </h1>
+        <p class="text-muted">
+            Select a category to view its equipment
+        </p>
+
+    </div>
+    <div class="row g-3 justify-content-center">
+        {% for category in categories %}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="card equipment-card h-100 border-0 shadow-sm">
+                <div class="card-body p-3">
+                    <h5 class="card-title fw-bold mb-1">
+                        {{ category.name }}
+                    </h5>
+                    <p class="card-text text-muted small mb-3">
+                        {% if category.description %}
+                        {{ category.description|truncatewords:12 }}
+                        {% else %}
+                        <span>No description</span>
+                        {% endif %}
+                    </p>
+                    <a href="{% url 'category-detail' category.pk %}"
+                        class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
+                        View
+                    </a>
+                    <span class="badge bg-light text-dark mb-2">
+                        Equipment: {{ category.equipment_count }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p class="text-muted">
+                No categories have been added yet.
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
