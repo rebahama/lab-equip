@@ -1,0 +1,121 @@
+{% extends "webpage/base.html" %}
+{% block title %}Equipment Details{% endblock %}
+{% block content %}
+
+<div class="container py-5">
+    <div class="equipment-detail-card">
+        <div class="row g-0">
+            <div class="col-md-5">
+                <div class="equipment-detail-image-wrapper">
+                    {% if equipment.image %}
+                    <img src="{{ equipment.image.url }}" class="equipment-detail-image" alt="{{ equipment.name }}">
+                    <a href="{{ equipment.image.url }}" target="_blank" class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
+                    View bigger image
+                    </a>
+                    {% else %}
+                    <div class="equipment-detail-no-image">
+                        <span>No image available</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="equipment-detail-content">
+                    <h1 class="equipment-detail-title">
+                        {{ equipment.name }}
+                    </h1>
+                    <div class="equipment-detail-divider"></div>
+                    <div class="equipment-info">
+                        <div class="equipment-info-row">
+                            <span class="equipment-info-label">
+                                Category
+                            </span>
+                            <span class="equipment-info-value">
+                                {{ equipment.category }}
+                            </span>
+                        </div>
+                        <div class="equipment-info-row">
+                            <span class="equipment-info-label">
+                                Description
+                            </span>
+                            <span class="equipment-info-value">
+                                {{ equipment.description }}
+                            </span>
+                        </div>
+                        <div class="equipment-info-row">
+                            <span class="equipment-info-label">
+                                Serial number
+                            </span>
+                            <span class="equipment-info-value">
+                                {{ equipment.serial_number|default:"Not specified" }}
+                            </span>
+                        </div>
+                        <div class="equipment-info-row">
+                            <span class="equipment-info-label">
+                                Location
+                            </span>
+                            <span class="equipment-info-value">
+                                {{ equipment.location|default:"Not specified" }}
+                            </span>
+                        </div>
+                        <div class="equipment-info-row">
+                            <span class="equipment-info-label">
+                                Status
+                            </span>
+                            <span class="equipment-info-value">
+                                <span class="badge equipment-status-badge">
+                                    {{ equipment.get_status_display }}
+                                </span>
+                            </span>
+                        </div>
+                        <div class="equipment-info-row">
+                            <span class="equipment-info-label">
+                                Condition
+                            </span>
+                            <span class="equipment-info-value">
+                                {{ equipment.get_condition_display }}
+                            </span>
+                        </div>
+                        <div class="equipment-info-row">
+                            <span class="equipment-info-label">
+                                Created by
+                            </span>
+                            <span class="equipment-info-value">
+                                {{ equipment.owner }}
+                            </span>
+                        </div>
+                        <div class="equipment-info-row">
+                            <span class="equipment-info-label">
+                                Added
+                            </span>
+                            <span class="equipment-info-value">
+                                {{ equipment.created_at|date:"d M Y, H:i" }}
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="equipment-availability">
+                        <div>
+                            <span class="availability-label">
+                                Available
+                            </span>
+                            <strong>
+                                {{ available_count }} / {{ total_count }}
+                            </strong>
+                        </div>
+                        <div>
+                            <span class="availability-label">
+                                On loan
+                            </span>
+                            <strong>
+                                {{ on_loan_count }}
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

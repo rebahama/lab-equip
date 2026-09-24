@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Equipment, Category
 
@@ -60,3 +60,29 @@ class ViewAllStudent(LoginRequiredMixin, TemplateView):
 
         return context
 
+
+class ViewAllDetailPage(LoginRequiredMixin, DetailView):
+    """Display the detailed page when clicking view more"""
+
+    model = Equipment
+    template_name = "webpage/student/view_detail.html"
+    context_object_name = "equipment"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        equipment_queryset = Equipment.objects.filter(
+            name=self.object.name
+        )
+
+        context["available_count"] = equipment_queryset.filter(
+            status="available"
+        ).count()
+
+        context["on_loan_count"] = equipment_queryset.filter(
+            status="on_loan"
+        ).count()
+
+        context["total_count"] = equipment_queryset.count()
+
+        return context

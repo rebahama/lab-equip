@@ -32,7 +32,8 @@
                     <p class="card-text text-muted small mb-3">
                         {{ equipment.description|truncatewords:12 }}
                     </p>
-                    <a href="#" class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
+                    <a href="{% url 'show-detail' equipment.pk %}"
+                        class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
                         View More Info
                     </a>
                 </div>
