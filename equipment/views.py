@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, CreateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .models import Equipment, Category
+from .models import Equipment, Category, EquipmentType, Location
 
 
 class CreatePageCaretakerView(
@@ -16,8 +16,7 @@ class CreatePageCaretakerView(
     model = Equipment
     template_name = "webpage/caretaker/create_caretaker.html"
     fields = [
-        "name",
-        "category",
+        "equipment_type",
         "description",
         "serial_number",
         "location",
@@ -36,7 +35,11 @@ class CreatePageCaretakerView(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         context["categories"] = Category.objects.all()
+        context["equipment_types"] = EquipmentType.objects.all()
+        context["locations"] = Location.objects.all()
+
         return context
 
     def handle_no_permission(self):
@@ -72,7 +75,7 @@ class ViewAllDetailPage(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
 
         equipment_queryset = Equipment.objects.filter(
-            name=self.object.name
+            equipment_type=self.object.equipment_type
         )
 
         context["available_count"] = equipment_queryset.filter(

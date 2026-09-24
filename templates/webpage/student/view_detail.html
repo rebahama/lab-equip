@@ -22,7 +22,7 @@
             <div class="col-md-7">
                 <div class="equipment-detail-content">
                     <h1 class="equipment-detail-title">
-                        {{ equipment.name }}
+                         {{ equipment.equipment_type.name }}
                     </h1>
                     <div class="equipment-detail-divider"></div>
                     <div class="equipment-info">
@@ -31,7 +31,7 @@
                                 Category
                             </span>
                             <span class="equipment-info-value">
-                                {{ equipment.category }}
+                                {{ equipment.equipment_type.category.name }}
                             </span>
                         </div>
                         <div class="equipment-info-row">
@@ -39,7 +39,7 @@
                                 Description
                             </span>
                             <span class="equipment-info-value">
-                                {{ equipment.description }}
+                                {{ equipment.description|default:"No description available" }}
                             </span>
                         </div>
                         <div class="equipment-info-row">

@@ -10,8 +10,23 @@ class Category(models.Model):
         return self.name
 
 
-class Equipment(models.Model):
+class EquipmentType(models.Model):
+    name = models.CharField(max_length=200, unique=True)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    description = models.TextField(blank=True)
 
+    def __str__(self):
+        return self.name
+
+
+class Location(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Equipment(models.Model):
     STATUS_CHOICES = [
         ("available", "Available"),
         ("on_loan", "On loan"),
@@ -28,13 +43,17 @@ class Equipment(models.Model):
         ("damaged", "Damaged"),
     ]
 
-    name = models.CharField(max_length=200)
-
-    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    equipment_type = models.ForeignKey(
+        EquipmentType, on_delete=models.PROTECT, null=True, blank=True
+    )
 
     description = models.TextField(blank=True)
+
     serial_number = models.CharField(max_length=100, blank=True)
-    location = models.CharField(max_length=200, blank=True)
+
+    location = models.ForeignKey(
+        Location, on_delete=models.PROTECT, null=True, blank=True
+    )
 
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default="available"
@@ -49,7 +68,8 @@ class Equipment(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
+
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.equipment_type.name} - {self.serial_number}"
