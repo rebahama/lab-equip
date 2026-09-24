@@ -1,57 +1,55 @@
 {% extends "webpage/base.html" %}
-
 {% block content %}
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-
             <div class="card shadow-sm">
                 <div class="card-body p-4">
-
                     <h1 class="mb-4">Add Equipment</h1>
-
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" name="name" id="name" class="form-control" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="category" class="form-label">Category</label>
-                            <select name="category" id="category" class="form-select" required>
-                                <option value="">Select a category</option>
-
-                                {% for category in categories %}
-                                <option value="{{ category.id }}">
-                                    {{ category.name }}
+                            <label for="equipment_type" class="form-label">
+                                Equipment type
+                            </label>
+                            <select name="equipment_type" id="equipment_type" class="form-select" required>
+                                <option value="">
+                                    Select an equipment type
+                                </option>
+                                {% for equipment_type in equipment_types %}
+                                <option value="{{ equipment_type.id }}">
+                                    {{ equipment_type.name }}
                                 </option>
                                 {% endfor %}
                             </select>
                         </div>
-
                         <div class="mb-3">
                             <label for="description" class="form-label">
                                 Description
                             </label>
                             <textarea name="description" id="description" class="form-control" rows="4"></textarea>
                         </div>
-
                         <div class="mb-3">
                             <label for="serial_number" class="form-label">
                                 Serial number
                             </label>
                             <input type="text" name="serial_number" id="serial_number" class="form-control">
                         </div>
-
                         <div class="mb-3">
                             <label for="location" class="form-label">
                                 Location
                             </label>
-                            <input type="text" name="location" id="location" class="form-control">
+                            <select name="location" id="location" class="form-select">
+                                <option value="">
+                                    Select a location
+                                </option>
+                                {% for location in locations %}
+                                <option value="{{ location.id }}">
+                                    {{ location.name }}
+                                </option>
+                                {% endfor %}
+                            </select>
                         </div>
-
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
                             <select name="status" id="status" class="form-select">
@@ -64,7 +62,6 @@
                                 <option value="retired">Retired</option>
                             </select>
                         </div>
-
                         <div class="mb-3">
                             <label for="condition" class="form-label">
                                 Condition
@@ -77,21 +74,16 @@
                                 <option value="damaged">Damaged</option>
                             </select>
                         </div>
-
                         <div class="mb-4">
                             <label for="image" class="form-label">Image</label>
                             <input type="file" name="image" id="image" class="form-control" accept="image/*">
                         </div>
-
                         <button type="submit" class="btn btn-primary">
                             Add Equipment
                         </button>
-
                     </form>
-
                 </div>
             </div>
-
         </div>
     </div>
 </div>

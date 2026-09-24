@@ -24,14 +24,14 @@
                 </div>
                 <div class="card-body p-3">
                     <h5 class="card-title fw-bold mb-1">
-                        {{ equipment.name }}
+                        {{ equipment.equipment_type.name }}
                     </h5>
-                    <span class="badge bg-light text-dark mb-2">
-                        {{ equipment.category }}
-                    </span>
                     <p class="card-text text-muted small mb-3">
                         {{ equipment.description|truncatewords:12 }}
                     </p>
+                    <span class="badge bg-light text-dark mb-2">
+                       Category: {{ equipment.equipment_type.category.name }}
+                    </span>
                     <a href="{% url 'show-detail' equipment.pk %}"
                         class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
                         View More Info
