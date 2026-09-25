@@ -9,8 +9,9 @@
                 <div class="equipment-detail-image-wrapper">
                     {% if equipment.image %}
                     <img src="{{ equipment.image.url }}" class="equipment-detail-image" alt="{{ equipment.name }}">
-                    <a href="{{ equipment.image.url }}" target="_blank" class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
-                    View bigger image
+                    <a href="{{ equipment.image.url }}" target="_blank"
+                        class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
+                        View bigger image
                     </a>
                     {% else %}
                     <div class="equipment-detail-no-image">
@@ -22,7 +23,7 @@
             <div class="col-md-7">
                 <div class="equipment-detail-content">
                     <h1 class="equipment-detail-title">
-                         {{ equipment.equipment_type.name }}
+                        {{ equipment.equipment_type.name }}
                     </h1>
                     <div class="equipment-detail-divider"></div>
                     <div class="equipment-info">
@@ -114,6 +115,19 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="edit-back-btn"> 
+            {% if user.groups.all.0.name == "Caretaker" %}
+            <a href="{% url 'show-student' %}"
+               class="btn btn-primary rounded-pill equipment-button">
+               <i class="fa-solid fa-arrow-left-long"></i>
+                Back
+            </a>
+            <a href="{% url 'equipment-edit' equipment.pk %}" class="btn btn-primary rounded-pill equipment-button">
+                <i class="fa-solid fa-pen-to-square"></i>
+                Edit
+            </a>
+            {% endif %}
             </div>
         </div>
     </div>

@@ -1,0 +1,208 @@
+{% extends "webpage/base.html" %}
+{% block title %}Edit Equipment{% endblock %}
+{% block content %}
+<div class="container py-5">
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="mb-4"> Edit Equipment</h1>
+                {% if messages %}
+                {% for message in messages %}
+                    {% if "equipment" in message.tags %}
+                        <div class="alert alert-success text-center"> {{ message }} </div>
+                    {% endif %}
+                {% endfor %}
+                {% endif %}
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="equipment_type" class="form-label">
+                            Equipment type
+                        </label>
+                        <select
+                            name="equipment_type"
+                            id="equipment_type"
+                            class="form-select"
+                            required
+                        >
+                            <option value="">
+                                Select an equipment type
+                            </option>
+                            {% for equipment_type in equipment_types %}
+                            <option
+                                value="{{ equipment_type.id }}"
+                                {% if equipment.equipment_type.id == equipment_type.id %}selected{% endif %}
+                            >
+                                {{ equipment_type.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">
+                            Description
+                        </label>
+                        <textarea
+                            name="description"
+                            id="description"
+                            class="form-control"
+                            rows="4"
+                        >{{ equipment.description }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="serial_number" class="form-label">
+                            Serial number
+                        </label>
+                        <input
+                            type="text"
+                            name="serial_number"
+                            id="serial_number"
+                            class="form-control"
+                            value="{{ equipment.serial_number }}"
+                        >
+                    </div>
+                    <div class="mb-3">
+                        <label for="location" class="form-label">
+                            Location
+                        </label>
+                        <select
+                            name="location"
+                            id="location"
+                            class="form-select"
+                        >
+                            <option value="">
+                                Select a location
+                            </option>
+                            {% for location in locations %}
+                            <option
+                                value="{{ location.id }}"
+                                {% if equipment.location.id == location.id %}selected{% endif %}
+                            >
+                                {{ location.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">
+                            Status
+                        </label>
+                        <select
+                            name="status"
+                            id="status"
+                            class="form-select"
+                        >
+                            <option
+                                value="available"
+                                {% if equipment.status == "available" %}selected{% endif %}
+                            >
+                                Available
+                            </option>
+                            <option
+                                value="on_loan"
+                                {% if equipment.status == "on_loan" %}selected{% endif %}
+                            >
+                                On loan
+                            </option>
+                            <option
+                                value="in_repair"
+                                {% if equipment.status == "in_repair" %}selected{% endif %}
+                            >
+                                In repair
+                            </option>
+                            <option
+                                value="out_of_service"
+                                {% if equipment.status == "out_of_service" %}selected{% endif %}
+                            >
+                                Out of service
+                            </option>
+                            <option
+                                value="retired"
+                                {% if equipment.status == "retired" %}selected{% endif %}
+                            >
+                                Retired
+                            </option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="condition" class="form-label">
+                            Condition
+                        </label>
+                        <select
+                            name="condition"
+                            id="condition"
+                            class="form-select"
+                        >
+                            <option
+                                value="excellent"
+                                {% if equipment.condition == "excellent" %}selected{% endif %}
+                            >
+                                Excellent
+                            </option>
+                            <option
+                                value="good"
+                                {% if equipment.condition == "good" %}selected{% endif %}
+                            >
+                                Good
+                            </option>
+                            <option
+                                value="fair"
+                                {% if equipment.condition == "fair" %}selected{% endif %}
+                            >
+                                Fair
+                            </option>
+                            <option
+                                value="poor"
+                                {% if equipment.condition == "poor" %}selected{% endif %}
+                            >
+                                Poor
+                            </option>
+                            <option
+                                value="damaged"
+                                {% if equipment.condition == "damaged" %}selected{% endif %}
+                            >
+                                Damaged
+                            </option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="image" class="form-label">
+                            Image
+                        </label>
+                        {% if equipment.image %}
+                            <div class="mb-2">
+                                <img
+                                    src="{{ equipment.image.url }}"
+                                    alt="{{ equipment.equipment_type.name }}"
+                                    style="max-width: 150px; border-radius: 8px;"
+                                >
+                            </div>
+                        {% endif %}
+                        <input
+                            type="file"
+                            name="image"
+                            id="image"
+                            class="form-control"
+                            accept="image/*"
+                        >
+                    </div>
+                    <button
+                        type="submit"
+                        class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
+                        <i class="fa-solid fa-floppy-disk me-1"></i>
+                        Save Changes
+                    </button>
+                    <a
+                        href="{% url 'show-detail' equipment.pk %}"
+                        class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
+                        <i class="fa-solid fa-arrow-left-long"></i>
+                        Back to equipment
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
