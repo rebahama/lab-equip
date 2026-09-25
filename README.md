@@ -111,20 +111,47 @@ Link to the Agile backlog for this project:
   #### 4 Enviorment variables
   Project requires Django enviorment variables. Create an env.py file in the same folder as manage.py and add the following:
   
-  1. SECRET_KEY = your-secret-key
+  * SECRET_KEY = your-secret-key
 
-  2. 
+  * CLOUDINARY_URL = your cloudinary secret api key 
 
 
-### Running the app
+### Running the app first time
 
   * Apply database migration first by running "python manage.py migrate in the root folder (same folder as manage.py)"
   * Create admin account by running "python manage.py createsuperuser"
   * To start the application run: "python manage.py runserver" in the root folder
+  * When migrations are completed only "python manage.py runserver" is needed to run the application in the root folder.
 
 
 ### Used Technology
 
-1. Django==6.1.1 as web framework
-2. django-allauth==65.19.3 for auth handling
-3. 
+1. Django==6.1.1
+
+* Webframe used for building the application, models, views url and database functions.
+
+2. django-allauth==65.19.3
+
+* Used for handling authentication
+
+3. django-cloudinary-storage==0.3.0
+* Used for connection Django files and imagefileds for storing uploaded media files.
+4. pillow==12.3.0
+
+* Used for Python image handling to upload and process.
+
+5. cloudinary==1.46.2
+
+* Cloudbased media service for storing images.
+
+6. HTML5
+
+* Used for structuring the application pages.
+
+7. CSS3
+
+* Used for custom styles for the application.
+
+8. whitenoise==6.12.0 
+
+* Used for serving static files such as, Javascript, CSS and other static files.
