@@ -5,6 +5,15 @@
 
     <div class="text-center mb-4">
         <h1 class="fw-bold mb-2">Lab Equipment</h1>
+        {% if messages %}
+        {% for message in messages %}
+        {% if "equipment" in message.tags %}
+            <div class="alert alert-success text-center">
+                {{ message }}
+            </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
         <p class="text-muted">
             The following equipments are available
         </p>

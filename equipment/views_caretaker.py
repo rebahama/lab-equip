@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DeleteView
 from django.views.generic import TemplateView
+from django.urls import reverse_lazy
 from django.contrib import messages
 from .models import Equipment, EquipmentType, Location
 
@@ -52,6 +53,36 @@ class EditEquipmentView(
 
     def get_success_url(self):
         return f"/detail/{self.object.pk}/edit"
+
+    def handle_no_permission(self):
+        return TemplateView.as_view(template_name="webpage/no_permission.html")(
+            self.request
+        )
+
+
+class DeleteEquipmentView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    DeleteView,
+):
+    """
+    Only the caretaker groups have access to the delete template, if student
+    tries to access a forbidden page displays with no permission message.
+    """
+
+    model = Equipment
+    template_name = "webpage/caretaker/delete_equipment.html"
+    success_url = reverse_lazy("show-student")
+
+    def test_func(self):
+        return self.request.user.groups.filter(name="Caretaker").exists()
+
+    def form_valid(self, form):
+        messages.success(
+            self.request, "Equipment deleted successfully.", extra_tags="equipment"
+        )
+
+        return super().form_valid(form)
 
     def handle_no_permission(self):
         return TemplateView.as_view(template_name="webpage/no_permission.html")(

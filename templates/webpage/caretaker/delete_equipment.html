@@ -1,0 +1,23 @@
+{% extends "webpage/base.html" %}
+{% block title %}Delete Equipment{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="logout-page">
+        <div class="logout-card">
+            <h1>Delete Equipment</h1>
+            <p> Are you sure you want to delete <strong>{{ equipment.equipment_type.name }}</strong> with serial nr: {{ equipment.serial_number}}? </p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">
+                    <i class="fa-solid fa-trash"></i>
+                    Delete
+                </button>
+            </form>
+            <a href="{% url 'show-detail' equipment.pk %}" class="cancel-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to equipment
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
