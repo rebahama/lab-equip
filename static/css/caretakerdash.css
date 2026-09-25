@@ -1,0 +1,62 @@
+.caretaker-dashboard-header h1 {
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.caretaker-dashboard-header p {
+    color: #6c757d;
+    margin-bottom: 0;
+}
+
+.caretaker-dashboard-card {
+    height: 100%;
+    padding: 30px 20px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.caretaker-dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.caretaker-dashboard-icon {
+    margin-bottom: 18px;
+}
+
+.caretaker-dashboard-icon i {
+    font-size: 2.5rem;
+    color: #667eea;
+}
+
+.caretaker-dashboard-card h4 {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.caretaker-dashboard-card p {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 22px;
+}
+
+.caretaker-dashboard-button {
+    display: inline-block;
+    width: 100%;
+    padding: 9px 16px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.caretaker-dashboard-button:hover {
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(102, 126, 234, 0.3);
+}

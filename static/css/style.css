@@ -110,3 +110,74 @@ main {
 .newnavbar .navbar-toggler:focus {
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
 }
+
+.logout-page {
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.logout-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.logout-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.logout-card h1 {
+    margin-bottom: 15px;
+    font-size: 2rem;
+}
+
+.logout-card p {
+    margin-bottom: 25px;
+    color: #6b7280;
+}
+
+.logout-button {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #dc3545;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.logout-button:hover {
+    background-color: #bb2d3b;
+}
+
+.logout-button i {
+    margin-right: 6px;
+}
+
+.cancel-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #6b7280;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.cancel-link:hover {
+    color: #212529;
+}
+
+.cancel-link i {
+    margin-right: 5px;
+}

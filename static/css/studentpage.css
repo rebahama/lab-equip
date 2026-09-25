@@ -52,3 +52,11 @@
 .equipment-button:active {
     transform: translateY(0);
 }
+
+.edit-back-btn {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 20px;
+    align-items: center;
+    gap: 10px;
+}

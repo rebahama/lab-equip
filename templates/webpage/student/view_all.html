@@ -1,10 +1,19 @@
 {% extends "webpage/base.html" %}
-{% block title %}Equipment{% endblock %}
+{% block title %}View all{% endblock %}
 {% block content %}
 <div class="container py-5">
 
     <div class="text-center mb-4">
         <h1 class="fw-bold mb-2">Lab Equipment</h1>
+        {% if messages %}
+        {% for message in messages %}
+        {% if "equipment" in message.tags %}
+            <div class="alert alert-success text-center">
+                {{ message }}
+            </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
         <p class="text-muted">
             The following equipments are available
         </p>
@@ -18,7 +27,7 @@
                     <img src="{{ equipment.image.url }}" class="equipment-image" alt="{{ equipment.name }}">
                     {% else %}
                     <div class="equipment-no-image">
-                        <span>No image</span>
+                        <span>No image <i class="fa-solid fa-image"></i> </span>
                     </div>
                     {% endif %}
                 </div>
@@ -36,9 +45,13 @@
                     <span class="badge bg-light text-dark mb-2">
                         Category: {{ equipment.equipment_type.category.name }}
                     </span>
+                    <span class="badge bg-light text-dark mb-2">
+                        Serial number: {{ equipment.serial_number }}
+                    </span>
                     <a href="{% url 'show-detail' equipment.pk %}"
                         class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
-                        View More Info
+                        <i class="fa-solid fa-circle-up"></i>
+                        More Info
                     </a>
                 </div>
             </div>

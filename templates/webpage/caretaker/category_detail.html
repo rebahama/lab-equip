@@ -23,7 +23,7 @@
                     <img src="{{ item.image.url }}" class="equipment-image" alt="{{ item.equipment_type.name }}">
                     {% else %}
                     <div class="equipment-no-image">
-                        <span>No image</span>
+                        <span>No image <i class="fa-solid fa-image"></i> </span>
                     </div>
                     {% endif %}
                 </div>
@@ -39,11 +39,12 @@
                         {% endif %}
                     </p>
                     <span class="badge bg-light text-dark mb-2">
-                        Serial: {{ item.serial_number|default:"Not specified" }}
+                        Serial number: {{ item.serial_number|default:"Not specified" }}
                     </span>
                     <a href="{% url 'show-detail' item.pk %}"
                         class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
-                        View More Info
+                        <i class="fa-solid fa-circle-up"></i>
+                        More Info
                     </a>
                 </div>
             </div>

@@ -25,7 +25,7 @@ class ManageRolesView(UserPassesTestMixin, TemplateView):
         user.groups.clear()
         user.groups.add(group)
 
-        messages.success(request, f"{user.username}'s role was changed successfully.")
+        messages.success(request, f"{user.username}'s role was changed successfully.", extra_tags="role")
 
         return redirect("manage_roles")
 
