@@ -86,6 +86,106 @@ Link to the Agile backlog for this project:
 
 ---
 
+## Database relations and modeling
+
+The Database for the application can be viewed from the image below:
+
+![Database diagram](docs/db-diagram.png)
+
+## Features and functionality
+
+### Authentication and user mangement
+
+* Registration - Students can create  account to access the system.
+* Login/logout - Users can securely login/logout.
+* User roles - Users have diffrent permission based on their role, students, caretaker and admin.
+* Role management - Administrators can assign diffrent permission roles to the users.
+
+Create account:
+![Create account](docs/webpage/auth-01.png)
+
+Login:
+
+![Login account](docs/webpage/auth-03.png)
+
+Mange roles:
+
+![Mange roles](docs/webpage/auth-02.png)
+
+
+
+### Equipment management
+
+* Equipment overview - Users can view all the equipment.
+
+* Equipment Detail - Users can view detalied information in the overview when clicking a link.
+
+* Equipment categories - Equipment are grouped into categories for easiser navigation.
+
+* Equipment status - Equipment can be marked as avalible, on loan, in repair or out of service.
+
+* Equipment management - Caretaker can add, edit and delete equipments.
+
+* Availability - Students can view how many equipments are avalible at the moment and how many are on loan.
+
+
+View all equipment:
+![View all](docs/webpage/equipment-03.png)
+
+View detailed equipment:
+![View detail](docs/webpage/equipment-04.png)
+
+View categories
+![View categories](docs/webpage/equipment-05.png)
+
+Clicked categories:
+![View clicked categories](docs/webpage/equipment-02.png)
+
+Equipment status:
+![View status](docs/webpage/equipment-07.png)
+
+Equipment create, read, update and delete:
+
+![View crud](docs/webpage/equipment-08.png)
+
+![View edit](docs/webpage/equipment-01.png)
+
+![View delete](docs/webpage/equipment-09.png)
+
+![View crud buttons](docs/webpage/equipment-06.png)
+
+
+### Booking system
+
+* Booking - Students can request booking equipments.
+
+* Booking approval - Caretaker can approve or reject from students booking.
+
+* My bookings - Students can view their booking when its been approved from caretaker.
+
+* Mange bookings - Caretaker can see all the bookings from students in the caretaker dashboard page.
+
+### Caretaker dashboard page
+
+* Mange bookings - Only caretaker can see all the bookings from students in the caretaker dashboard page.
+
+* Mange categories - Only caretaker can edit categories.
+
+* Mange equipments - Only caretaker can create/edit/delete equipments from the caretaker page.
+
+
+### User interface
+
+* Responsiv - The system is designed to be used also on mobile and tablet screens.
+
+* Success messages - The system displays diffrnet messages when a form is submited.
+
+Mobile screens examples:
+
+![Mobile-01](docs/webpage/mobile-01.png)
+
+![Mobile-02](docs/webpage/mobile-02.png)
+
 
 ## User manual
 
@@ -96,16 +196,18 @@ Link to the Agile backlog for this project:
 
   #### 1. Clone the repository
   * git clone https://github.com/dipt-pa1493-ht26/pa1493-reah23-lekh-zda
-  * cd repository folder
+  * cd project name
 
   #### 2. Create and activate virtual enviorment.
   * python -m venv .venv
   * Run .venv\Scripts\Activate to activate the virtual enviorment.
   * To deactivate, run deactivate to close the terminal for the virtual enviorment
+  * Windows: .venv\Scripts\activate
+  * Mac/Linux source: .venv/bin/activate
  
 
   #### 3. Install dependencies
-  * pip install -r requirements.txt
+  * When virtual enviorment is green and activated run the following: pip install -r requirements.txt to install all the dependencies.
 
   
   #### 4 Enviorment variables
@@ -119,8 +221,11 @@ Link to the Agile backlog for this project:
 ### Running the app first time
 
   * Apply database migration first by running "python manage.py migrate in the root folder (same folder as manage.py)"
+
   * Create admin account by running "python manage.py createsuperuser"
-  * To start the application run: "python manage.py runserver" in the root folder
+
+  * To start the application run: "python manage.py runserver" in the root folder.
+
   * When migrations are completed only "python manage.py runserver" is needed to run the application in the root folder.
 
 
