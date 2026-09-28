@@ -3,7 +3,7 @@ from django.views.generic import UpdateView, DeleteView
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 from django.contrib import messages
-from .models import Equipment, EquipmentType, Location
+from .models import Equipment, EquipmentType, Location, Category
 
 
 class CareTakerDashboard(TemplateView):
@@ -88,3 +88,44 @@ class DeleteEquipmentView(
         return TemplateView.as_view(template_name="webpage/no_permission.html")(
             self.request
         )
+
+
+class EditCategoryPage(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    UpdateView,
+):
+    """
+    Only the caretaker groups have access to the edit category.
+    """
+
+    fields = ["name"]
+
+    model = Category
+    template_name = "webpage/caretaker/caretaker_edit_category.html"
+    categories = Category.objects.all()
+
+    def test_func(self):
+        return self.request.user.groups.filter(name="Caretaker").exists()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["categories"] = Category.objects.all()
+
+        return context
+
+    def get_success_url(self):
+        return f"/category/{self.object.pk}/edit"
+
+    def handle_no_permission(self):
+        return TemplateView.as_view(template_name="webpage/no_permission.html")(
+            self.request
+        )
+
+    def form_valid(self, form):
+        messages.success(
+            self.request, "Category changed successfully.", extra_tags="category"
+        )
+
+        return super().form_valid(form)
