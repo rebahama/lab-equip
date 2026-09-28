@@ -9,7 +9,8 @@ from .views import (
 from .views_caretaker import(
     CareTakerDashboard,
     EditEquipmentView,
-    DeleteEquipmentView
+    DeleteEquipmentView,
+    EditCategoryPage,
 )
 
 urlpatterns = [
@@ -21,4 +22,5 @@ urlpatterns = [
     path("caretakerdash", CareTakerDashboard.as_view(), name="show-dashboard"),
     path("detail/<int:pk>/edit/", EditEquipmentView.as_view(), name="equipment-edit"),
     path("delete/<int:pk>/delete/", DeleteEquipmentView.as_view(), name="equipment-delete"),
+    path("category/<int:pk>/edit", EditCategoryPage.as_view(), name="category-detail-edit",),
 ]
