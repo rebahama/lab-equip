@@ -133,6 +133,12 @@
                 Edit
             </a>
             {% endif %}
+            {% if user.groups.all.0.name == "Student" %}
+              <a href="{% url 'create-booking' %}" class="btn btn-primary rounded-pill equipment-button">
+                <i class="fa-solid fa-calendar-days"></i>
+                Book this
+            </a>
+            {% endif %}
             </div>
         </div>
     </div>

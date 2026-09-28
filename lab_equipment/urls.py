@@ -10,4 +10,5 @@ urlpatterns = [
     path("", HomePageView.as_view(), name="home"),
     path("", include("accounts.urls")),
     path("", include("equipment.urls")),
+    path("", include("bookings.urls")),
 ]
