@@ -5,6 +5,6 @@ from .views import (
 )
 
 urlpatterns = [
-    path("booking", BookingCreateView.as_view(), name="create-booking"),
+    path("booking/<int:equipment_id>", BookingCreateView.as_view(), name="create-booking"),
 
 ]
