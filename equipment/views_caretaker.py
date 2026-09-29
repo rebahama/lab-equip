@@ -25,6 +25,7 @@ class EditEquipmentView(
     fields = [
         "equipment_type",
         "description",
+        "equipment_name",
         "serial_number",
         "location",
         "status",

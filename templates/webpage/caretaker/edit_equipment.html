@@ -39,6 +39,18 @@
                             {% endfor %}
                         </select>
                     </div>
+
+                       <div class="mb-3">
+                        <label for="equipment_name" class="form-label">
+                            Name
+                        </label>
+                        <input
+                            name="equipment_name"
+                            id="equipment_name"
+                            class="form-control"
+                            value="{{ equipment.equipment_name }}"
+                        >
+                    </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">
                             Description

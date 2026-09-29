@@ -45,6 +45,17 @@
                                 {{ equipment.id }}
                             </span>
                         </div>
+                        <div class="equipment-info-row"> <span class="equipment-info-label"> Name: </span>
+                        {% if equipment.equipment_name %}
+                            <span class="equipment-info-value">
+                                {{ equipment.equipment_name }}
+                            </span>
+                        {% else %}
+                            <span class="equipment-info-value">
+                                No name provided
+                            </span>
+                        {% endif %}
+                        </div>
                         <div class="equipment-info-row">
                             <span class="equipment-info-label">
                                 Category

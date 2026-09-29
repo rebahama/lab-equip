@@ -47,6 +47,8 @@ class Equipment(models.Model):
         EquipmentType, on_delete=models.PROTECT, null=True, blank=True
     )
 
+    equipment_name = models.CharField(max_length=200, blank=True)
+
     description = models.TextField(blank=True)
 
     serial_number = models.CharField(max_length=100, blank=True)
