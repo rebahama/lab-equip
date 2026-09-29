@@ -14,6 +14,11 @@
                             You are about to book {{ equipment.equipment_type.name }} with Serial number: {{ equipment.serial_number }}
                         </p>
                     </div>
+                    {% if form.non_field_errors %}
+                    <div class="alert alert-warning">
+                        {{ form.non_field_errors }}
+                    </div>
+                    {% endif %}
                     <form method="post">
                         {% csrf_token %}
                         <div class="mb-3">

@@ -1,0 +1,20 @@
+{% extends "webpage/base.html" %}
+{% block title %}Approve Booking{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="card shadow-sm">
+        <div class="card-body p-4">
+            <h3>Approve booking?</h3>
+            <p>
+                Are you sure you want to approve this booking?
+            </p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success rounded-pill">
+                    Confirm
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
