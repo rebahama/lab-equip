@@ -91,6 +91,7 @@ class ViewAllDetailPage(LoginRequiredMixin, DetailView):
 
         return context
 
+
 class ViewCategoryPage(TemplateView):
     """Display the categories and display the counts inside the categories"""
 
@@ -107,6 +108,10 @@ class ViewCategoryPage(TemplateView):
                 equipment_type__category=category
             ).count()
 
+            category.equipment_type_count = EquipmentType.objects.filter(
+                category=category
+            ).count()
+
         context["categories"] = categories
 
         return context
@@ -121,8 +126,33 @@ class ViewCategoryDetailPage(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context["equipment"] = Equipment.objects.filter(
+        context["equipment_types"] = EquipmentType.objects.filter(
+            category=self.object
+        )
+        
+        context["equipment_count"] = Equipment.objects.filter(
             equipment_type__category=self.object
+        ).count()
+
+        for equipment_type in context["equipment_types"]:
+            equipment_type.equipment_count = Equipment.objects.filter(
+                equipment_type=equipment_type
+            ).count()
+
+        return context
+
+
+class ViewEquipmentTypeDetailPage(DetailView):
+
+    model = EquipmentType
+    template_name = "webpage/caretaker/equipment_type_detail.html"
+    context_object_name = "equipment_type"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["equipment"] = Equipment.objects.filter(
+            equipment_type=self.object
         )
 
         return context
