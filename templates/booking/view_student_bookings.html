@@ -2,7 +2,9 @@
 {% block title %}My Bookings{% endblock %}
 {% block content %}
 <div class="container py-5">
-    <h1 class="mb-4">My Bookings</h1>
+    <div class="text-center mb-4">
+        <h1 class="mb-4">My Bookings</h1>
+    </div>
     <div class="row">
         {% for booking in bookings %}
         <div class="col-md-6 col-lg-4 mb-4">
@@ -37,10 +39,12 @@
                         <span class="badge bg-success">
                             Approved
                         </span>
+                        <p> Your equipment is ready for pickup!</p>
                         {% else %}
                         <span class="badge bg-warning text-dark">
                             Pending
                         </span>
+                        <p> Caretaker is reviewing your request</p>
                         {% endif %}
                     </p>
                     <a href="{% url 'show-detail' booking.equipment.pk %}"
