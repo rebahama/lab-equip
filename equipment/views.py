@@ -17,6 +17,7 @@ class CreatePageCaretakerView(
     template_name = "webpage/caretaker/create_caretaker.html"
     fields = [
         "equipment_type",
+        "equipment_name",
         "description",
         "serial_number",
         "location",

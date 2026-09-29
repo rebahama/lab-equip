@@ -1,0 +1,67 @@
+{% extends "webpage/base.html" %}
+{% block title %}My Bookings{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="mb-4">My Bookings</h1>
+    </div>
+    <div class="row">
+        {% for booking in bookings %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3">
+                        {{ booking.equipment.equipment_type.name }}
+                    </h5>
+                    <p class="mb-2">
+                        <strong>ID:</strong>
+                        {{ booking.id}}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Serial number:</strong>
+                        {{ booking.equipment.serial_number }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Start:</strong>
+                        {{ booking.start_time }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>End:</strong>
+                        {{ booking.end_time }}
+                    </p>
+                    <p class="mb-3">
+                        <strong>Purpose:</strong>
+                        {{ booking.purpose }}
+                    </p>
+                    <p class="mb-3">
+                        <strong>Status:</strong>
+                        {% if booking.approved %}
+                        <span class="badge bg-success">
+                            Approved
+                        </span>
+                        <p> Your equipment is ready for pickup!</p>
+                        {% else %}
+                        <span class="badge bg-warning text-dark">
+                            Pending
+                        </span>
+                        <p> Caretaker is reviewing your request</p>
+                        {% endif %}
+                    </p>
+                    <a href="{% url 'show-detail' booking.equipment.pk %}"
+                        class="btn btn-primary btn-sm rounded-pill equipment-button">
+                        <i class="fa-solid fa-circle-info"></i>
+                        View Equipment
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                You have no bookings.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

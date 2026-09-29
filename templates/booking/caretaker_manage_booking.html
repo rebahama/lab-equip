@@ -1,0 +1,77 @@
+{% extends "webpage/base.html" %}
+{% block title %}Manage Bookings{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="mb-4"> Manage Bookings </h1>
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    {% if "approved" in message.tags %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    <div class="row">
+        {% for booking in bookings %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3">
+                        {{ booking.equipment.equipment_type.name }}
+                    </h5>
+                    <p class="mb-2">
+                        <strong>Username:</strong>
+                        {{ booking.student.username }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Serial number:</strong>
+                        {{ booking.equipment.serial_number }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Start:</strong>
+                        {{ booking.start_time }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>End:</strong>
+                        {{ booking.end_time }}
+                    </p>
+                    <p class="mb-3">
+                        <strong>Purpose:</strong>
+                        {{ booking.purpose }}
+                    </p>
+                    <p class="mb-3">
+                        <strong>Status:</strong>
+                        {% if booking.approved %}
+                        <span class="badge bg-success">
+                            Approved
+                        </span>
+                        {% else %}
+                        <span class="badge bg-warning text-dark">
+                            Pending
+                        </span>
+                        {% endif %}
+                    </p>
+                    <div class="d-flex gap-2">
+                        {% if not booking.approved %}
+                        <a href="{% url 'approve-booking' booking.pk %}" class="btn btn-success btn-sm rounded-pill">
+                            <i class="fa-solid fa-check"></i>
+                            Approve
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                There are no booking requests.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

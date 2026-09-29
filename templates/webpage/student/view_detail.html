@@ -3,6 +3,15 @@
 {% block content %}
 
 <div class="container py-5">
+{% if messages %}
+{% for message in messages %}
+    {% if "booking" in message.tags %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endif %}
+{% endfor %}
+{% endif %}
     <div class="equipment-detail-card">
         <div class="row g-0">
             <div class="col-md-5">
@@ -28,6 +37,25 @@
                     </h1>
                     <div class="equipment-detail-divider"></div>
                     <div class="equipment-info">
+                         <div class="equipment-info-row">
+                            <span class="equipment-info-label">
+                                Id number:
+                            </span>
+                            <span class="equipment-info-value">
+                                {{ equipment.id }}
+                            </span>
+                        </div>
+                        <div class="equipment-info-row"> <span class="equipment-info-label"> Name: </span>
+                        {% if equipment.equipment_name %}
+                            <span class="equipment-info-value">
+                                {{ equipment.equipment_name }}
+                            </span>
+                        {% else %}
+                            <span class="equipment-info-value">
+                                No name provided
+                            </span>
+                        {% endif %}
+                        </div>
                         <div class="equipment-info-row">
                             <span class="equipment-info-label">
                                 Category
@@ -132,6 +160,23 @@
                 <i class="fa-solid fa-pen-to-square"></i>
                 Edit
             </a>
+            {% endif %}
+            {% if user.groups.all.0.name == "Student" and equipment.status == "available" %}
+              <a href="{% url 'create-booking' equipment.pk %}" class="btn btn-primary rounded-pill equipment-button">
+                <i class="fa-solid fa-calendar-days"></i>
+                Book
+            </a>
+            {% elif available_count > 0 %}
+            <p class="text-muted">
+            <i class="fa-solid fa-clock"></i>
+            This equipment is on loan, but there are still: {{ available_count }} left of the same type, click here to view and book.
+            </p>
+            {% else %}
+             <p class="text-muted">
+            <i class="fa-solid fa-circle-xmark"></i>
+            This equipment is on loan and there are no more available
+            units of the same type.
+        </p>
             {% endif %}
             </div>
         </div>
