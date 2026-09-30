@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import TemplateView, View
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from .models import Booking
 
@@ -38,6 +38,23 @@ class ReturnBookingView(
         return self.request.user.groups.filter(
             name="Student"
         ).exists()
+
+    def get(self, request, pk):
+
+        booking = get_object_or_404(
+            Booking,
+            pk=pk,
+            student=request.user,
+            approved=True,
+            returned=False,
+            active=True,
+        )
+
+        return render(
+            request,
+            "booking/approve_return.html",
+            {"booking": booking},
+        )
 
     def post(self, request, pk):
         booking = get_object_or_404(

@@ -25,7 +25,7 @@
                     </h5>
                     <p class="mb-2">
                         <strong>ID:</strong>
-                        {{ booking.id}}
+                        {{ booking.id }}
                     </p>
                     <p class="mb-2">
                         <strong>Serial number:</strong>
@@ -45,16 +45,36 @@
                     </p>
                     <p class="mb-3">
                         <strong>Status:</strong>
-                        {% if booking.approved %}
-                        <span class="badge bg-success">
-                            Approved
+                        {% if not booking.approved %}
+                        <span class="badge bg-warning text-dark">
+                            Pending
                         </span>
-                    <p> Your equipment is ready for pickup at caretaker office!</p>
-                    {% else %}
+                    <p>
+                        Caretaker is reviewing your booking request.
+                    </p>
+                    {% elif booking.returned and booking.active %}
                     <span class="badge bg-warning text-dark">
-                        Pending
+                        Return requested
                     </span>
-                    <p> Caretaker is reviewing your request</p>
+                    <p>
+                        Your return request has been registered.
+                        A caretaker will check the equipment and confirm the return.
+                    </p>
+                    {% elif booking.approved and booking.active %}
+                    <span class="badge bg-success">
+                        Approved
+                    </span>
+                    <p>
+                        Your equipment is ready for pickup at the caretaker office. Dont forget to return equipment
+                        before due date.
+                    </p>
+                    {% elif booking.returned and not booking.active %}
+                    <span class="badge bg-secondary">
+                        Returned
+                    </span>
+                    <p>
+                        The equipment has been returned and the caretaker has confirmed the return.
+                    </p>
                     {% endif %}
                     </p>
                     <a href="{% url 'show-detail' booking.equipment.pk %}"
@@ -62,35 +82,12 @@
                         <i class="fa-solid fa-circle-info"></i>
                         View equipment
                     </a>
-                    <form method="post" action="{% url 'return-booking' booking.pk %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-primary btn-sm rounded-pill equipment-button">
-                            <i class="fa-solid fa-calendar-check"></i>
-                            Return equipment
-                        </button>
-                    </form>
-                    {% if booking.returned %}
-                    <span class="badge bg-success">
-                        Returned
-                    </span>
-                    <p>
-                        Your return has been registered.
-                        Please come to the caretaker office and return your item.
-                    </p>
-                    {% elif booking.approved %}
-                    <span class="badge bg-success">
-                        Approved
-                    </span>
-                    <p>
-                        Your equipment is ready for pickup at caretaker office!
-                    </p>
-                    {% else %}
-                    <span class="badge bg-warning text-dark">
-                        Pending
-                    </span>
-                    <p>
-                        Caretaker is reviewing your request.
-                    </p>
+                    {% if booking.approved and booking.active and not booking.returned %}
+                    <a href="{% url 'return-booking' booking.pk %}"
+                        class="btn btn-primary btn-sm rounded-pill equipment-button">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        Return equipment
+                    </a>
                     {% endif %}
                 </div>
             </div>
