@@ -19,6 +19,8 @@ class Booking(models.Model):
 
     returned = models.BooleanField(default=False)
 
+    active = models.BooleanField(default=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     def clean(self):

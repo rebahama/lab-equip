@@ -1,10 +1,9 @@
 from django.views.generic import CreateView, TemplateView, View
 from django.contrib import messages
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from equipment.models import Equipment
 from .models import Booking
-
 
 
 class BookingCreateView(
@@ -153,7 +152,7 @@ class ManageBookingReturnsView(
         context["bookings"] = Booking.objects.filter(
             returned=True,
             approved=True,
-            equipment__status="on_loan",
+            active=True,
         )
 
         return context
@@ -170,33 +169,24 @@ class ConfirmReturnBooking(
     View,
 ):
     """
-    Caretaker confirms the return of equipment.
+    Caretaker confirms the return of equipment and field changes to avlaible
     """
-
-    model = Booking
-    template_name = "booking/confirm_return.html"
-    fields = ["returned"]
 
     def test_func(self):
         return self.request.user.groups.filter(
             name="Caretaker"
         ).exists()
 
-    def get(self, request, pk):
-
-        booking = Booking.objects.get(pk=pk)
-
-        return render(
-            request,
-            "booking/confirm_return.html",
-            {"booking": booking},
-        )
-
     def post(self, request, pk):
 
-        booking = Booking.objects.get(pk=pk)
+        booking = get_object_or_404(
+            Booking,
+            pk=pk,
+            returned=True,
+            active=True,
+        )
 
-        booking.returned = True
+        booking.active = False
         booking.save()
 
         equipment = booking.equipment
@@ -209,7 +199,7 @@ class ConfirmReturnBooking(
             extra_tags="returned",
         )
 
-        return redirect("/booking/returns")
+        return redirect("manage-returns")
 
     def handle_no_permission(self):
         return TemplateView.as_view(
