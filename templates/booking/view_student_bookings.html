@@ -2,6 +2,16 @@
 {% block title %}My Bookings{% endblock %}
 {% block content %}
 <div class="container py-5">
+    {% if messages %}
+    {% for message in messages %}
+    {% if "booking" in message.tags %}
+    <div class="alert alert-success text-center mb-4">
+        <i class="fa-solid fa-circle-check"></i>
+        {{ message }}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
     <div class="text-center mb-4">
         <h1 class="mb-4">My Bookings</h1>
     </div>
@@ -15,7 +25,7 @@
                     </h5>
                     <p class="mb-2">
                         <strong>ID:</strong>
-                        {{ booking.id}}
+                        {{ booking.id }}
                     </p>
                     <p class="mb-2">
                         <strong>Serial number:</strong>
@@ -35,23 +45,50 @@
                     </p>
                     <p class="mb-3">
                         <strong>Status:</strong>
-                        {% if booking.approved %}
-                        <span class="badge bg-success">
-                            Approved
-                        </span>
-                        <p> Your equipment is ready for pickup!</p>
-                        {% else %}
+                        {% if not booking.approved %}
                         <span class="badge bg-warning text-dark">
                             Pending
                         </span>
-                        <p> Caretaker is reviewing your request</p>
-                        {% endif %}
+                    <p>
+                        Caretaker is reviewing your booking request.
+                    </p>
+                    {% elif booking.returned and booking.active %}
+                    <span class="badge bg-warning text-dark">
+                        Return requested
+                    </span>
+                    <p>
+                        Your return request has been registered.
+                        A caretaker will check the equipment and confirm the return.
+                    </p>
+                    {% elif booking.approved and booking.active %}
+                    <span class="badge bg-success">
+                        Approved
+                    </span>
+                    <p>
+                        Your equipment is ready for pickup at the caretaker office. Dont forget to return equipment
+                        before {{ booking.end_time }}
+                    </p>
+                    {% elif booking.returned and not booking.active %}
+                    <span class="badge bg-secondary">
+                        Returned
+                    </span>
+                    <p>
+                        The equipment has been returned and the caretaker has confirmed the return.
+                    </p>
+                    {% endif %}
                     </p>
                     <a href="{% url 'show-detail' booking.equipment.pk %}"
                         class="btn btn-primary btn-sm rounded-pill equipment-button">
                         <i class="fa-solid fa-circle-info"></i>
-                        View Equipment
+                        View equipment
                     </a>
+                    {% if booking.approved and booking.active and not booking.returned %}
+                    <a href="{% url 'return-booking' booking.pk %}"
+                        class="btn btn-primary btn-sm rounded-pill equipment-button">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        Return equipment
+                    </a>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -1,10 +1,9 @@
 from django.views.generic import CreateView, TemplateView, View
 from django.contrib import messages
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from equipment.models import Equipment
 from .models import Booking
-
 
 
 class BookingCreateView(
@@ -85,8 +84,8 @@ class ShowAllBookingView(
 
 class ApproveBooking(LoginRequiredMixin, UserPassesTestMixin, View):
     """
-        Caretaker approves the booking, when booking is approved status changes 
-        to onloan on the Equipment object and chganges the relevant form fields.
+    Caretaker approves the booking, when booking is approved status changes
+    to onloan on the Equipment object and chganges the relevant form fields.
     """
 
     model = Booking
@@ -124,6 +123,79 @@ class ApproveBooking(LoginRequiredMixin, UserPassesTestMixin, View):
         )
 
         return redirect("/booking/caretaker")
+
+    def handle_no_permission(self):
+        return TemplateView.as_view(template_name="webpage/no_permission.html")(
+            self.request
+        )
+
+
+class ManageBookingReturnsView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    TemplateView,
+):
+    """
+    Display booking returns waiting for caretaker confirmation.
+    """
+
+    template_name = "booking/view_student_return.html"
+
+    def test_func(self):
+        return self.request.user.groups.filter(name="Caretaker").exists()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["bookings"] = Booking.objects.filter(
+            returned=True,
+            approved=True,
+            active=True,
+        )
+
+        return context
+
+    def handle_no_permission(self):
+        return TemplateView.as_view(template_name="webpage/no_permission.html")(
+            self.request
+        )
+
+
+class ConfirmReturnBooking(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    View,
+):
+    """
+    Caretaker confirms the return of equipment and field changes to avlaible
+    """
+
+    def test_func(self):
+        return self.request.user.groups.filter(name="Caretaker").exists()
+
+    def post(self, request, pk):
+
+        booking = get_object_or_404(
+            Booking,
+            pk=pk,
+            returned=True,
+            active=True,
+        )
+
+        booking.active = False
+        booking.save()
+
+        equipment = booking.equipment
+        equipment.status = request.POST.get("status")
+        equipment.save()
+
+        messages.success(
+            request,
+            "Equipment return has been confirmed.",
+            extra_tags="returned",
+        )
+
+        return redirect("manage-returns")
 
     def handle_no_permission(self):
         return TemplateView.as_view(template_name="webpage/no_permission.html")(

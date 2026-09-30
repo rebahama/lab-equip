@@ -31,12 +31,13 @@
                         <i class="fa-solid fa-circle-up"></i>
                         View
                     </a>
-
+                    {% if user.groups.all.0.name == "Caretaker" %}
                     <a href="{% url 'category-detail-edit' category.pk %}"
                         class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
                         <i class="fa-solid fa-pen-to-square"></i>
                         Edit category name
                     </a>
+                    {% endif %}
                     <span class="badge bg-light text-dark mb-2">
                         Equipment types: {{ category.equipment_type_count }}
                     </span>

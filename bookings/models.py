@@ -17,6 +17,10 @@ class Booking(models.Model):
 
     approved = models.BooleanField(default=False)
 
+    returned = models.BooleanField(default=False)
+
+    active = models.BooleanField(default=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     def clean(self):
@@ -25,9 +29,7 @@ class Booking(models.Model):
 
             if self.start_time >= self.end_time:
 
-                raise ValidationError(
-                    "The end time must be after the start time."
-                )
+                raise ValidationError("The end time must be after the start time.")
 
     def __str__(self):
         return f"{self.student} - {self.equipment}"
