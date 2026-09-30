@@ -6,6 +6,7 @@ from .views_caretaker import (
 )
 from .views_student import (
     ViewStudentBooking,
+    ReturnBookingView
 )
 
 urlpatterns = [
@@ -13,4 +14,5 @@ urlpatterns = [
     path("booking/caretaker", ShowAllBookingView.as_view(), name="manage-booking"),
     path("booking/<int:pk>/approve", ApproveBooking.as_view(), name="approve-booking"),
     path("bookings/show", ViewStudentBooking.as_view(), name="student-booking"),
+    path("return/<int:pk>/", ReturnBookingView.as_view(), name="return-booking"),
 ]

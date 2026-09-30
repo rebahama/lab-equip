@@ -2,6 +2,16 @@
 {% block title %}My Bookings{% endblock %}
 {% block content %}
 <div class="container py-5">
+    {% if messages %}
+    {% for message in messages %}
+    {% if "booking" in message.tags %}
+    <div class="alert alert-success text-center mb-4">
+        <i class="fa-solid fa-circle-check"></i>
+        {{ message }}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
     <div class="text-center mb-4">
         <h1 class="mb-4">My Bookings</h1>
     </div>
@@ -39,19 +49,49 @@
                         <span class="badge bg-success">
                             Approved
                         </span>
-                        <p> Your equipment is ready for pickup!</p>
-                        {% else %}
-                        <span class="badge bg-warning text-dark">
-                            Pending
-                        </span>
-                        <p> Caretaker is reviewing your request</p>
-                        {% endif %}
+                    <p> Your equipment is ready for pickup at caretaker office!</p>
+                    {% else %}
+                    <span class="badge bg-warning text-dark">
+                        Pending
+                    </span>
+                    <p> Caretaker is reviewing your request</p>
+                    {% endif %}
                     </p>
                     <a href="{% url 'show-detail' booking.equipment.pk %}"
                         class="btn btn-primary btn-sm rounded-pill equipment-button">
                         <i class="fa-solid fa-circle-info"></i>
-                        View Equipment
+                        View equipment
                     </a>
+                    <form method="post" action="{% url 'return-booking' booking.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill equipment-button">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            Return equipment
+                        </button>
+                    </form>
+                    {% if booking.returned %}
+                    <span class="badge bg-success">
+                        Returned
+                    </span>
+                    <p>
+                        Your return has been registered.
+                        Please come to the caretaker office and return your item.
+                    </p>
+                    {% elif booking.approved %}
+                    <span class="badge bg-success">
+                        Approved
+                    </span>
+                    <p>
+                        Your equipment is ready for pickup at caretaker office!
+                    </p>
+                    {% else %}
+                    <span class="badge bg-warning text-dark">
+                        Pending
+                    </span>
+                    <p>
+                        Caretaker is reviewing your request.
+                    </p>
+                    {% endif %}
                 </div>
             </div>
         </div>
