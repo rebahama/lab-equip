@@ -148,6 +148,7 @@ Clicked equipment types
 ![View equiments types](docs/webpage/booking-2.png)
 
 Equipment status:
+
 ![View status](docs/webpage/equipment-07.png)
 
 Equipment create, read, update and delete:
@@ -171,13 +172,50 @@ Equipment create, read, update and delete:
 
 * Mange bookings - Caretaker can see all the bookings from students in the caretaker dashboard page.
 
-Caretaker views the booking from students and approve:
 
-![View Bookings](docs/webpage/booking-1.png)
+Students makes a booking: 
 
-Students can see all the made bookings that the student have made:
+![Student booking](docs/webpage/booking-demo-03.png)
 
-![Student booking](docs/webpage/booking-3.png)
+![Student booking](docs/webpage/booking-demo-05.png)
+
+![Student booking](docs/webpage/booking-demo-06.png)
+
+Caretaker recives a booking on caretaker manage booking page:
+
+![Caretaker booking recive](docs/webpage/booking-demo-10.png)
+
+Caretaker approves student booking:
+
+
+![Caretaker approve](docs/webpage/booking-demo-12.png)
+
+
+![Caretaker approve](docs/webpage/booking-demo-13.png)
+
+Student recives status updated and can return equipment when caretaker approves:
+
+![Student view booking](docs/webpage/booking-demo-11.png)
+
+Student wants to return equipment:
+![Student view booking](docs/webpage/booking-demo-09.png)
+
+![Student view booking](docs/webpage/booking-demo-16.png)
+
+![Caretaker return bookings](docs/webpage/booking-demo-15.png)
+
+Caretaker recives return request on caretaker page and confirms:
+
+![Caretaker return bookings](docs/webpage/booking-demo-14.png)
+
+
+![Caretaker return message](docs/webpage/booking-demo-02.png)
+
+Student gets updated status badge when caretaker have confirmed returns:
+
+![Caretaker return message](docs/webpage/booking-demo-01.png)
+
+
 
 
 ### Caretaker dashboard page
@@ -190,7 +228,7 @@ Students can see all the made bookings that the student have made:
 
 Caretaker dashboard page:
 
-![Caretaker page](docs/webpage/caretaker-01.png)
+![Caretaker page](docs/webpage/booking-demo-07.png)
 
 
 Caretaker edit category page:
