@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "accounts",
     "equipment",
     "bookings",
+    "profiles",
 ]
 
 MIDDLEWARE = [
