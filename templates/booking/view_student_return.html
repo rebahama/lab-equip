@@ -35,6 +35,14 @@
                         {{ booking.student.username }}
                     </p>
                     <p class="mb-2">
+                        <strong>First name:</strong>
+                        {{ booking.student.profile.first_name|default:"No name provided" }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Last name:</strong>
+                        {{ booking.student.profile.last_name|default:"No name provided" }}
+                    </p>
+                    <p class="mb-2">
                         <strong>Serial number:</strong>
                         {{ booking.equipment.serial_number }}
                     </p>
@@ -62,30 +70,30 @@
                     </p>
 
                     <p class="mb-3">
-    <strong>Equipment status:</strong>
+                        <strong>Equipment status:</strong>
 
-    {% if booking.equipment.status == "on_loan" %}
-        <span class="badge bg-warning text-dark">
-            On loan
-        </span>
-    {% elif booking.equipment.status == "available" %}
-        <span class="badge bg-success">
-            Available
-        </span>
-    {% elif booking.equipment.status == "in_repair" %}
-        <span class="badge bg-danger">
-            In repair
-        </span>
-    {% elif booking.equipment.status == "out_of_service" %}
-        <span class="badge bg-danger">
-            Out of service
-        </span>
-    {% elif booking.equipment.status == "retired" %}
-        <span class="badge bg-secondary">
-            Retired
-        </span>
-    {% endif %}
-</p>
+                        {% if booking.equipment.status == "on_loan" %}
+                        <span class="badge bg-warning text-dark">
+                            On loan
+                        </span>
+                        {% elif booking.equipment.status == "available" %}
+                        <span class="badge bg-success">
+                            Available
+                        </span>
+                        {% elif booking.equipment.status == "in_repair" %}
+                        <span class="badge bg-danger">
+                            In repair
+                        </span>
+                        {% elif booking.equipment.status == "out_of_service" %}
+                        <span class="badge bg-danger">
+                            Out of service
+                        </span>
+                        {% elif booking.equipment.status == "retired" %}
+                        <span class="badge bg-secondary">
+                            Retired
+                        </span>
+                        {% endif %}
+                    </p>
                     <form method="post" action="{% url 'confirm-return' booking.pk %}">
                         {% csrf_token %}
 

@@ -66,7 +66,7 @@
                     </span>
                     <p>
                         Your equipment is ready for pickup at the caretaker office. Dont forget to return equipment
-                        before due date.
+                        before {{ booking.end_time }}
                     </p>
                     {% elif booking.returned and not booking.active %}
                     <span class="badge bg-secondary">
