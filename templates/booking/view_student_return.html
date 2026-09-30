@@ -1,0 +1,109 @@
+{% extends "webpage/base.html" %}
+{% block title %}Manage Booking Returns{% endblock %}
+{% block content %}
+<div class="container py-5">
+    {% if messages %}
+    {% for message in messages %}
+    {% if "returned" in message.tags %}
+    <div class="alert alert-success text-center mb-4">
+        <i class="fa-solid fa-circle-check"></i>
+        {{ message }}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    <div class="text-center mb-4">
+        <h1 class="mb-4">Manage Booking Returns</h1>
+        <p class="text-muted">
+            Check returned equipment before confirming the return.
+        </p>
+    </div>
+    <div class="row">
+        {% for booking in bookings %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3">
+                        {{ booking.equipment.equipment_type.name }}
+                    </h5>
+                    <p class="mb-2">
+                        <strong>Booking ID:</strong>
+                        {{ booking.id }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Student:</strong>
+                        {{ booking.student.username }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Serial number:</strong>
+                        {{ booking.equipment.serial_number }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Start:</strong>
+                        {{ booking.start_time }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Due:</strong>
+                        {{ booking.end_time }}
+                    </p>
+                    <p class="mb-3">
+                        <strong>Purpose:</strong>
+                        {{ booking.purpose }}
+                    </p>
+                    <p class="mb-3">
+                        <strong>Return status:</strong>
+                        <span class="badge bg-warning text-dark">
+                            Return requested
+                        </span>
+                    </p>
+                    <p>
+                        Student has requested to return this equipment.
+                        Check the equipment before confirming the return.
+                    </p>
+
+                    <p class="mb-3">
+    <strong>Equipment status:</strong>
+
+    {% if booking.equipment.status == "on_loan" %}
+        <span class="badge bg-warning text-dark">
+            On loan
+        </span>
+    {% elif booking.equipment.status == "available" %}
+        <span class="badge bg-success">
+            Available
+        </span>
+    {% elif booking.equipment.status == "in_repair" %}
+        <span class="badge bg-danger">
+            In repair
+        </span>
+    {% elif booking.equipment.status == "out_of_service" %}
+        <span class="badge bg-danger">
+            Out of service
+        </span>
+    {% elif booking.equipment.status == "retired" %}
+        <span class="badge bg-secondary">
+            Retired
+        </span>
+    {% endif %}
+</p>
+                    <form method="post" action="{% url 'confirm-return' booking.pk %}">
+                        {% csrf_token %}
+
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill equipment-button">
+                            <i class="fa-solid fa-check"></i>
+                            Confirm return
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                There are no booking returns waiting for confirmation.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

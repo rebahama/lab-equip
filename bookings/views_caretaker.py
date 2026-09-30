@@ -129,3 +129,89 @@ class ApproveBooking(LoginRequiredMixin, UserPassesTestMixin, View):
         return TemplateView.as_view(template_name="webpage/no_permission.html")(
             self.request
         )
+
+
+class ManageBookingReturnsView(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    TemplateView,
+):
+    """
+    Display booking returns waiting for caretaker confirmation.
+    """
+
+    template_name = "booking/view_student_return.html"
+
+    def test_func(self):
+        return self.request.user.groups.filter(
+            name="Caretaker"
+        ).exists()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["bookings"] = Booking.objects.filter(
+            returned=True,
+            approved=True,
+            equipment__status="on_loan",
+        )
+
+        return context
+
+    def handle_no_permission(self):
+        return TemplateView.as_view(
+            template_name="webpage/no_permission.html"
+        )(self.request)
+
+
+class ConfirmReturnBooking(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    View,
+):
+    """
+    Caretaker confirms the return of equipment.
+    """
+
+    model = Booking
+    template_name = "booking/confirm_return.html"
+    fields = ["returned"]
+
+    def test_func(self):
+        return self.request.user.groups.filter(
+            name="Caretaker"
+        ).exists()
+
+    def get(self, request, pk):
+
+        booking = Booking.objects.get(pk=pk)
+
+        return render(
+            request,
+            "booking/confirm_return.html",
+            {"booking": booking},
+        )
+
+    def post(self, request, pk):
+
+        booking = Booking.objects.get(pk=pk)
+
+        booking.returned = True
+        booking.save()
+
+        equipment = booking.equipment
+        equipment.status = "available"
+        equipment.save()
+
+        messages.success(
+            request,
+            "Equipment return has been confirmed.",
+            extra_tags="returned",
+        )
+
+        return redirect("/booking/returns")
+
+    def handle_no_permission(self):
+        return TemplateView.as_view(
+            template_name="webpage/no_permission.html"
+        )(self.request)
