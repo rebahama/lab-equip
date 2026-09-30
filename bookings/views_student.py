@@ -35,9 +35,7 @@ class ReturnBookingView(
     View,
 ):
     def test_func(self):
-        return self.request.user.groups.filter(
-            name="Student"
-        ).exists()
+        return self.request.user.groups.filter(name="Student").exists()
 
     def get(self, request, pk):
 
@@ -68,7 +66,6 @@ class ReturnBookingView(
         booking.returned = True
         booking.save()
 
-
         messages.success(
             request,
             "Request for return have been made, please come and leave your equipment at caretaker office.",
@@ -78,6 +75,6 @@ class ReturnBookingView(
         return redirect("/bookings/show")
 
     def handle_no_permission(self):
-        return TemplateView.as_view(
-            template_name="webpage/no_permission.html"
-        )(self.request)
+        return TemplateView.as_view(template_name="webpage/no_permission.html")(
+            self.request
+        )

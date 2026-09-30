@@ -84,8 +84,8 @@ class ShowAllBookingView(
 
 class ApproveBooking(LoginRequiredMixin, UserPassesTestMixin, View):
     """
-        Caretaker approves the booking, when booking is approved status changes 
-        to onloan on the Equipment object and chganges the relevant form fields.
+    Caretaker approves the booking, when booking is approved status changes
+    to onloan on the Equipment object and chganges the relevant form fields.
     """
 
     model = Booking
@@ -142,9 +142,7 @@ class ManageBookingReturnsView(
     template_name = "booking/view_student_return.html"
 
     def test_func(self):
-        return self.request.user.groups.filter(
-            name="Caretaker"
-        ).exists()
+        return self.request.user.groups.filter(name="Caretaker").exists()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -158,9 +156,9 @@ class ManageBookingReturnsView(
         return context
 
     def handle_no_permission(self):
-        return TemplateView.as_view(
-            template_name="webpage/no_permission.html"
-        )(self.request)
+        return TemplateView.as_view(template_name="webpage/no_permission.html")(
+            self.request
+        )
 
 
 class ConfirmReturnBooking(
@@ -173,9 +171,7 @@ class ConfirmReturnBooking(
     """
 
     def test_func(self):
-        return self.request.user.groups.filter(
-            name="Caretaker"
-        ).exists()
+        return self.request.user.groups.filter(name="Caretaker").exists()
 
     def post(self, request, pk):
 
@@ -202,6 +198,6 @@ class ConfirmReturnBooking(
         return redirect("manage-returns")
 
     def handle_no_permission(self):
-        return TemplateView.as_view(
-            template_name="webpage/no_permission.html"
-        )(self.request)
+        return TemplateView.as_view(template_name="webpage/no_permission.html")(
+            self.request
+        )

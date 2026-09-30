@@ -5,13 +5,10 @@ from django.urls import reverse
 from .models import Profile
 
 
-class ShowProfilePage(
-    UpdateView,
-    LoginRequiredMixin
-):
+class ShowProfilePage(UpdateView, LoginRequiredMixin):
     """
-        Only the logged in user can edit profile, if there is no profile
-        then one will be created when visiting the page frst time.
+    Only the logged in user can edit profile, if there is no profile
+    then one will be created when visiting the page frst time.
     """
 
     model = Profile
