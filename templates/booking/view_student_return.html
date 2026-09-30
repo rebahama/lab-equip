@@ -95,12 +95,28 @@
                         {% endif %}
                     </p>
                     <form method="post" action="{% url 'confirm-return' booking.pk %}">
+
                         {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="status-{{ booking.pk }}" class="form-label">
+                                <strong>Equipment status after return:</strong>
+                            </label>
+
+                            <select name="status" id="status-{{ booking.pk }}" class="form-select">
+                                <option value="available">Available</option>
+                                <option value="in_repair">In repair</option>
+                                <option value="out_of_service">Out of service</option>
+                                <option value="retired">Retired</option>
+                                <option value="out_of_service">On loan</option>
+                            </select>
+                        </div>
 
                         <button type="submit" class="btn btn-primary btn-sm rounded-pill equipment-button">
                             <i class="fa-solid fa-check"></i>
                             Confirm return
                         </button>
+
                     </form>
                 </div>
             </div>

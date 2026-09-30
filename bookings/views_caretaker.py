@@ -186,7 +186,7 @@ class ConfirmReturnBooking(
         booking.save()
 
         equipment = booking.equipment
-        equipment.status = "available"
+        equipment.status = request.POST.get("status")
         equipment.save()
 
         messages.success(
