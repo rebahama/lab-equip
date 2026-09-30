@@ -141,6 +141,12 @@ View categories
 Clicked categories:
 ![View clicked categories](docs/webpage/equipment-02.png)
 
+View equipment types after categories
+![View equiments types](docs/webpage/booking-4.png)
+
+Clicked equipment types
+![View equiments types](docs/webpage/booking-2.png)
+
 Equipment status:
 ![View status](docs/webpage/equipment-07.png)
 
@@ -165,6 +171,15 @@ Equipment create, read, update and delete:
 
 * Mange bookings - Caretaker can see all the bookings from students in the caretaker dashboard page.
 
+Caretaker views the booking from students and approve:
+
+![View Bookings](docs/webpage/booking-1.png)
+
+Students can see all the made bookings that the student have made:
+
+![Student booking](docs/webpage/booking-3.png)
+
+
 ### Caretaker dashboard page
 
 * Mange bookings - Only caretaker can see all the bookings from students in the caretaker dashboard page.
@@ -172,6 +187,14 @@ Equipment create, read, update and delete:
 * Mange categories - Only caretaker can edit categories.
 
 * Mange equipments - Only caretaker can create/edit/delete equipments from the caretaker page.
+
+Caretaker dashboard page:
+
+![Caretaker page](docs/webpage/caretaker-01.png)
+
+
+Caretaker edit category page:
+![Caretaker edit category](docs/webpage/caretaker-02.png)
 
 
 ### User interface
@@ -260,3 +283,7 @@ Mobile screens examples:
 8. whitenoise==6.12.0 
 
 * Used for serving static files such as, Javascript, CSS and other static files.
+
+9. Bootstrap
+
+* Used for responsiv mobile design and some styling.
