@@ -17,10 +17,10 @@
                     <i class="fa-solid fa-toolbox"></i>
                 </div>
                 <h4>
-                    Show current bookings
+                    Current bookings
                 </h4>
                 <p>
-                    Edit or delete laboratory equipment.
+                    View pending and active bookings.
                 </p>
                 <a href="{% url 'student-booking' %}" class="caretaker-dashboard-button">
                     Show
@@ -38,7 +38,7 @@
                 <p>
                     View your returned history bookings
                 </p>
-                <a href="#" class="caretaker-dashboard-button">
+                <a href="{% url 'student-history' %}" class="caretaker-dashboard-button">
                     Show
                 </a>
             </div>
