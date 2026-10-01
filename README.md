@@ -29,7 +29,7 @@
 
 | Name | Characteristics | Needs and Expectations | How will they use the system? |
 |---|---|---|---|
-| *Alice* | *Age: 35, background: caretaker, technical skill level 5/10, etc.* | *Needs an overview of borrowed equipment, stocks and overdue items * | *Register equipment,update status, approve or reject borrowed items * |
+| *Alice* | *Age: 35, background: caretaker, technical skill level 5/10, etc.* | *Needs an overview of borrowed equipment, stocks and overdue items* |*Register equipment,update status, approve or reject borrowed items* |
 
 
 
@@ -216,7 +216,15 @@ Student gets updated status badge when caretaker have confirmed returns:
 ![Caretaker return message](docs/webpage/booking-demo-01.png)
 
 
+Caretaker can see active, pending and history bookings:
 
+Caretaker edit category page:
+![Caretaker active,history bookings](docs/webpage/caretaker-03.png)
+
+
+Student can see history and active bookings:
+
+![Student current and history](docs/webpage/caretaker-04.png)
 
 ### Caretaker dashboard page
 
