@@ -1,0 +1,48 @@
+{% extends "webpage/base.html" %}
+{% block title %}All bookings{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="caretaker-dashboard-header text-center mb-5">
+        <h1>
+            All bookings
+        </h1>
+        <p>
+            Check your current and history bookings.
+        </p>
+    </div>
+    <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-4">
+            <div class="caretaker-dashboard-card">
+                <div class="caretaker-dashboard-icon">
+                    <i class="fa-solid fa-toolbox"></i>
+                </div>
+                <h4>
+                    Show current bookings
+                </h4>
+                <p>
+                    Edit or delete laboratory equipment.
+                </p>
+                <a href="{% url 'student-booking' %}" class="caretaker-dashboard-button">
+                    Show
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="caretaker-dashboard-card">
+                <div class="caretaker-dashboard-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <h4>
+                    History Bookings
+                </h4>
+                <p>
+                    View your returned history bookings
+                </p>
+                <a href="#" class="caretaker-dashboard-button">
+                    Show
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
