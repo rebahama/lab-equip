@@ -52,13 +52,21 @@
                     </p>
                     <p class="mb-3">
                         <strong>Status:</strong>
-                        {% if booking.approved %}
-                        <span class="badge bg-success">
-                            Approved
+                        {% if not booking.active and booking.returned %}
+                        <span class="badge bg-secondary">
+                            Returned
                         </span>
-                        {% else %}
+                        {% elif not booking.approved %}
                         <span class="badge bg-warning text-dark">
                             Pending
+                        </span>
+                        {% elif booking.returned and booking.active %}
+                        <span class="badge bg-warning text-dark">
+                            Return requested
+                        </span>
+                        {% elif booking.approved and booking.active %}
+                        <span class="badge bg-success">
+                            Approved
                         </span>
                         {% endif %}
                     </p>
