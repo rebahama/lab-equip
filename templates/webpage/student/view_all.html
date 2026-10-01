@@ -45,13 +45,13 @@
                     <span>No description</span>
                     {% endif %}
                 </p>
-                <span class="badge bg-light text-dark mb-2">
+                <span class="badge bg-light text-dark mb-2 d-block text-start">
                     Category: {{ equipment.equipment_type.category.name }}
                 </span>
-                <span class="badge bg-light text-dark mb-2">
+                <span class="badge bg-light text-dark mb-2 d-block text-start">
                     Serial number: {{ equipment.serial_number }}
                 </span>
-                <span class="badge bg-light text-dark mb-2">
+                <span class="badge bg-light text-dark mb-2 d-block text-start">
                     Equipment name: {{ equipment.equipment_name }}
                 </span>
                 {% if equipment.status == "available" %}
