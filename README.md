@@ -9,7 +9,10 @@
 **Student Full Name:** *Rebaz Mohammad Ahmad*
 
 
+
 ## Project Description
+
+![Homepage](docs/webpage/homepage.png)
 
 This project is a Django-based web application used for manging labratory equipment. The purpose is to make it easier for students and caretaker to, find and borrow diffrent lab equipments.
 
@@ -191,6 +194,10 @@ Students makes a booking:
 ![Student booking](docs/webpage/booking-demo-03.png)
 
 ![Student booking](docs/webpage/booking-demo-05.png)
+
+If the dates are not correct:
+
+![Student booking](docs/webpage/booking-message.png)
 
 ![Student booking](docs/webpage/booking-demo-06.png)
 
