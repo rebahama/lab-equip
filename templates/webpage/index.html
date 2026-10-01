@@ -1,7 +1,67 @@
 {% extends "webpage/base.html" %}
-
+{% load static %}
 {% block title %}Welcome{% endblock %}
-
 {% block content %}
-Homepage
+<div class="container py-5">
+    <div class="row align-items-center justify-content-center g-5">
+        <div class="col-12 col-lg-6 text-center text-lg-start">
+            <h1 class="display-5 fw-bold mb-3">
+                Manage and find your laboratory equipment
+            </h1>
+            <p class="lead text-muted mb-4">
+                A simple system for students and caretakers to find
+                book, and manage diffrent laboratory equipment.
+            </p>
+            <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-2">
+                <a href="{% url 'show-student' %}" class="btn btn-primary rounded-pill px-4 equipment-button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Click here to browse equipment
+                </a>
+                {% if user.is_authenticated %}
+                {% if user.groups.all.0.name == "Student" %}
+                <a href="{% url 'student-all' %}" class="btn btn-secondary rounded-pill px-4 equipment-button">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    View bookings
+                </a>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-12 col-lg-5 text-center">
+            <img src="{% static 'images/homepage.gif' %}" alt="Laboratory equipment animation"
+                class="img-fluid homepage-gif">
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5 pt-4">
+        <div class="col-12 col-md-4 mb-3">
+            <div class="text-center">
+                <i class="fa-solid fa-magnifying-glass fa-2x text-primary mb-3"></i>
+                <h5 class="fw-bold">Find Equipment</h5>
+                <p class="text-muted small mb-0">
+                    Search and filter laboratory equipment by type,
+                    category, serial number, and status.
+                </p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 mb-3">
+            <div class="text-center">
+                <i class="fa-solid fa-calendar-check fa-2x text-primary mb-3"></i>
+                <h5 class="fw-bold">Book Equipment</h5>
+                <p class="text-muted small mb-0">
+                    Request equipment and keep track of your active bookings.
+                </p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 mb-3">
+            <div class="text-center">
+                <i class="fa-solid fa-screwdriver-wrench fa-2x text-primary mb-3"></i>
+                <h5 class="fw-bold">Manage Equipment</h5>
+                <p class="text-muted small mb-0">
+                    Caretakers can maintain equipment, manage its status,
+                    and handle student bookings.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
