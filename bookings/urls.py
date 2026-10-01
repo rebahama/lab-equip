@@ -6,7 +6,8 @@ from .views_caretaker import (
     ManageBookingReturnsView,
     ConfirmReturnBooking,
     ViewAllBookingCaretaker,
-    ShowActiveBookings
+    ShowActiveBookings,
+    ShowHistoryReturnedBookingCaretaker
 )
 from .views_student import (
     ViewStudentBooking,
@@ -29,4 +30,5 @@ urlpatterns = [
     path("booking/history", ViewBookingHistory.as_view(), name="student-history"),
     path("booking/active", ViewAllBookingCaretaker.as_view(), name="caretaker-active-returned"),
     path("booking/activebookings", ShowActiveBookings.as_view(), name="caretaker-active-bookings"),
+    path("booking/historybookings", ShowHistoryReturnedBookingCaretaker.as_view(), name="caretaker-history-bookings"),
 ]
