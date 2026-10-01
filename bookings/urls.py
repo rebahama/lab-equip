@@ -6,6 +6,7 @@ from .views_caretaker import (
     ManageBookingReturnsView,
     ConfirmReturnBooking,
     ViewAllBookingCaretaker,
+    ShowActiveBookings
 )
 from .views_student import (
     ViewStudentBooking,
@@ -26,5 +27,6 @@ urlpatterns = [
     path("booking/returns/<int:pk>/confirm/", ConfirmReturnBooking.as_view(), name="confirm-return"),
     path("booking/showall", ViewAllBookingStudent.as_view(), name="student-all"),
     path("booking/history", ViewBookingHistory.as_view(), name="student-history"),
-    path("booking/active/return", ViewAllBookingCaretaker.as_view(), name="caretaker-active-returned"),
+    path("booking/active", ViewAllBookingCaretaker.as_view(), name="caretaker-active-returned"),
+    path("booking/activebookings", ShowActiveBookings.as_view(), name="caretaker-active-bookings"),
 ]

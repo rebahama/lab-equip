@@ -72,7 +72,9 @@ class ShowAllBookingView(
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context["bookings"] = Booking.objects.all()
+        context["bookings"] = Booking.objects.filter(
+        approved=False
+        )
 
         return context
 
@@ -212,6 +214,33 @@ class ViewAllBookingCaretaker(
 
     def test_func(self):
         return self.request.user.groups.filter(name="Caretaker").exists()
+
+    def handle_no_permission(self):
+        return TemplateView.as_view(template_name="webpage/no_permission.html")(
+            self.request
+        )
+
+class ShowActiveBookings(
+    TemplateView,
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+):
+
+    model = Booking
+    template_name = template_name = "booking/caretaker_manage_booking.html"
+
+    def test_func(self):
+        return self.request.user.groups.filter(name="Caretaker").exists()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["bookings"] = Booking.objects.filter(
+        approved=True,
+        active=True
+        )
+
+        return context
 
     def handle_no_permission(self):
         return TemplateView.as_view(template_name="webpage/no_permission.html")(
