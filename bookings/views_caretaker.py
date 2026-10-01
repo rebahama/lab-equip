@@ -201,3 +201,19 @@ class ConfirmReturnBooking(
         return TemplateView.as_view(template_name="webpage/no_permission.html")(
             self.request
         )
+
+
+class ViewAllBookingCaretaker(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    TemplateView):
+
+    template_name = "booking/view_approved_history_caretaker.html"
+
+    def test_func(self):
+        return self.request.user.groups.filter(name="Caretaker").exists()
+
+    def handle_no_permission(self):
+        return TemplateView.as_view(template_name="webpage/no_permission.html")(
+            self.request
+        )

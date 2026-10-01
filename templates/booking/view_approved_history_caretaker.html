@@ -1,0 +1,65 @@
+{% extends "webpage/base.html" %}
+{% block title %}All bookings caretaker{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="caretaker-dashboard-header text-center mb-5">
+        <h1>
+            All bookings
+        </h1>
+        <p>
+            Check your current and history bookings.
+        </p>
+    </div>
+    <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-4">
+            <div class="caretaker-dashboard-card">
+                <div class="caretaker-dashboard-icon">
+                    <i class="fa-solid fa-toolbox"></i>
+                </div>
+                <h4>
+                    Current bookings
+                </h4>
+                <p>
+                    View Pending bookings
+                </p>
+                <a href="{% url 'manage-booking' %}" class="caretaker-dashboard-button">
+                    Show
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="caretaker-dashboard-card">
+                <div class="caretaker-dashboard-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <h4>
+                    Active approved bookings
+                </h4>
+                <p>
+                    View active booking
+                </p>
+                <a href="#" class="caretaker-dashboard-button">
+                    Show
+                </a>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="caretaker-dashboard-card">
+                <div class="caretaker-dashboard-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <h4>
+                    History Bookings
+                </h4>
+                <p>
+                    View history returned bookings
+                </p>
+                <a href="#" class="caretaker-dashboard-button">
+                    Show
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
