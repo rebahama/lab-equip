@@ -28,6 +28,22 @@
                         {{ booking.id }}
                     </p>
                     <p class="mb-2">
+                        <strong>Username:</strong>
+                        {{ booking.student.username }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>First name:</strong>
+                        {{ booking.student.profile.first_name|default:"No name provided" }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Last name:</strong>
+                        {{ booking.student.profile.last_name|default:"No name provided" }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Serial number:</strong>
+                        {{ booking.equipment.serial_number }}
+                    </p>
+                    <p class="mb-2">
                         <strong>Serial number:</strong>
                         {{ booking.equipment.serial_number }}
                     </p>

@@ -161,16 +161,27 @@
                 Edit
             </a>
             {% endif %}
-            {% if user.groups.all.0.name == "Student" and equipment.status == "available" %}
+            {% if pending_booking %}
+            <p class="text-muted">
+                <i class="fa-solid fa-clock"></i>
+                This equipment is not on loan, but another student has requested it.
+                Please check for another equipment.
+            </p>
+            {% elif user.groups.all.0.name == "Student" and equipment.status == "available" %}
               <a href="{% url 'create-booking' equipment.pk %}" class="btn btn-primary rounded-pill equipment-button">
                 <i class="fa-solid fa-calendar-days"></i>
                 Book
             </a>
             {% elif available_count > 0 %}
+            <a href="{% url 'show-student' %}?equipment_type={{ equipment.equipment_type.pk }}&status=available"
+               class="text-decoration-none">
             <p class="text-muted">
-            <i class="fa-solid fa-clock"></i>
-            This equipment is on loan, but there are still: {{ available_count }} left of the same type, click here to view and book.
+                <i class="fa-solid fa-clock"></i>
+                This equipment is on loan, but there are still:
+                {{ available_count }} left of the same type.
+                Click here to view and book it.
             </p>
+            </a>
             {% else %}
              <p class="text-muted">
             <i class="fa-solid fa-circle-xmark"></i>
