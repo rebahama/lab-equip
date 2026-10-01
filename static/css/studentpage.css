@@ -60,3 +60,16 @@
     align-items: center;
     gap: 10px;
 }
+
+.equipment-filter-button {
+    transition: all 0.2s ease;
+}
+
+.equipment-filter-button:hover {
+    filter: brightness(90%);
+    transform: translateY(-1px);
+}
+
+.equipment-filter-button.active {
+    filter: brightness(80%);
+}

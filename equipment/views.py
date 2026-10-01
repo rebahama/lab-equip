@@ -1,6 +1,8 @@
 from django.views.generic import TemplateView, CreateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.db.models import Q
 from .models import Equipment, Category, EquipmentType, Location
+
 
 
 class CreatePageCaretakerView(
@@ -50,7 +52,10 @@ class CreatePageCaretakerView(
 
 
 class ViewAllStudent(LoginRequiredMixin, TemplateView):
-    """Display all equipment to users"""
+    """Display all equipment to users, if search word contains
+       Equipment name, serial number or type the quearry will be displayed
+       Also Filtering based on the status.
+    """
 
     model = Equipment
     template_name = "webpage/student/view_all.html"
@@ -58,7 +63,25 @@ class ViewAllStudent(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        query = self.request.GET.get("q")
+        status = self.request.GET.get("status")
+        category = self.request.GET.get("category")
+
         equipment = Equipment.objects.all().order_by("-created_at")
+
+        if query:
+            equipment = equipment.filter(
+                  Q(equipment_name__icontains=query)
+                | Q(serial_number__icontains=query)
+                | Q(equipment_type__name__icontains=query)
+                | Q(equipment_type__category__name__icontains=query)
+            )
+
+        if status:
+            equipment = equipment.filter(status=status)
+
+        if category:
+            equipment = equipment.filter(equipment_type__category__name=category)
 
         context["equipment"] = equipment
 
@@ -129,7 +152,7 @@ class ViewCategoryDetailPage(DetailView):
         context["equipment_types"] = EquipmentType.objects.filter(
             category=self.object
         )
-        
+
         context["equipment_count"] = Equipment.objects.filter(
             equipment_type__category=self.object
         ).count()
