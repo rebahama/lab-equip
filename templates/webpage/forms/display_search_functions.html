@@ -1,0 +1,46 @@
+<div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+    <a href="?status=available"
+        class="btn btn-success btn-sm rounded-pill equipment-filter-button {% if request.GET.status == 'available' %}active{% endif %}">
+        Available
+    </a>
+    <a href="?status=on_loan"
+        class="btn btn-danger btn-sm rounded-pill equipment-filter-button {% if request.GET.status == 'on_loan' %}active{% endif %}">
+        On loan
+    </a>
+    <a href="?status=in_repair"
+        class="btn btn-primary btn-sm rounded-pill equipment-filter-button {% if request.GET.status == 'in_repair' %}active{% endif %}">
+        In repair
+    </a>
+</div>
+<div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+    <a href="{% url 'show-student' %}"
+        class="btn btn-secondary btn-sm rounded-pill equipment-filter-button {% if not request.GET.category %}active{% endif %}">
+        <i class="fa-solid fa-layer-group"></i>
+        All
+    </a>
+    <a href="?category=Raspberry Pi"
+        class="btn btn-secondary btn-sm rounded-pill equipment-filter-button {% if request.GET.category == 'Raspberry Pi' %}active{% endif %}">
+        <i class="fa-brands fa-raspberry-pi"></i>
+        Raspberry Pi
+    </a>
+    <a href="?category=Microcontrollers"
+        class="btn btn-secondary btn-sm rounded-pill equipment-filter-button {% if request.GET.category == 'Microcontrollers' %}active{% endif %}">
+        <i class="fa-solid fa-microchip"></i>
+        Microcontrollers
+    </a>
+    <a href="?category=3D Printers"
+        class="btn btn-secondary btn-sm rounded-pill equipment-filter-button {% if request.GET.category == '3D Printers' %}active{% endif %}">
+        <i class="fa-solid fa-print"></i>
+        3D Printers
+    </a>
+    <a href="?category=Cameras"
+        class="btn btn-secondary btn-sm rounded-pill equipment-filter-button {% if request.GET.category == 'Cameras' %}active{% endif %}">
+        <i class="fa-solid fa-camera"></i>
+        Cameras
+    </a>
+    <a href="?category=Sensors"
+        class="btn btn-secondary btn-sm rounded-pill equipment-filter-button {% if request.GET.category == 'Sensors' %}active{% endif %}">
+        <i class="fa-solid fa-satellite-dish"></i>
+        Sensors
+    </a>
+</div>
