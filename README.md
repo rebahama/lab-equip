@@ -243,6 +243,34 @@ Caretaker edit category page:
 ![Caretaker edit category](docs/webpage/caretaker-02.png)
 
 
+### Search and filter system
+
+* Users can search based on equipment name, serial number, equipment-type and categories.
+
+* Users can filter and render equipment based on categories and status such as: avalible, on loan and repair.
+
+
+Search on equipment type:
+
+![Search type](docs/webpage/search-01.png)
+
+Search on serial number:
+
+![Search serial](docs/webpage/search-02.png)
+
+Filter status that are: "on loan":
+
+![Filter status](docs/webpage/search-03.png)
+
+Filter status that are: "avalible":
+
+![Filter status](docs/webpage/search-04.png)
+
+Filter on categories:
+
+![Filter categories](docs/webpage/search-05.png)
+
+
 ### User interface
 
 * Responsiv - The system is designed to be used also on mobile and tablet screens.
