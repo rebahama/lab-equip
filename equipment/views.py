@@ -1,7 +1,9 @@
 from django.views.generic import TemplateView, CreateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Q
+from bookings.models import Booking
 from .models import Equipment, Category, EquipmentType, Location
+
 
 
 
@@ -55,6 +57,9 @@ class ViewAllStudent(LoginRequiredMixin, TemplateView):
     """Display all equipment to users, if search word contains
        Equipment name, serial number or type the quearry will be displayed
        Also Filtering based on the status.
+       If a equipment is boked then let the user
+       find the same type with the equipment type
+       field.
     """
 
     model = Equipment
@@ -66,6 +71,7 @@ class ViewAllStudent(LoginRequiredMixin, TemplateView):
         query = self.request.GET.get("q")
         status = self.request.GET.get("status")
         category = self.request.GET.get("category")
+        equipment_type = self.request.GET.get("equipment_type")
 
         equipment = Equipment.objects.all().order_by("-created_at")
 
@@ -75,6 +81,11 @@ class ViewAllStudent(LoginRequiredMixin, TemplateView):
                 | Q(serial_number__icontains=query)
                 | Q(equipment_type__name__icontains=query)
                 | Q(equipment_type__category__name__icontains=query)
+            )
+
+        if equipment_type:
+            equipment = equipment.filter(
+                equipment_type_id=equipment_type
             )
 
         if status:
@@ -111,6 +122,14 @@ class ViewAllDetailPage(LoginRequiredMixin, DetailView):
         ).count()
 
         context["total_count"] = equipment_queryset.count()
+
+        pending_booking = Booking.objects.filter(
+        equipment=self.object,
+        active=True,
+        approved=False
+        ).exists()
+
+        context["pending_booking"] = pending_booking
 
         return context
 
