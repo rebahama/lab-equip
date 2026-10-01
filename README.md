@@ -2,13 +2,26 @@
 
 ---
 
-## Project Description
-
 **Project Name:** *Lab Equipment Knowledge Hub (LEKH)*
 
 **Customer Name:** *Zeth Danielsson*
 
 **Student Full Name:** *Rebaz Mohammad Ahmad*
+
+
+## Project Description
+
+This project is a Django-based web application used for manging labratory equipment. The purpose is to make it easier for students and caretaker to, find and borrow diffrent lab equipments.
+
+Students can create accounts and browse all the lab equipments using search and filter based on serial numbers, available and on loan equipments. Equipment types and categories can also be browsed based on what the students prefers. Students can send a booking request for a specific equipment that is then handled by a caretaker.
+
+Caretakers can manage the labratory equipments by adding and editing the equipments and categories. Caretaker can also review and approve student bookings.
+
+The system includs also user roles that is decided by the admin account, admin can choose diffrent roles for the created accounts. All accounts are created as student account for default and admin decides if an account should change to caretaker.
+
+
+
+
 
 ### Project Aim and Objectives
 
