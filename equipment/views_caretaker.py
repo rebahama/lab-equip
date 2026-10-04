@@ -100,7 +100,7 @@ class EditCategoryPage(
     Only the caretaker groups have access to the edit category.
     """
 
-    fields = ["name"]
+    fields = ["name", "description"]
 
     model = Category
     template_name = "webpage/caretaker/caretaker_edit_category.html"
