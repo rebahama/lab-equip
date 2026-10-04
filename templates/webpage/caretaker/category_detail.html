@@ -30,7 +30,14 @@
                     </span>
                     <a href="{% url 'equipment-type-detail' item.pk %}"
                         class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
+                         <i class="fa-solid fa-circle-up"></i>
                         View
+                    </a>
+
+                     <a href="{% url 'edit-equipment-type' item.pk %}"
+                        class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Edit equipment type
                     </a>
                 </div>
             </div>
