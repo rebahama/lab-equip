@@ -26,6 +26,13 @@
                             <input type="text" name="name" id="name" class="form-control" value="{{ category.name }}"
                                 required>
                         </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">
+                                Description
+                            </label>
+                            <textarea name="description" id="description" class="form-control"
+                                rows="4">{{ category.description }}</textarea>
+                        </div>
                         <button type="submit" class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
                             <i class="fa-solid fa-floppy-disk me-1"></i>
                             Save Changes

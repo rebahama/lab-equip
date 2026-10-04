@@ -1,0 +1,52 @@
+{% extends "webpage/base.html" %}
+{% block title %}Edit category{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <h1 class="mb-4">
+                Edit Category types
+            </h1>
+            {% if messages %}
+            {% for message in messages %}
+            {% if "equipment-type" in message.tags %}
+            <div class="alert alert-success text-center"> {{ message }} </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="form-label">
+                                Equipment name
+                            </label>
+                            <input type="text" name="name" id="name" class="form-control"
+                                value="{{ equipment_type.name }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">
+                                Description
+                            </label>
+
+                            <textarea name="description" id="description" class="form-control"
+                                rows="4">{{ equipment_type.description }}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
+                            <i class="fa-solid fa-floppy-disk me-1"></i>
+                            Save Changes
+                        </button>
+                        <a href="{% url 'show-category' %}"
+                            class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
+                            <i class="fa-solid fa-arrow-left-long"></i>
+                            Back to categories
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -100,7 +100,7 @@ class EditCategoryPage(
     Only the caretaker groups have access to the edit category.
     """
 
-    fields = ["name"]
+    fields = ["name", "description"]
 
     model = Category
     template_name = "webpage/caretaker/caretaker_edit_category.html"
@@ -127,6 +127,49 @@ class EditCategoryPage(
     def form_valid(self, form):
         messages.success(
             self.request, "Category changed successfully.", extra_tags="category"
+        )
+
+        return super().form_valid(form)
+
+
+class EditEquipmentType(
+    LoginRequiredMixin,
+    UserPassesTestMixin,
+    UpdateView,
+):
+    """
+    Only the caretaker groups have access to the edit equipment type page.
+    """
+
+    fields = ["name", "description"]
+
+    model = EquipmentType
+    template_name = "webpage/caretaker/caretaker_edit_equipment_type.html"
+    context_object_name = "equipment_type"
+
+    def test_func(self):
+        return self.request.user.groups.filter(name="Caretaker").exists()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["equipment_types"] = EquipmentType.objects.all()
+
+        return context
+
+    def get_success_url(self):
+        return self.request.path
+
+    def handle_no_permission(self):
+        return TemplateView.as_view(template_name="webpage/no_permission.html")(
+            self.request
+        )
+
+    def form_valid(self, form):
+        messages.success(
+            self.request,
+            "Equipment type was changed successfully.",
+            extra_tags="equipment-type",
         )
 
         return super().form_valid(form)
