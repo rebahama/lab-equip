@@ -4,13 +4,13 @@
 
 <div class="container py-5">
 {% if messages %}
-{% for message in messages %}
-    {% if "booking" in message.tags %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endif %}
-{% endfor %}
+    {% for message in messages %}
+        {% if "booking" in message.tags or "repair" in message.tags %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endif %}
     <div class="equipment-detail-card">
         <div class="row g-0">
@@ -161,6 +161,11 @@
                 Edit
             </a>
             {% endif %}
+
+            <a href="{% url 'report-fault' equipment.pk %}" class="btn btn-primary rounded-pill equipment-button">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                Report fault
+            </a>
             {% if pending_booking %}
             <p class="text-muted">
                 <i class="fa-solid fa-clock"></i>
