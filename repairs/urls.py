@@ -1,6 +1,10 @@
 from django.urls import path
 from .views_student import CreateRepairFault
-from .views_caretaker import ShowAllRepair, ViewAllRepairsCareTaker, StartRepair
+from .views_caretaker import (
+ShowAllRepair,
+ViewAllRepairsCareTaker,
+StartRepair,
+ViewActiveRepairs)
 
 
 urlpatterns = [
@@ -8,4 +12,5 @@ urlpatterns = [
     path("repair/showall", ShowAllRepair.as_view(), name="repair-show"),
     path("repair/showall/repairs", ViewAllRepairsCareTaker.as_view(), name="repair-show-all"),
     path("resolve/<int:pk>/", StartRepair.as_view(), name="start-repair"),
+    path("repair/active/", ViewActiveRepairs.as_view(), name="active-repair"),
 ]

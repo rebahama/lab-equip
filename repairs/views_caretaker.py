@@ -65,3 +65,16 @@ class StartRepair(LoginRequiredMixin, UserPassesTestMixin, View):
 
         return redirect("/repair/showall/repairs")
 
+
+class ViewActiveRepairs(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
+    template_name = "repairs/display-inprogress-repairs.html"
+
+    def test_func(self):
+        return self.request.user.groups.filter(name="Caretaker").exists()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["active_repairs"] = Repair.objects.filter(status="in_progress")
+
+        return context

@@ -1,0 +1,58 @@
+{% extends "webpage/base.html" %}
+{% block title %}Active Repairs{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1 class="mb-4">Active Repairs</h1>
+    </div>
+    <div class="row">
+        {% for active in active_repairs %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3">
+                        {{ active.equipment.equipment_type.name }}
+                    </h5>
+                    <p class="mb-2">
+                        <strong>Repair ID:</strong>
+                        {{ active.pk }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Equipment:</strong>
+                        {{ active.equipment.equipment_name }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Serial number:</strong>
+                        {{ active.equipment.serial_number }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Reported by:</strong>
+                        {{ active.reported_by.username }}
+                    </p>
+                    <p class="mb-3">
+                        <strong>Problem:</strong>
+                        {{ active.problem }}
+                    </p>
+                    <p class="mb-3">
+                        <strong>Status:</strong>
+                        <span class="badge bg-primary">
+                            In progress
+                        </span>
+                    </p>
+                    <p class="mb-3">
+                        <strong>Reported:</strong>
+                        {{ active.reported_at }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                There are no active repairs.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
