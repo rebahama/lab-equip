@@ -161,16 +161,22 @@
                 Edit
             </a>
             {% endif %}
-
-            <a href="{% url 'report-fault' equipment.pk %}" class="btn btn-primary rounded-pill equipment-button">
+           {% if equipment.status != "in_repair" %}
+            <a href="{% url 'report-fault' equipment.pk %}"
+            class="btn btn-primary rounded-pill equipment-button">
                 <i class="fa-solid fa-circle-exclamation"></i>
                 Report fault
             </a>
+            {% else %}
+                <p class="text-muted">
+                    Not possible to report fault at the moment, this equipment is already being repaired.
+                </p>
+            {% endif %}
             {% if pending_booking %}
             <p class="text-muted">
                 <i class="fa-solid fa-clock"></i>
                 This equipment is not on loan, but another student has requested it.
-                Please check for another equipment.
+                Please check for another avalible equipment.
             </p>
             {% elif user.groups.all.0.name == "Student" and equipment.status == "available" %}
               <a href="{% url 'create-booking' equipment.pk %}" class="btn btn-primary rounded-pill equipment-button">

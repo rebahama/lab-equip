@@ -4,7 +4,9 @@ from .views_caretaker import (
 ShowAllRepair,
 ViewAllRepairsCareTaker,
 StartRepair,
-ViewActiveRepairs)
+ViewActiveRepairs,
+FinishRepair
+)
 
 
 urlpatterns = [
@@ -13,4 +15,5 @@ urlpatterns = [
     path("repair/showall/repairs", ViewAllRepairsCareTaker.as_view(), name="repair-show-all"),
     path("resolve/<int:pk>/", StartRepair.as_view(), name="start-repair"),
     path("repair/active/", ViewActiveRepairs.as_view(), name="active-repair"),
+    path("repair/finish/<int:pk>/", FinishRepair.as_view(), name="finish-repair"),
 ]

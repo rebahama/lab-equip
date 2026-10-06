@@ -3,6 +3,16 @@
 {% block content %}
 <div class="container py-5">
     <div class="text-center mb-4">
+        {% if messages %}
+        {% for message in messages %}
+        {% if "available" in message.tags %}
+        <div class="alert alert-success text-center mb-4">
+            <i class="fa-solid fa-circle-check"></i>
+            {{ message }}
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
         <h1 class="mb-4">Active Repairs</h1>
     </div>
     <div class="row">
@@ -43,6 +53,14 @@
                         <strong>Reported:</strong>
                         {{ active.reported_at }}
                     </p>
+                    <form method="post" action="{% url 'finish-repair' active.pk %}">
+                        {% csrf_token %}
+
+                        <button type="submit" class="btn btn-success btn-sm rounded-pill equipment-button">
+                            <i class="fa-solid fa-check"></i>
+                            Finish Repair
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -78,3 +78,31 @@ class ViewActiveRepairs(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
         context["active_repairs"] = Repair.objects.filter(status="in_progress")
 
         return context
+
+
+class FinishRepair(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.groups.filter(name="Caretaker").exists()
+
+    def handle_no_permission(self):
+        return TemplateView.as_view(template_name="webpage/no_permission.html")(
+            self.request
+        )
+
+    def post(self, request, pk):
+        repair = get_object_or_404(Repair, pk=pk)
+
+        equipment = repair.equipment
+        equipment.status = "available"
+        equipment.save()
+
+        repair.status = "resolved"
+        repair.save()
+
+        messages.success(
+            request,
+            "Repair has been successfully repaired and available again",
+            extra_tags="available",
+        )
+
+        return redirect("/repair/active")
