@@ -1,0 +1,87 @@
+{% extends "webpage/base.html" %}
+{% block title %}Active Repairs{% endblock %}
+{% block content %}
+<div class="container py-5">
+    {% if messages %}
+    {% for message in messages %}
+    {% if "repair" in message.tags %}
+    <div class="alert alert-success text-center mb-4">
+        <i class="fa-solid fa-circle-check"></i>
+        {{ message }}
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    <div class="text-center mb-4">
+        <h1 class="mb-4">Pending repairs</h1>
+    </div>
+    <div class="row">
+        {% for repair in repairs %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3">
+                        {{ repair.equipment.equipment_type.name }}
+                    </h5>
+                    <p class="mb-2">
+                        <strong>Repair ID:</strong>
+                        {{ repair.pk }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Equipment:</strong>
+                        {{ repair.equipment.equipment_name }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Serial number:</strong>
+                        {{ repair.equipment.serial_number }}
+                    </p>
+                    <p class="mb-2">
+                        <strong>Reported by:</strong>
+                        {{ repair.reported_by.username }}
+                    </p>
+                    <p class="mb-3">
+                        <strong>Problem:</strong>
+                        {{ repair.problem }}
+                    </p>
+                    <p class="mb-3">
+                        <strong>Status:</strong>
+                        {% if repair.status == "reported" %}
+                        <span class="badge bg-warning text-dark">
+                            Reported
+                        </span>
+                        {% elif repair.status == "in_progress" %}
+                        <span class="badge bg-primary">
+                            In progress
+                        </span>
+                        {% elif repair.status == "resolved" %}
+                        <span class="badge bg-success">
+                            Resolved
+                        </span>
+                        {% endif %}
+                    </p>
+                    <p class="mb-3">
+                        <strong>Reported:</strong>
+                        {{ repair.reported_at }}
+                    </p>
+                    {% if repair.status == "reported" %}
+                    <form method="post" action="{% url 'start-repair' repair.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-sm rounded-pill">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                            Confirm and start repairs
+                        </button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                There are no active repairs.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
