@@ -25,9 +25,7 @@ class ViewAllRepairsCareTaker(LoginRequiredMixin, UserPassesTestMixin, TemplateV
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context["repairs"] = Repair.objects.filter(
-            status__in=["reported"]
-        )
+        context["repairs"] = Repair.objects.filter(status__in=["reported"])
 
         return context
 
@@ -45,9 +43,9 @@ class StartRepair(LoginRequiredMixin, UserPassesTestMixin, View):
         return self.request.user.groups.filter(name="Caretaker").exists()
 
     def handle_no_permission(self):
-            return TemplateView.as_view(template_name="webpage/no_permission.html")(
-                self.request
-            )
+        return TemplateView.as_view(template_name="webpage/no_permission.html")(
+            self.request
+        )
 
     def post(self, request, pk):
         repair = get_object_or_404(Repair, pk=pk)
@@ -66,3 +64,4 @@ class StartRepair(LoginRequiredMixin, UserPassesTestMixin, View):
         )
 
         return redirect("/repair/showall/repairs")
+
