@@ -1,6 +1,7 @@
 from django.views.generic import CreateView, TemplateView, View
 from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
+from django.urls import reverse
 from lab_equipment.mixin import CaretakerRequiredMixin, StudentRequiredMixin
 from equipment.models import Equipment
 from .models import Booking
@@ -46,9 +47,11 @@ class BookingCreateView(
 
         messages.success(
             self.request,
-            "Booking request sent. Please wait for confirmation from caretaker.",
+            f'Booking request sent. Please wait for confirmation from caretaker. '
+            f'<a href="{reverse("student-booking")}">View my bookings</a>',
             extra_tags="booking",
         )
+
 
         return super().form_valid(form)
 

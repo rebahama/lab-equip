@@ -6,8 +6,9 @@
 {% if messages %}
     {% for message in messages %}
         {% if "booking" in message.tags or "repair" in message.tags %}
-            <div class="alert alert-success">
-                {{ message }}
+            <div class="alert alert-success text-center mb-4">
+                <i class="fa-solid fa-circle-check"></i>
+                {{ message|safe }}
             </div>
         {% endif %}
     {% endfor %}
