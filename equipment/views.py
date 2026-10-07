@@ -1,15 +1,13 @@
 from django.views.generic import TemplateView, CreateView, DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from lab_equipment.mixin import CaretakerRequiredMixin
 from bookings.models import Booking
 from .models import Equipment, Category, EquipmentType, Location
 
 
-
-
 class CreatePageCaretakerView(
-    LoginRequiredMixin,
-    UserPassesTestMixin,
+    CaretakerRequiredMixin,
     CreateView,
 ):
     """
@@ -31,9 +29,6 @@ class CreatePageCaretakerView(
     ]
     success_url = "/"
 
-    def test_func(self):
-        return self.request.user.groups.filter(name="Caretaker").exists()
-
     def form_valid(self, form):
         form.instance.owner = self.request.user
         return super().form_valid(form)
@@ -47,19 +42,14 @@ class CreatePageCaretakerView(
 
         return context
 
-    def handle_no_permission(self):
-        return TemplateView.as_view(template_name="webpage/no_permission.html")(
-            self.request
-        )
-
 
 class ViewAllStudent(LoginRequiredMixin, TemplateView):
     """Display all equipment to users, if search word contains
-       Equipment name, serial number or type the quearry will be displayed
-       Also Filtering based on the status.
-       If a equipment is boked then let the user
-       find the same type with the equipment type
-       field.
+    Equipment name, serial number or type the quearry will be displayed
+    Also Filtering based on the status.
+    If a equipment is boked then let the user
+    find the same type with the equipment type
+    field.
     """
 
     model = Equipment
@@ -77,16 +67,14 @@ class ViewAllStudent(LoginRequiredMixin, TemplateView):
 
         if query:
             equipment = equipment.filter(
-                  Q(equipment_name__icontains=query)
+                Q(equipment_name__icontains=query)
                 | Q(serial_number__icontains=query)
                 | Q(equipment_type__name__icontains=query)
                 | Q(equipment_type__category__name__icontains=query)
             )
 
         if equipment_type:
-            equipment = equipment.filter(
-                equipment_type_id=equipment_type
-            )
+            equipment = equipment.filter(equipment_type_id=equipment_type)
 
         if status:
             equipment = equipment.filter(status=status)
@@ -117,16 +105,12 @@ class ViewAllDetailPage(LoginRequiredMixin, DetailView):
             status="available"
         ).count()
 
-        context["on_loan_count"] = equipment_queryset.filter(
-            status="on_loan"
-        ).count()
+        context["on_loan_count"] = equipment_queryset.filter(status="on_loan").count()
 
         context["total_count"] = equipment_queryset.count()
 
         pending_booking = Booking.objects.filter(
-        equipment=self.object,
-        active=True,
-        approved=False
+            equipment=self.object, active=True, approved=False
         ).exists()
 
         context["pending_booking"] = pending_booking
@@ -134,7 +118,7 @@ class ViewAllDetailPage(LoginRequiredMixin, DetailView):
         return context
 
 
-class ViewCategoryPage(TemplateView):
+class ViewCategoryPage(LoginRequiredMixin, TemplateView):
     """Display the categories and display the counts inside the categories"""
 
     model = Category
@@ -158,8 +142,9 @@ class ViewCategoryPage(TemplateView):
 
         return context
 
-class ViewCategoryDetailPage(DetailView):
-    """Display the only the specfik categories that was clicked on """
+
+class ViewCategoryDetailPage(LoginRequiredMixin, DetailView):
+    """Display the only the specfik categories that was clicked on"""
 
     model = Category
     template_name = "webpage/caretaker/category_detail.html"
@@ -168,9 +153,7 @@ class ViewCategoryDetailPage(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context["equipment_types"] = EquipmentType.objects.filter(
-            category=self.object
-        )
+        context["equipment_types"] = EquipmentType.objects.filter(category=self.object)
 
         context["equipment_count"] = Equipment.objects.filter(
             equipment_type__category=self.object
@@ -184,7 +167,7 @@ class ViewCategoryDetailPage(DetailView):
         return context
 
 
-class ViewEquipmentTypeDetailPage(DetailView):
+class ViewEquipmentTypeDetailPage(LoginRequiredMixin, DetailView):
 
     model = EquipmentType
     template_name = "webpage/caretaker/equipment_type_detail.html"
@@ -193,8 +176,6 @@ class ViewEquipmentTypeDetailPage(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context["equipment"] = Equipment.objects.filter(
-            equipment_type=self.object
-        )
+        context["equipment"] = Equipment.objects.filter(equipment_type=self.object)
 
         return context
