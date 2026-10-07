@@ -5,9 +5,10 @@
 <div class="container py-5">
 {% if messages %}
     {% for message in messages %}
-        {% if "booking" in message.tags or "repair" in message.tags %}
-            <div class="alert alert-success">
-                {{ message }}
+        {% if "booking" in message.tags or "repair" in message.tags or "equipment" in message.tags %}
+            <div class="alert alert-success text-center mb-4">
+                <i class="fa-solid fa-circle-check"></i>
+                {{ message|safe }}
             </div>
         {% endif %}
     {% endfor %}
@@ -165,7 +166,7 @@
             <a href="{% url 'report-fault' equipment.pk %}"
             class="btn btn-primary rounded-pill equipment-button">
                 <i class="fa-solid fa-circle-exclamation"></i>
-                Report fault
+                Report
             </a>
             {% else %}
                 <p class="text-muted">

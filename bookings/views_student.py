@@ -1,45 +1,31 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import TemplateView, View
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
+from lab_equipment.mixin import StudentRequiredMixin
 from .models import Booking
 
 
 class ViewStudentBooking(
-    LoginRequiredMixin,
-    UserPassesTestMixin,
+    StudentRequiredMixin,
     TemplateView,
 ):
 
     template_name = "booking/view_student_bookings.html"
 
-    def test_func(self):
-        return self.request.user.groups.filter(name="Student").exists()
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         context["active_bookings"] = Booking.objects.filter(
-            student=self.request.user,
-            active=True
+            student=self.request.user, active=True
         )
 
         return context
 
-    def handle_no_permission(self):
-        return TemplateView.as_view(template_name="webpage/no_permission.html")(
-            self.request
-        )
-
 
 class ReturnBookingView(
-    LoginRequiredMixin,
-    UserPassesTestMixin,
+    StudentRequiredMixin,
     View,
 ):
-    def test_func(self):
-        return self.request.user.groups.filter(name="Student").exists()
-
     def get(self, request, pk):
 
         booking = get_object_or_404(
@@ -77,49 +63,23 @@ class ReturnBookingView(
 
         return redirect("/bookings/show")
 
-    def handle_no_permission(self):
-        return TemplateView.as_view(template_name="webpage/no_permission.html")(
-            self.request
-        )
 
-
-class ViewAllBookingStudent(
-    LoginRequiredMixin,
-    UserPassesTestMixin,
-    TemplateView):
+class ViewAllBookingStudent(StudentRequiredMixin, TemplateView):
 
     template_name = "booking/show_history_mybooking.html"
 
-    def test_func(self):
-        return self.request.user.groups.filter(name="Student").exists()
-
-    def handle_no_permission(self):
-        return TemplateView.as_view(template_name="webpage/no_permission.html")(
-            self.request
-        )
-
 
 class ViewBookingHistory(
-    LoginRequiredMixin,
-    UserPassesTestMixin,
+    StudentRequiredMixin,
     TemplateView,
 ):
     template_name = "booking/view_student_bookings.html"
-
-    def test_func(self):
-        return self.request.user.groups.filter(name="Student").exists()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         context["active_bookings"] = Booking.objects.filter(
-            student=self.request.user,
-            active=False
+            student=self.request.user, active=False
         )
 
         return context
-
-    def handle_no_permission(self):
-        return TemplateView.as_view(template_name="webpage/no_permission.html")(
-            self.request
-        )

@@ -3,6 +3,10 @@ from django.views.generic import TemplateView
 
 
 class CaretakerRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
+    """
+    Created to check if the user is logged in and have a Caretaker group role, if not
+    display the no permission page.
+    """
 
     def test_func(self):
         return self.request.user.groups.filter(
@@ -16,6 +20,10 @@ class CaretakerRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
 
 
 class StudentRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
+    """
+    Created to check if the user is logged in and a Student group role, if not
+    display the no permission page.
+    """
 
     def test_func(self):
         return self.request.user.groups.filter(

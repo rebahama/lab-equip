@@ -1,18 +1,20 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import UpdateView, DeleteView
 from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 from django.contrib import messages
+from lab_equipment.mixin import CaretakerRequiredMixin
 from .models import Equipment, EquipmentType, Location, Category
 
 
-class CareTakerDashboard(TemplateView):
+class CareTakerDashboard(
+CaretakerRequiredMixin,
+TemplateView):
+
     template_name = "webpage/caretaker/caretaker_dashboard.html"
 
 
 class EditEquipmentView(
-    LoginRequiredMixin,
-    UserPassesTestMixin,
+    CaretakerRequiredMixin,
     UpdateView,
 ):
     """
@@ -41,9 +43,6 @@ class EditEquipmentView(
 
         return context
 
-    def test_func(self):
-        return self.request.user.groups.filter(name="Caretaker").exists()
-
     def form_valid(self, form):
         response = super().form_valid(form)
         messages.success(
@@ -55,15 +54,9 @@ class EditEquipmentView(
     def get_success_url(self):
         return f"/detail/{self.object.pk}/edit"
 
-    def handle_no_permission(self):
-        return TemplateView.as_view(template_name="webpage/no_permission.html")(
-            self.request
-        )
-
 
 class DeleteEquipmentView(
-    LoginRequiredMixin,
-    UserPassesTestMixin,
+    CaretakerRequiredMixin,
     DeleteView,
 ):
     """
@@ -75,9 +68,6 @@ class DeleteEquipmentView(
     template_name = "webpage/caretaker/delete_equipment.html"
     success_url = reverse_lazy("show-student")
 
-    def test_func(self):
-        return self.request.user.groups.filter(name="Caretaker").exists()
-
     def form_valid(self, form):
         messages.success(
             self.request, "Equipment deleted successfully.", extra_tags="equipment"
@@ -85,15 +75,9 @@ class DeleteEquipmentView(
 
         return super().form_valid(form)
 
-    def handle_no_permission(self):
-        return TemplateView.as_view(template_name="webpage/no_permission.html")(
-            self.request
-        )
-
 
 class EditCategoryPage(
-    LoginRequiredMixin,
-    UserPassesTestMixin,
+    CaretakerRequiredMixin,
     UpdateView,
 ):
     """
@@ -106,9 +90,6 @@ class EditCategoryPage(
     template_name = "webpage/caretaker/caretaker_edit_category.html"
     categories = Category.objects.all()
 
-    def test_func(self):
-        return self.request.user.groups.filter(name="Caretaker").exists()
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -119,11 +100,6 @@ class EditCategoryPage(
     def get_success_url(self):
         return f"/category/{self.object.pk}/edit"
 
-    def handle_no_permission(self):
-        return TemplateView.as_view(template_name="webpage/no_permission.html")(
-            self.request
-        )
-
     def form_valid(self, form):
         messages.success(
             self.request, "Category changed successfully.", extra_tags="category"
@@ -133,8 +109,7 @@ class EditCategoryPage(
 
 
 class EditEquipmentType(
-    LoginRequiredMixin,
-    UserPassesTestMixin,
+    CaretakerRequiredMixin,
     UpdateView,
 ):
     """
@@ -147,9 +122,6 @@ class EditEquipmentType(
     template_name = "webpage/caretaker/caretaker_edit_equipment_type.html"
     context_object_name = "equipment_type"
 
-    def test_func(self):
-        return self.request.user.groups.filter(name="Caretaker").exists()
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -159,11 +131,6 @@ class EditEquipmentType(
 
     def get_success_url(self):
         return self.request.path
-
-    def handle_no_permission(self):
-        return TemplateView.as_view(template_name="webpage/no_permission.html")(
-            self.request
-        )
 
     def form_valid(self, form):
         messages.success(
