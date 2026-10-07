@@ -340,6 +340,29 @@ When repair is done and caretaker clicks finish resolved equipment can be found 
 
 
 ![Report](docs/webpage/report-14.png)
+
+
+### Archived equipments
+
+* When caretaker puts equipment status to: "out of service" or "retired" then equipment is no longer displayed on the view all equipment page.
+
+Message when: out of service or retired is choosen in the edit page for equipments.
+
+![Archived](docs/webpage/archive-04.png)
+
+
+When clicking the archived equipments
+![Archived](docs/webpage/archive-03.png)
+
+When clicking archived page caretaker gets here, this page is only shown for caretaker where all the equipment marked out of service or retired is displayed.
+
+![Archived](docs/webpage/archive-02.png)
+
+When searching for the equipment that is retired or out of service with the serial number on the view all equipment page that is visable for all users.:
+
+![Archived](docs/webpage/archive-01.png)
+
+
 ### User interface
 
 * Responsiv - The system is designed to be used also on mobile and tablet screens.
