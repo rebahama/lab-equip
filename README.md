@@ -239,6 +239,7 @@ Student gets updated status badge when caretaker have confirmed returns:
 Caretaker can see active, pending and history bookings:
 
 Caretaker edit category page:
+
 ![Caretaker active,history bookings](docs/webpage/caretaker-03.png)
 
 
@@ -260,6 +261,7 @@ Caretaker dashboard page:
 
 
 Caretaker edit category page:
+
 ![Caretaker edit category](docs/webpage/caretaker-02.png)
 
 
@@ -303,6 +305,7 @@ User reports fault:
 
 ![Report](docs/webpage/report-02.png)
 
+
 ![Report](docs/webpage/report-01.png)
 
 
@@ -314,20 +317,29 @@ Caretaker recives the reported fault:
 
 ![Report](docs/webpage/report-03.png)
 
-Caretaker confirms reported fault
 
 ![Report](docs/webpage/report-06.png)
 
-Status changes to active:
+When Caretaker confirms reported fault then status changes to in progress, and its not possible to report the specific equipment anymore untill its been resolved.
 
-![Report](docs/webpage/report-07.png)
+Status changes to in progress:
 
-When repair is done and caretaker clicks finish
+![Report](docs/webpage/report-10.png)
+
+Message on the same equipment.
+
+![Report](docs/webpage/report-13.png)
+
+Status also changes to in repair on the equipment.
+
+![Report](docs/webpage/report-15.png)
+
+When repair is done and caretaker clicks finish resolved equipment can be found on a page only for resolved equipments.
 
 ![Report](docs/webpage/report-08.png)
 
 
-![Report](docs/webpage/report-09.png)
+![Report](docs/webpage/report-14.png)
 ### User interface
 
 * Responsiv - The system is designed to be used also on mobile and tablet screens.

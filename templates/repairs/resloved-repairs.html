@@ -34,6 +34,10 @@
                         {{ repair.problem }}
                     </p>
                     <p class="mb-3">
+                        <strong>Fixed problem</strong>
+                        {{ repair.repair_notes }}
+                    </p>
+                    <p class="mb-3">
                         <strong>Repair status:</strong>
                         {% if repair.status == "reported" %}
                         <span class="badge bg-warning text-dark">
