@@ -144,6 +144,23 @@
                             </strong>
                         </div>
                     </div>
+
+                    {% if known_problems %}
+                    <div class="mt-4">
+                        <h4 class="mb-3">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                           This equipment type have known Problems
+                        </h4>
+                        {% for problem in known_problems %}
+                            <div class="alert alert-warning mb-3">
+                                <strong>{{ problem.title }}</strong>
+                                <p class="mb-0 mt-1">
+                                    {{ problem.description }}
+                                </p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
                 </div>
             </div>
             <div class="edit-back-btn"> 

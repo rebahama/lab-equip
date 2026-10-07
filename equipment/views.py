@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.db.models import Q
 from lab_equipment.mixin import CaretakerRequiredMixin
 from bookings.models import Booking
+from repairs.models import EquipmentProblem
 from .models import Equipment, Category, EquipmentType, Location
 
 
@@ -132,6 +133,10 @@ class ViewAllDetailPage(LoginRequiredMixin, DetailView):
         pending_booking = Booking.objects.filter(
             equipment=self.object, active=True, approved=False
         ).exists()
+
+        context["known_problems"] = EquipmentProblem.objects.filter(
+            equipment_type=self.object.equipment_type
+        )
 
         context["pending_booking"] = pending_booking
 

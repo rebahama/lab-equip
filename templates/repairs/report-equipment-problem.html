@@ -1,0 +1,37 @@
+{% extends "webpage/base.html" %}
+{% block title %}Report Known Problem{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <h1>Report Known Problem</h1>
+        <p class="text-muted">
+            {{ equipment_type.name }}
+        </p>
+    </div>
+    <div class="card shadow-sm">
+        <div class="card-body p-4">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="title" class="form-label">
+                        <strong>Problem title</strong>
+                    </label>
+                    <input type="text" name="title" id="title" class="form-control"
+                        placeholder="For example: Nozzle not working" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">
+                        <strong>Description</strong>
+                    </label>
+                    <textarea name="description" id="description" class="form-control" rows="5"
+                        placeholder="Describe problem..." required></textarea>
+                </div>
+                <button type="submit"  class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    Add problem to all equipment types
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
