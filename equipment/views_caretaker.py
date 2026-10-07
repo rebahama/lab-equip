@@ -6,8 +6,10 @@ from lab_equipment.mixin import CaretakerRequiredMixin
 from .models import Equipment, EquipmentType, Location, Category
 
 
+class CareTakerDashboard(
+CaretakerRequiredMixin,
+TemplateView):
 
-class CareTakerDashboard(TemplateView):
     template_name = "webpage/caretaker/caretaker_dashboard.html"
 
 
