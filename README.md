@@ -301,6 +301,8 @@ Filter on categories:
 
 * Caretaker updates the status to in repair.
 
+* Caretaker can report an equipment type fault and display message on equipment type.
+
 User reports fault:
 
 ![Report](docs/webpage/report-02.png)
@@ -341,6 +343,19 @@ When repair is done and caretaker clicks finish resolved equipment can be found 
 
 ![Report](docs/webpage/report-14.png)
 
+Caretaker reports a equipment type problem:
+
+![Report](docs/webpage/report-22.png)
+
+![Report](docs/webpage/report-18.png)
+
+![Report](docs/webpage/report-17.png)
+
+The reported fault can be displayed on all the equipment types. Notice the diffren serial numbers and that the problem gets displayed on all the types.
+
+![Report](docs/webpage/report-20.png)
+
+![Report](docs/webpage/report-19.png)
 
 ### Archived equipments
 
