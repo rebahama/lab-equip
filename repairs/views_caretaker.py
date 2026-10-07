@@ -1,52 +1,25 @@
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View, ListView
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from lab_equipment.mixin import CaretakerRequiredMixin
 from .models import Repair
 
 
-class ShowAllRepair(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
+class ShowAllRepair(CaretakerRequiredMixin, TemplateView):
 
     template_name = "repairs/show-active-history-repairs.html"
 
-    def test_func(self):
-        return self.request.user.groups.filter(name="Caretaker").exists()
 
-    def handle_no_permission(self):
-        return TemplateView.as_view(template_name="webpage/no_permission.html")(
-            self.request
-        )
-
-
-class ViewAllRepairsCareTaker(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
+class ViewAllRepairsCareTaker(CaretakerRequiredMixin, ListView):
     model = Repair
     template_name = "repairs/show-active-faults.html"
+    context_object_name = "repairs"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context["repairs"] = Repair.objects.filter(status__in=["reported"])
-
-        return context
-
-    def test_func(self):
-        return self.request.user.groups.filter(name="Caretaker").exists()
-
-    def handle_no_permission(self):
-        return TemplateView.as_view(template_name="webpage/no_permission.html")(
-            self.request
-        )
+    def get_queryset(self):
+        return Repair.objects.filter(status="reported")
 
 
-class StartRepair(LoginRequiredMixin, UserPassesTestMixin, View):
-    def test_func(self):
-        return self.request.user.groups.filter(name="Caretaker").exists()
-
-    def handle_no_permission(self):
-        return TemplateView.as_view(template_name="webpage/no_permission.html")(
-            self.request
-        )
-
+class StartRepair(CaretakerRequiredMixin, View):
     def post(self, request, pk):
         repair = get_object_or_404(Repair, pk=pk)
 
@@ -66,29 +39,17 @@ class StartRepair(LoginRequiredMixin, UserPassesTestMixin, View):
         return redirect("/repair/showall/repairs")
 
 
-class ViewActiveRepairs(LoginRequiredMixin, UserPassesTestMixin, TemplateView):
+class ViewActiveRepairs(CaretakerRequiredMixin, ListView):
+
+    model = Repair
     template_name = "repairs/display-inprogress-repairs.html"
+    context_object_name = "active_repairs"
 
-    def test_func(self):
-        return self.request.user.groups.filter(name="Caretaker").exists()
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context["active_repairs"] = Repair.objects.filter(status="in_progress")
-
-        return context
+    def get_queryset(self):
+        return Repair.objects.filter(status="in_progress")
 
 
-class FinishRepair(LoginRequiredMixin, UserPassesTestMixin, View):
-    def test_func(self):
-        return self.request.user.groups.filter(name="Caretaker").exists()
-
-    def handle_no_permission(self):
-        return TemplateView.as_view(template_name="webpage/no_permission.html")(
-            self.request
-        )
-
+class FinishRepair(CaretakerRequiredMixin, View):
     def post(self, request, pk):
         repair = get_object_or_404(Repair, pk=pk)
 
