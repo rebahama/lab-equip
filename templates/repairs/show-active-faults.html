@@ -2,16 +2,16 @@
 {% block title %}Active Repairs{% endblock %}
 {% block content %}
 <div class="container py-5">
-    {% if messages %}
+ {% if messages %}
     {% for message in messages %}
-    {% if "repair" in message.tags %}
-    <div class="alert alert-success text-center mb-4">
-        <i class="fa-solid fa-circle-check"></i>
-        {{ message }}
-    </div>
-    {% endif %}
+        {% if "repair" in message.tags %}
+            <div class="alert alert-success text-center mb-4">
+                <i class="fa-solid fa-circle-check"></i>
+                {{ message|safe }}
+            </div>
+        {% endif %}
     {% endfor %}
-    {% endif %}
+{% endif %}
     <div class="text-center mb-4">
         <h1 class="mb-4">Pending repairs</h1>
     </div>

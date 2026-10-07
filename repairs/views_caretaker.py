@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView, View, ListView
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
+from django.urls import reverse
 from lab_equipment.mixin import CaretakerRequiredMixin
 from .models import Repair
 
@@ -32,10 +33,10 @@ class StartRepair(CaretakerRequiredMixin, View):
         equipment.save()
 
         messages.success(
-            request,
-            "Repair has been succesfully added to in active repairs.",
-            extra_tags="repair",
-        )
+        request,
+        f'Repair has been successfully added to active repairs. '
+        f'<a href="{reverse("active-repair")}">View active repairs here</a>',
+        extra_tags="repair",)
 
         return redirect("/repair/showall/repairs")
 
@@ -62,16 +63,16 @@ class FinishRepair(CaretakerRequiredMixin, View):
         repair.save()
 
         messages.success(
-            request,
-            "Repair has been successfully repaired and available again",
-            extra_tags="available",
-        )
+                        request,
+                        f'Repair has been successfully added to resloved page '
+                        f'<a href="{reverse("resolved-repair")}">View finished repairs here</a>',
+                        extra_tags="available",)
 
         return redirect("/repair/active")
 
 
 class ResolvedRepairs(CaretakerRequiredMixin, ListView):
-    
+
     model = Repair
     template_name = "repairs/resloved-repairs.html"
     context_object_name = "resolved_repairs"
