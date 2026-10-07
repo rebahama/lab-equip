@@ -79,7 +79,9 @@ class ViewAllStudent(LoginRequiredMixin, TemplateView):
         category = self.request.GET.get("category")
         equipment_type = self.request.GET.get("equipment_type")
 
-        equipment = Equipment.objects.all().order_by("-created_at")
+        equipment = Equipment.objects.filter(
+        status__in=["available", "on_loan", "in_repair"]
+        ).order_by("-created_at")
 
         if query:
             equipment = equipment.filter(
@@ -123,7 +125,9 @@ class ViewAllDetailPage(LoginRequiredMixin, DetailView):
 
         context["on_loan_count"] = equipment_queryset.filter(status="on_loan").count()
 
-        context["total_count"] = equipment_queryset.count()
+        context["total_count"] = equipment_queryset.exclude(
+            status__in=["retired", "out_of_service"]
+        ).count()
 
         pending_booking = Booking.objects.filter(
             equipment=self.object, active=True, approved=False

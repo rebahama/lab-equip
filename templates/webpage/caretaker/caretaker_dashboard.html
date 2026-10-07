@@ -7,10 +7,26 @@
             Caretaker Dashboard
         </h1>
         <p>
-            Manage equipment, categories and bookings
+            Manage equipment, categories, repairs, create, archives and bookings
         </p>
     </div>
     <div class="row g-4 justify-content-center">
+            <div class="col-12 col-md-4">
+            <div class="caretaker-dashboard-card">
+                <div class="caretaker-dashboard-icon">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <h4>
+                    Create equipment
+                </h4>
+                <p>
+                    Add an equipment
+                </p>
+                <a href="{% url 'create' %}" class="caretaker-dashboard-button">
+                    Create
+                </a>
+            </div>
+        </div>
         <div class="col-12 col-md-4">
             <div class="caretaker-dashboard-card">
                 <div class="caretaker-dashboard-icon">
@@ -105,6 +121,22 @@
                 </p>
                 <a href="{% url 'manage-returns' %}" class="caretaker-dashboard-button">
                     Manage booking returns
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="caretaker-dashboard-card">
+                <div class="caretaker-dashboard-icon">
+                    <i class="fa-solid fa-box-archive"></i>
+                </div>
+                <h4>
+                    Archived equipments
+                </h4>
+                <p>
+                    View equipments that are not longer in service
+                </p>
+                <a href="{% url 'show-not-service' %}" class="caretaker-dashboard-button">
+                    View
                 </a>
             </div>
         </div>
