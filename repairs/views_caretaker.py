@@ -11,6 +11,7 @@ class ShowAllRepair(CaretakerRequiredMixin, TemplateView):
 
 
 class ViewAllRepairsCareTaker(CaretakerRequiredMixin, ListView):
+    
     model = Repair
     template_name = "repairs/show-active-faults.html"
     context_object_name = "repairs"
@@ -67,3 +68,13 @@ class FinishRepair(CaretakerRequiredMixin, View):
         )
 
         return redirect("/repair/active")
+
+
+class ResolvedRepairs(CaretakerRequiredMixin, ListView):
+    
+    model = Repair
+    template_name = "repairs/resloved-repairs.html"
+    context_object_name = "resolved_repairs"
+
+    def get_queryset(self):
+        return Repair.objects.filter(status="resolved")
