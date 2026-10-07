@@ -1,6 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
 from equipment.models import Equipment
+from equipment.models import EquipmentType
+
+
+class EquipmentProblem(models.Model):
+    equipment_type = models.ForeignKey(EquipmentType, on_delete=models.CASCADE)
+
+    title = models.CharField(max_length=200)
+
+    description = models.TextField()
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.equipment_type.name} - {self.title}"
 
 
 class Repair(models.Model):
