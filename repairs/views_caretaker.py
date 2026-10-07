@@ -1,9 +1,11 @@
-from django.views.generic import TemplateView, View, ListView
+from django.views.generic import TemplateView, View, ListView, CreateView
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse
 from lab_equipment.mixin import CaretakerRequiredMixin
-from .models import Repair
+from equipment.models import EquipmentType
+from .models import Repair, EquipmentProblem
+
 
 
 class ShowAllRepair(CaretakerRequiredMixin, TemplateView):
@@ -12,7 +14,7 @@ class ShowAllRepair(CaretakerRequiredMixin, TemplateView):
 
 
 class ViewAllRepairsCareTaker(CaretakerRequiredMixin, ListView):
-    
+
     model = Repair
     template_name = "repairs/show-active-faults.html"
     context_object_name = "repairs"
@@ -82,3 +84,37 @@ class ResolvedRepairs(CaretakerRequiredMixin, ListView):
 
     def get_queryset(self):
         return Repair.objects.filter(status="resolved")
+
+
+class CreateEquipmentProblem(CaretakerRequiredMixin, CreateView):
+
+    model = EquipmentProblem
+    template_name = "repairs/report-equipment-problem.html"
+    fields = ["title", "description"]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["equipment_type"] = get_object_or_404(
+            EquipmentType,
+            pk=self.kwargs["pk"]
+        )
+
+        return context
+
+    def form_valid(self, form):
+        form.instance.equipment_type = get_object_or_404(
+            EquipmentType,
+            pk=self.kwargs["pk"]
+        )
+
+        messages.success(
+            self.request,
+            "Known problem has been added successfully.",
+            extra_tags="repair",
+        )
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return "/category"

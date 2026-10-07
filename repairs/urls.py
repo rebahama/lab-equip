@@ -7,6 +7,7 @@ StartRepair,
 ViewActiveRepairs,
 FinishRepair,
 ResolvedRepairs,
+CreateEquipmentProblem
 )
 
 
@@ -18,4 +19,6 @@ urlpatterns = [
     path("repair/active/", ViewActiveRepairs.as_view(), name="active-repair"),
     path("repair/finish/<int:pk>/", FinishRepair.as_view(), name="finish-repair"),
     path("repair/resolved/", ResolvedRepairs.as_view(), name="resolved-repair"),
+    path("problem-report/<int:pk>/",CreateEquipmentProblem.as_view(),name="report-equipment-problem"
+),
 ]
