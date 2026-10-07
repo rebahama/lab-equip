@@ -1,5 +1,4 @@
-from django.views.generic import UpdateView, DeleteView
-from django.views.generic import TemplateView
+from django.views.generic import UpdateView, DeleteView, TemplateView, ListView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from lab_equipment.mixin import CaretakerRequiredMixin
@@ -45,9 +44,22 @@ class EditEquipmentView(
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(
-            self.request, "Equipment updated successfully.", extra_tags="equipment"
-        )
+
+        if self.object.status in ["out_of_service", "retired"]:
+            messages.success(
+                self.request,
+                "Equipment is no longer active because it has been retired"
+                " or marked as out of service." \
+                " You can find it in dashboard on the archive equipment page.",
+                extra_tags="equipment",
+            )
+
+        else:
+            messages.success(
+                self.request,
+                "Equipment updated successfully.",
+                extra_tags="equipment",
+            )
 
         return response
 
@@ -140,3 +152,16 @@ class EditEquipmentType(
         )
 
         return super().form_valid(form)
+
+
+class ViewNotInServiceEquipment(
+    CaretakerRequiredMixin,
+    ListView
+):
+
+    model = Equipment
+    template_name = "webpage/caretaker/not-in-service.html"
+    context_object_name = "equipment"
+
+    def get_queryset(self):
+        return Equipment.objects.filter(status__in=["out_of_service", "retired"])

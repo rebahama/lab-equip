@@ -79,7 +79,9 @@ class ViewAllStudent(LoginRequiredMixin, TemplateView):
         category = self.request.GET.get("category")
         equipment_type = self.request.GET.get("equipment_type")
 
-        equipment = Equipment.objects.all().order_by("-created_at")
+        equipment = Equipment.objects.filter(
+        status__in=["available", "on_loan", "in_repair"]
+        ).order_by("-created_at")
 
         if query:
             equipment = equipment.filter(
