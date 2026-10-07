@@ -291,6 +291,43 @@ Filter on categories:
 ![Filter categories](docs/webpage/search-05.png)
 
 
+### Report fault system
+
+* Users can report a fault on equipments.
+
+* Caretaker can approve the reported fault and change it to an active repair page.
+
+* Caretaker updates the status to in repair.
+
+User reports fault:
+
+![Report](docs/webpage/report-02.png)
+
+![Report](docs/webpage/report-01.png)
+
+
+![Report](docs/webpage/report-05.png)
+
+Caretaker recives the reported fault:
+
+![Report](docs/webpage/report-04.png)
+
+![Report](docs/webpage/report-03.png)
+
+Caretaker confirms reported fault
+
+![Report](docs/webpage/report-06.png)
+
+Status changes to active:
+
+![Report](docs/webpage/report-07.png)
+
+When repair is done and caretaker clicks finish
+
+![Report](docs/webpage/report-08.png)
+
+
+![Report](docs/webpage/report-09.png)
 ### User interface
 
 * Responsiv - The system is designed to be used also on mobile and tablet screens.
