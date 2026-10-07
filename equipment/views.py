@@ -125,7 +125,9 @@ class ViewAllDetailPage(LoginRequiredMixin, DetailView):
 
         context["on_loan_count"] = equipment_queryset.filter(status="on_loan").count()
 
-        context["total_count"] = equipment_queryset.count()
+        context["total_count"] = equipment_queryset.exclude(
+            status__in=["retired", "out_of_service"]
+        ).count()
 
         pending_booking = Booking.objects.filter(
             equipment=self.object, active=True, approved=False
