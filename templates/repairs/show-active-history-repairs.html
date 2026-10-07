@@ -1,0 +1,64 @@
+{% extends "webpage/base.html" %}
+{% block title %}All Repairs{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="caretaker-dashboard-header text-center mb-5">
+        <h1>
+            Repairs
+        </h1>
+        <p>
+            Check your current and resolved repairs
+        </p>
+    </div>
+    <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-4">
+            <div class="caretaker-dashboard-card">
+                <div class="caretaker-dashboard-icon">
+                    <i class="fa-solid fa-wrench"></i>
+                </div>
+                <h4>
+                    Pending repairs
+                </h4>
+                <p>
+                    View pending repairs
+                </p>
+                <a href="{% url 'repair-show-all' %}" class="caretaker-dashboard-button">
+                    Show
+                </a>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="caretaker-dashboard-card">
+                <div class="caretaker-dashboard-icon">
+                    <i class="fa-solid fa-square-check"></i>
+                </div>
+                <h4>
+                    Active repairs
+                </h4>
+                <p>
+                    View your active repairs
+                </p>
+                <a href="{% url 'active-repair' %}" class="caretaker-dashboard-button">
+                    Show
+                </a>
+            </div>
+        </div>
+         <div class="col-12 col-md-4">
+            <div class="caretaker-dashboard-card">
+                <div class="caretaker-dashboard-icon">
+                    <i class="fa-solid fa-square-check"></i>
+                </div>
+                <h4>
+                    Resolved repairs
+                </h4>
+                <p>
+                    View your resolved repairs
+                </p>
+                <a href="{% url 'resolved-repair' %}" class="caretaker-dashboard-button">
+                    Show
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

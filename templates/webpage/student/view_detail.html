@@ -4,13 +4,13 @@
 
 <div class="container py-5">
 {% if messages %}
-{% for message in messages %}
-    {% if "booking" in message.tags %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endif %}
-{% endfor %}
+    {% for message in messages %}
+        {% if "booking" in message.tags or "repair" in message.tags %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
 {% endif %}
     <div class="equipment-detail-card">
         <div class="row g-0">
@@ -161,11 +161,22 @@
                 Edit
             </a>
             {% endif %}
+           {% if equipment.status != "in_repair" %}
+            <a href="{% url 'report-fault' equipment.pk %}"
+            class="btn btn-primary rounded-pill equipment-button">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                Report fault
+            </a>
+            {% else %}
+                <p class="text-muted">
+                    Not possible to report fault at the moment, this equipment is already being repaired.
+                </p>
+            {% endif %}
             {% if pending_booking %}
             <p class="text-muted">
                 <i class="fa-solid fa-clock"></i>
                 This equipment is not on loan, but another student has requested it.
-                Please check for another equipment.
+                Please check for another avalible equipment.
             </p>
             {% elif user.groups.all.0.name == "Student" and equipment.status == "available" %}
               <a href="{% url 'create-booking' equipment.pk %}" class="btn btn-primary rounded-pill equipment-button">
