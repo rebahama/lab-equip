@@ -136,7 +136,7 @@ class ViewAllDetailPage(LoginRequiredMixin, DetailView):
 
         context["known_problems"] = EquipmentProblem.objects.filter(
             equipment_type=self.object.equipment_type
-)
+        )
 
         context["pending_booking"] = pending_booking
 
