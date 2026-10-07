@@ -52,6 +52,7 @@ class ViewActiveRepairs(CaretakerRequiredMixin, ListView):
 
 
 class FinishRepair(CaretakerRequiredMixin, View):
+
     def post(self, request, pk):
         repair = get_object_or_404(Repair, pk=pk)
 
@@ -59,14 +60,16 @@ class FinishRepair(CaretakerRequiredMixin, View):
         equipment.status = "available"
         equipment.save()
 
+        repair.repair_notes = request.POST.get("repair_notes")
         repair.status = "resolved"
         repair.save()
 
         messages.success(
-                        request,
-                        f'Repair has been successfully added to resloved page '
-                        f'<a href="{reverse("resolved-repair")}">View finished repairs here</a>',
-                        extra_tags="available",)
+            request,
+            f'Repair has been successfully added to resolved page '
+            f'<a href="{reverse("resolved-repair")}">View finished repairs here</a>',
+            extra_tags="available",
+        )
 
         return redirect("/repair/active")
 

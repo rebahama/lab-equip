@@ -53,9 +53,18 @@
                         <strong>Reported:</strong>
                         {{ active.reported_at }}
                     </p>
+             <label for="repair_notes" class="form-label">
+                    <strong>Repair notes</strong>
+             </label>
                     <form method="post" action="{% url 'finish-repair' active.pk %}">
                         {% csrf_token %}
-
+                           <textarea
+                    name="repair_notes"
+                    id="repair_notes"
+                    class="form-control"
+                    rows="5"
+                    placeholder="Describe what was repaired..."
+                    required></textarea>
                         <button type="submit" class="btn btn-success btn-sm rounded-pill equipment-button">
                             <i class="fa-solid fa-check"></i>
                             Finish Repair
