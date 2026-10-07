@@ -5,15 +5,16 @@
     <div class="text-center mb-4">
         <h1 class="mb-4"> Manage Bookings </h1>
     </div>
-    {% if messages %}
+{% if messages %}
     {% for message in messages %}
-    {% if "approved" in message.tags %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div>
-    {% endif %}
+        {% if "approved" in message.tags %}
+            <div class="alert alert-success text-center mb-4">
+                <i class="fa-solid fa-circle-check"></i>
+                {{ message|safe }}
+            </div>
+        {% endif %}
     {% endfor %}
-    {% endif %}
+{% endif %}
     <div class="row">
         {% for booking in bookings %}
         <div class="col-md-6 col-lg-4 mb-4">

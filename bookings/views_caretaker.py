@@ -105,7 +105,9 @@ class ApproveBooking(CaretakerRequiredMixin, View):
 
         messages.success(
             request,
-            "Booking has been approved and confirmed",
+            f'Booking has been approved and confirmed. '
+            f'<a href="{reverse("caretaker-active-bookings")}">'
+            f'View approved bookings</a>',
             extra_tags="approved",
         )
 
@@ -160,7 +162,9 @@ class ConfirmReturnBooking(
 
         messages.success(
             request,
-            "Equipment return has been confirmed.",
+            f'Equipment return has been confirmed. '
+            f'<a href="{reverse("caretaker-history-bookings")}">'
+            f'View booking history</a>',
             extra_tags="returned",
         )
 

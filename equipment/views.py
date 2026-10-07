@@ -1,5 +1,7 @@
 from django.views.generic import TemplateView, CreateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from django.urls import reverse
 from django.db.models import Q
 from lab_equipment.mixin import CaretakerRequiredMixin
 from bookings.models import Booking
@@ -27,11 +29,25 @@ class CreatePageCaretakerView(
         "condition",
         "image",
     ]
-    success_url = "/"
+
+    def get_success_url(self):
+        return reverse(
+            "show-detail",
+            kwargs={"pk": self.object.pk}
+        )
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
-        return super().form_valid(form)
+        response = super().form_valid(form)
+
+        messages.success(
+            self.request,
+            f'Equipment "{self.object.equipment_name}" was successfully created. '
+            f'<a href="{reverse("show-detail", kwargs={"pk": self.object.pk})}">'
+            f'View equipment</a>',
+            extra_tags="equipment",
+        )
+        return response
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

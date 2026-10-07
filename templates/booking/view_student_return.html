@@ -2,16 +2,16 @@
 {% block title %}Manage Booking Returns{% endblock %}
 {% block content %}
 <div class="container py-5">
-    {% if messages %}
+ {% if messages %}
     {% for message in messages %}
-    {% if "returned" in message.tags %}
-    <div class="alert alert-success text-center mb-4">
-        <i class="fa-solid fa-circle-check"></i>
-        {{ message }}
-    </div>
-    {% endif %}
+        {% if "returned" in message.tags %}
+            <div class="alert alert-success text-center mb-4">
+                <i class="fa-solid fa-circle-check"></i>
+                {{ message|safe }}
+            </div>
+        {% endif %}
     {% endfor %}
-    {% endif %}
+{% endif %}
     <div class="text-center mb-4">
         <h1 class="mb-4">Manage Booking Returns</h1>
         <p class="text-muted">
