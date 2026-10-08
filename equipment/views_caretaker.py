@@ -170,6 +170,6 @@ class CreateEquipmentGuide(
     CaretakerRequiredMixin,
     TemplateView
 ):
-    
+
 
     template_name = "webpage/forms/create_equipment_guides.html"

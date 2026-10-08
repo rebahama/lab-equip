@@ -3,10 +3,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.urls import reverse
 from django.db.models import Q
-from lab_equipment.mixin import CaretakerRequiredMixin
+from lab_equipment.mixin import CaretakerRequiredMixin, StudentRequiredMixin
 from bookings.models import Booking
 from repairs.models import EquipmentProblem
-from .models import Equipment, Category, EquipmentType, Location
+from .models import Equipment, Category, EquipmentType, Location, EquipmentGuide
 
 
 class CreatePageCaretakerView(
@@ -204,3 +204,14 @@ class ViewEquipmentTypeDetailPage(LoginRequiredMixin, DetailView):
         context["equipment"] = Equipment.objects.filter(equipment_type=self.object)
 
         return context
+
+class ViewEquipmentGuidePage(StudentRequiredMixin, DetailView):
+
+    model = EquipmentGuide
+    template_name = "webpage/student/view_guide.html"
+    context_object_name = "equipment_guide"
+
+    def get_object(self, queryset=None):
+        return EquipmentGuide.objects.filter(
+            equipment_type_id=self.kwargs["pk"]
+        ).first()

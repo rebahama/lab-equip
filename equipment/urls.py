@@ -5,7 +5,8 @@ from .views import (
     ViewAllDetailPage,
     ViewCategoryPage,
     ViewCategoryDetailPage,
-    ViewEquipmentTypeDetailPage
+    ViewEquipmentTypeDetailPage,
+    ViewEquipmentGuidePage
 )
 from .views_caretaker import(
     CareTakerDashboard,
@@ -31,4 +32,5 @@ urlpatterns = [
     path("category/equipment-type/<int:pk>/", EditEquipmentType.as_view(), name="edit-equipment-type"),
     path("showall/notservice", ViewNotInServiceEquipment.as_view(), name="show-not-service"),
     path("equipment-guide/<int:pk>/create", CreateEquipmentGuide.as_view(), name="create-guide"),
+    path("equipment-guide/<int:pk>/show/", ViewEquipmentGuidePage.as_view(), name="view-guide"),
 ]
