@@ -45,11 +45,10 @@ class EditEquipmentView(
     def form_valid(self, form):
         response = super().form_valid(form)
 
-        if self.object.status in ["out_of_service", "retired"]:
+        if self.object.status in ["retired"]:
             messages.success(
                 self.request,
-                "Equipment is no longer active because it has been retired"
-                " or marked as out of service." \
+                "Equipment is no longer active because it has been retired" \
                 " You can find it in dashboard on the archive equipment page.",
                 extra_tags="equipment",
             )
