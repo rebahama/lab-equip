@@ -359,7 +359,7 @@ The reported fault can be displayed on all the equipment types. Notice the diffr
 
 ### Archived equipments
 
-* When caretaker puts equipment status to: "out of service" or "retired" then equipment is no longer displayed on the view all equipment page.
+* When caretaker puts equipment status to: "retired" then equipment is no longer displayed on the view all equipment page.
 
 Message when: out of service or retired is choosen in the edit page for equipments.
 
@@ -369,15 +369,28 @@ Message when: out of service or retired is choosen in the edit page for equipmen
 When clicking the archived equipments
 ![Archived](docs/webpage/archive-03.png)
 
-When clicking archived page caretaker gets here, this page is only shown for caretaker where all the equipment marked out of service or retired is displayed.
+When clicking archived page caretaker gets here, this page is only shown for caretaker where all the equipment marked retired is displayed.
 
 ![Archived](docs/webpage/archive-02.png)
 
-When searching for the equipment that is retired or out of service with the serial number on the view all equipment page that is visable for all users.:
+When searching for the equipment that is retired with the serial number on the view all equipment page that is visable for all users.:
 
 ![Archived](docs/webpage/archive-01.png)
 
 
+### Out of service equipment
+
+When caretaker puts out of service equipment for the status.
+
+![Out service](docs/webpage/out-service-01.png)
+
+Displayed message for that equipment when students view it.
+
+![Out service](docs/webpage/out-service-02.png)
+
+When students clicks the link on the out of service equipment. Link leads the user to available equipmentof the same type.
+
+![Out service](docs/webpage/out-service-03.png)
 ### User interface
 
 * Responsiv - The system is designed to be used also on mobile and tablet screens.
