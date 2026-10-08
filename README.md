@@ -397,6 +397,41 @@ When students clicks the link on the out of service equipment. Link leads the us
 
 ### Equipment guides
 
+* Caretaker can create guides for equipment type.
+* Student can view guides for equipment type.
+
+When caretaker creates guide:
+
+![Guide](docs/webpage/guide-07.png)
+
+![Guide](docs/webpage/guide-08.png)
+
+
+![Guide](docs/webpage/guide-09.png)
+
+When student views the created guide for Raspberry on the show all guides for equpment type
+
+![Guide](docs/webpage/guide-06.png)
+
+
+![Guide](docs/webpage/guide-03.png)
+
+When student views detalied guide
+![Guide](docs/webpage/guide-05.png)
+
+
+When student views the created guide for anotgher equipmenttype microcontroller ESP32 on the detailed equipment page:
+
+![Guide](docs/webpage/guide-04.png)
+
+
+Detalied guide:
+![Guide](docs/webpage/guide-05.png)
+
+
+If there is no guide:
+![Guide](docs/webpage/guide-02.png)
+
 ### User interface
 
 * Responsiv - The system is designed to be used also on mobile and tablet screens.
