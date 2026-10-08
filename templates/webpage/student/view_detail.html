@@ -165,59 +165,99 @@
             </div>
             <div class="edit-back-btn"> 
             {% if user.groups.all.0.name == "Caretaker" %}
-            <a href="{% url 'show-student' %}"
-               class="btn btn-primary rounded-pill equipment-button">
-               <i class="fa-solid fa-arrow-left-long"></i>
-                Back
-            </a>
-              <a href="{% url 'equipment-delete' equipment.pk %}" class="btn btn-primary rounded-pill equipment-button">
-               <i class="fa-solid fa-trash"></i>
-                Delete
-            </a>
-            <a href="{% url 'equipment-edit' equipment.pk %}" class="btn btn-primary rounded-pill equipment-button">
-                <i class="fa-solid fa-pen-to-square"></i>
-                Edit
-            </a>
-            {% endif %}
-           {% if equipment.status != "in_repair" %}
-            <a href="{% url 'report-fault' equipment.pk %}"
-            class="btn btn-primary rounded-pill equipment-button">
-                <i class="fa-solid fa-circle-exclamation"></i>
-                Report
-            </a>
-            {% else %}
-                <p class="text-muted">
-                    Not possible to report fault at the moment, this equipment is already being repaired.
-                </p>
-            {% endif %}
-            {% if pending_booking %}
-            <p class="text-muted">
-                <i class="fa-solid fa-clock"></i>
-                This equipment is not on loan, but another student has requested it.
-                Please check for another avalible equipment.
-            </p>
-            {% elif user.groups.all.0.name == "Student" and equipment.status == "available" %}
-              <a href="{% url 'create-booking' equipment.pk %}" class="btn btn-primary rounded-pill equipment-button">
-                <i class="fa-solid fa-calendar-days"></i>
-                Book
-            </a>
-            {% elif available_count > 0 %}
-            <a href="{% url 'show-student' %}?equipment_type={{ equipment.equipment_type.pk }}&status=available"
-               class="text-decoration-none">
-            <p class="text-muted">
-                <i class="fa-solid fa-clock"></i>
-                This equipment is on loan, but there are still:
-                {{ available_count }} left of the same type.
-                Click here to view and book it.
-            </p>
-            </a>
-            {% else %}
-             <p class="text-muted">
-            <i class="fa-solid fa-circle-xmark"></i>
-            This equipment is on loan and there are no more available
-            units of the same type.
-        </p>
-            {% endif %}
+                    <a href="{% url 'show-student' %}"
+                    class="btn btn-primary rounded-pill equipment-button">
+                        <i class="fa-solid fa-arrow-left-long"></i>
+                        Back
+                    </a>
+                    <a href="{% url 'equipment-delete' equipment.pk %}"
+                    class="btn btn-primary rounded-pill equipment-button">
+                        <i class="fa-solid fa-trash"></i>
+                        Delete
+                    </a>
+                    <a href="{% url 'equipment-edit' equipment.pk %}"
+                    class="btn btn-primary rounded-pill equipment-button">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Edit
+                    </a>
+                {% endif %}
+                {% if equipment.status != "in_repair" %}
+                    <a href="{% url 'report-fault' equipment.pk %}"
+                    class="btn btn-primary rounded-pill equipment-button">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        Report
+                    </a>
+                {% else %}
+                    <p class="text-muted">
+                        Not possible to report fault at the moment,
+                        this equipment is already being repaired.
+                    </p>
+                {% endif %}
+                {% if equipment.status == "out_of_service" %}
+                    {% if available_count > 0 %}
+                        <a href="{% url 'show-student' %}?equipment_type={{ equipment.equipment_type.pk }}&status=available"
+                        class="text-decoration-none">
+                            <p class="text-muted">
+                                <i class="fa-solid fa-clock"></i>
+                                This equipment is out of service, but there are
+                                {{ available_count }} available units of the same type.
+                                Click here to view and book them.
+                            </p>
+                        </a>
+                    {% else %}
+                        <p class="text-muted">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                            This equipment is out of service and there are no
+                            available units of the same type.
+                        </p>
+                    {% endif %}
+                {% elif equipment.status == "in_repair" %}
+                    {% if available_count > 0 %}
+                        <a href="{% url 'show-student' %}?equipment_type={{ equipment.equipment_type.pk }}&status=available"
+                        class="text-decoration-none">
+                            <p class="text-muted">
+                                <i class="fa-solid fa-clock"></i>
+                                This equipment is being repaired, but there are
+                                {{ available_count }} available units of the same type.
+                                Click here to view and book them.
+                            </p>
+                        </a>
+                    {% else %}
+                        <p class="text-muted">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                            This equipment is being repaired and there are no
+                            available units of the same type.
+                        </p>
+                    {% endif %}
+                {% elif pending_booking %}
+                    <p class="text-muted">
+                        <i class="fa-solid fa-clock"></i>
+                        This equipment is not on loan, but another student has requested it.
+                        Please check for another available equipment.
+                    </p>
+                {% elif user.groups.all.0.name == "Student" and equipment.status == "available" %}
+                    <a href="{% url 'create-booking' equipment.pk %}"
+                    class="btn btn-primary rounded-pill equipment-button">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        Book
+                    </a>
+                {% elif equipment.status == "on_loan" and available_count > 0 %}
+                    <a href="{% url 'show-student' %}?equipment_type={{ equipment.equipment_type.pk }}&status=available"
+                    class="text-decoration-none">
+                        <p class="text-muted">
+                            <i class="fa-solid fa-clock"></i>
+                            This equipment is on loan, but there are
+                            {{ available_count }} available units of the same type.
+                            Click here to view and book them.
+                        </p>
+                    </a>
+                {% elif equipment.status == "on_loan" %}
+                    <p class="text-muted">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        This equipment is on loan and there are no more available
+                        units of the same type.
+                    </p>
+                {% endif %}
             </div>
         </div>
     </div>
