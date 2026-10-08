@@ -44,6 +44,11 @@
                         <i class="fa-solid fa-pen-to-square"></i>
                         Report fault for equipment type
                     </a>
+                    <a href="{% url 'create-guide' item.pk %}"
+                        class="btn btn-primary btn-sm w-100 rounded-pill equipment-button">
+                        <i class="fa-solid fa-plus"></i>
+                        Create guides for equipment
+                    </a>
                     {% endif %}
                 </div>
             </div>

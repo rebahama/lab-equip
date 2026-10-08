@@ -123,9 +123,7 @@
                                 {{ equipment.created_at|date:"d M Y, H:i" }}
                             </span>
                         </div>
-
                     </div>
-
                     <div class="equipment-availability">
                         <div>
                             <span class="availability-label">
@@ -144,7 +142,12 @@
                             </strong>
                         </div>
                     </div>
-
+                    <div class="mt-3">
+                        <a href="{% url 'view-guide-all' equipment.equipment_type.id %}" class="btn btn-outline-primary rounded-pill equipment-button">
+                            <i class="fa-solid fa-book-open"></i>
+                            View instructions for this equipment type
+                        </a>
+                    </div>
                     {% if known_problems %}
                     <div class="mt-4">
                         <h4 class="mb-3">

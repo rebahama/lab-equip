@@ -70,6 +70,8 @@ The system includs also user roles that is decided by the admin account, admin c
 
 - *Uploading Equipment images, caretakers can upload images and pdf files.*
 
+- *Guides can be created by caretaker for equipment types, and viewed by students*
+
 **Non-Functional Requirements**
 - *Security, system have the right auth permission for the right roles: "students and caretakers".*
 
@@ -391,6 +393,10 @@ Displayed message for that equipment when students view it.
 When students clicks the link on the out of service equipment. Link leads the user to available equipmentof the same type.
 
 ![Out service](docs/webpage/out-service-03.png)
+
+
+### Equipment guides
+
 ### User interface
 
 * Responsiv - The system is designed to be used also on mobile and tablet screens.

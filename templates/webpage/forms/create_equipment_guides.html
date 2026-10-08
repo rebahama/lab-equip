@@ -1,0 +1,44 @@
+{% extends "webpage/base.html" %}
+{% block title %}Create Equipment Guide{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-4">
+        <i class="fa-solid fa-book-open fa-3x text-dark mb-3"></i>
+        <h1>Create Guide for {{ equipment_type.name }} </h1>
+        <p class="text-muted">
+            Create instructions to help students use the equipment.
+        </p>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4 p-md-5">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label for="title" class="form-label">
+                                <strong>Guide Title</strong>
+                            </label>
+                            <input type="text" name="title" id="title" class="form-control"
+                                placeholder="Example: Raspberry Pi Setup Guide" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="content" class="form-label">
+                                <strong>Instructions</strong>
+                            </label>
+                            <textarea name="content" id="content" class="form-control" rows="12"
+                                placeholder="Write the instructions for using this equipment..." required></textarea>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-primary rounded-pill equipment-button">
+                                <i class="fa-solid fa-plus"></i>
+                                Create Guide
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

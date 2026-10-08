@@ -1,8 +1,8 @@
-from django.views.generic import UpdateView, DeleteView, TemplateView, ListView
-from django.urls import reverse_lazy
+from django.views.generic import UpdateView, DeleteView, TemplateView, ListView, CreateView
+from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from lab_equipment.mixin import CaretakerRequiredMixin
-from .models import Equipment, EquipmentType, Location, Category
+from .models import Equipment, EquipmentType, Location, Category, EquipmentGuide
 
 
 class CareTakerDashboard(
@@ -164,3 +164,40 @@ class ViewNotInServiceEquipment(
 
     def get_queryset(self):
         return Equipment.objects.filter(status__in=["out_of_service", "retired"])
+
+
+class CreateEquipmentGuide(
+    CaretakerRequiredMixin,
+    CreateView
+):
+
+    model = EquipmentGuide
+    template_name = "webpage/forms/create_equipment_guides.html"
+    fields = [
+        "title",
+        "content",
+    ]
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        context["equipment_type"] = EquipmentType.objects.get(id=self.kwargs["pk"])
+        return context
+
+    def form_valid(self, form):
+
+        form.instance.equipment_type = EquipmentType.objects.get(id=self.kwargs["pk"])
+        form.instance.created_by = self.request.user
+
+        response = super().form_valid(form)
+
+        messages.success(
+            self.request,
+            "Equipment guide was created successfully.",
+            extra_tags="equipment",
+        )
+
+        return response
+
+    def get_success_url(self):
+        return reverse("view-guide-all", args=[self.kwargs["pk"]])
