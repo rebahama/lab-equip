@@ -1,9 +1,9 @@
-from django.views.generic import TemplateView, CreateView, DetailView
+from django.views.generic import TemplateView, CreateView, DetailView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.urls import reverse
 from django.db.models import Q
-from lab_equipment.mixin import CaretakerRequiredMixin, StudentRequiredMixin
+from lab_equipment.mixin import CaretakerRequiredMixin
 from bookings.models import Booking
 from repairs.models import EquipmentProblem
 from .models import Equipment, Category, EquipmentType, Location, EquipmentGuide
@@ -127,7 +127,7 @@ class ViewAllDetailPage(LoginRequiredMixin, DetailView):
         context["on_loan_count"] = equipment_queryset.filter(status="on_loan").count()
 
         context["total_count"] = equipment_queryset.exclude(
-            status__in=["retired"]
+            status__in=["retired","out_of_service"]
         ).count()
 
         pending_booking = Booking.objects.filter(
@@ -191,7 +191,6 @@ class ViewCategoryDetailPage(LoginRequiredMixin, DetailView):
 
         return context
 
-
 class ViewEquipmentTypeDetailPage(LoginRequiredMixin, DetailView):
 
     model = EquipmentType
@@ -205,13 +204,26 @@ class ViewEquipmentTypeDetailPage(LoginRequiredMixin, DetailView):
 
         return context
 
-class ViewEquipmentGuidePage(StudentRequiredMixin, DetailView):
+
+class ViewEquipmentGuidePage(LoginRequiredMixin, DetailView):
 
     model = EquipmentGuide
     template_name = "webpage/student/view_guide.html"
     context_object_name = "equipment_guide"
 
-    def get_object(self, queryset=None):
-        return EquipmentGuide.objects.filter(
-            equipment_type_id=self.kwargs["pk"]
-        ).first()
+
+class ViewAllGuidePage(ListView):
+
+    model = EquipmentGuide
+    template_name = "webpage/student/view_all_guide.html"
+    context_object_name = "guides"
+
+    def get_queryset(self):
+        return EquipmentGuide.objects.filter(equipment_type_id=self.kwargs["pk"])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["equipment_type"] = EquipmentType.objects.get(id=self.kwargs["pk"])
+
+        return context
