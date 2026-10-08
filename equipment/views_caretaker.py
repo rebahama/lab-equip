@@ -1,4 +1,4 @@
-from django.views.generic import UpdateView, DeleteView, TemplateView, ListView
+from django.views.generic import UpdateView, DeleteView, TemplateView, ListView, CreateView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from lab_equipment.mixin import CaretakerRequiredMixin
@@ -164,3 +164,12 @@ class ViewNotInServiceEquipment(
 
     def get_queryset(self):
         return Equipment.objects.filter(status__in=["out_of_service", "retired"])
+
+
+class CreateEquipmentGuide(
+    CaretakerRequiredMixin,
+    TemplateView
+):
+    
+
+    template_name = "webpage/forms/create_equipment_guides.html"
