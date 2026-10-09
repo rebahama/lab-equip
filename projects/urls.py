@@ -3,5 +3,5 @@ from .views import CreateProjectStudent
 
 
 urlpatterns = [
-    path("project/create", CreateProjectStudent.as_view(), name="create-project"),
+    path("project/create/<int:pk>", CreateProjectStudent.as_view(), name="create-project"),
 ]

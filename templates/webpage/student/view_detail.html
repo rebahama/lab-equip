@@ -244,6 +244,11 @@
                         <i class="fa-solid fa-calendar-days"></i>
                         Book
                     </a>
+                    <a href="{% url 'create-project' equipment.pk %}"
+                    class="btn btn-primary rounded-pill equipment-button">
+                        <i class="fa-solid fa-plus"></i>
+                        Create project
+                    </a>
                 {% elif equipment.status == "on_loan" and available_count > 0 %}
                     <a href="{% url 'show-student' %}?equipment_type={{ equipment.equipment_type.pk }}&status=available"
                     class="text-decoration-none">
