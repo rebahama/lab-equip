@@ -432,6 +432,44 @@ Detalied guide:
 If there is no guide:
 ![Guide](docs/webpage/guide-02.png)
 
+### Student projects
+
+* Student can create projects on equipment types.
+* Student can view the personal created projects.
+* The project is accessed from the indivudual equipments and in student personal page.
+
+When student creates a project:
+![Project](docs/webpage/project-06.png)
+
+![Project](docs/webpage/project-01.png)
+
+![Project](docs/webpage/project-02.png)
+
+
+![Project](docs/webpage/project-08.png)
+
+The detalied projects page:
+![Project](docs/webpage/project-07.png)
+
+The created projects depends on the equipment type, so all the equipment type that shows for example Logitech c920. the project will be displayed across all the individual equipment type with that name when clicking view projects.
+
+When viewing from the detalied equipment in this case Logitech c920:
+
+![Project](docs/webpage/project-04.png)
+
+
+![Project](docs/webpage/project-03.png)
+
+And when viewing another equipment type the project will not be displayed. In this case raspberry pi 4b
+
+![Project](docs/webpage/project-10.png)
+
+The student can also view all the created projects here:
+
+![Project](docs/webpage/project-09.png)
+
+This will display all the created projects for logged in student.
+
 ### User interface
 
 * Responsiv - The system is designed to be used also on mobile and tablet screens.
