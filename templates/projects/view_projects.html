@@ -1,0 +1,35 @@
+{% extends "webpage/base.html" %}
+{% block title %}My Projects{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-3 text-center">My Projects</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show rounded-3" role="alert">
+                <i class="fa-solid fa-circle-check me-2"></i>
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <p class="text-muted text-center">
+        Equipment type: {{ equipment_type.name }}
+    </p>
+    {% for project in projects %}
+    <div class="card shadow-sm rounded-4 mb-3">
+        <div class="card-body">
+            <h2 class="h5">{{ project.title }}</h2>
+            <small class="text-muted">
+                Created: {{ project.created_at|date:"Y-m-d" }}
+            </small>
+
+              <small class="text-muted">
+                By user: {{ project.student }}
+            </small>
+        </div>
+    </div>
+    {% empty %}
+    <p>You have not created any projects for this equipment type yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}
