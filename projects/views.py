@@ -1,8 +1,7 @@
-from django.views.generic import CreateView, ListView, TemplateView
+from django.views.generic import CreateView, TemplateView, DetailView
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-
 from lab_equipment.mixin import StudentRequiredMixin
 from equipment.models import Equipment, EquipmentType
 from .models import Project
@@ -49,3 +48,9 @@ class ViewCreatedProject(StudentRequiredMixin, TemplateView):
         ).distinct()
 
         return context
+
+
+class ViewDetaliedProjects(StudentRequiredMixin, DetailView):
+    model = Project
+    template_name = "projects/view_detail_project.html"
+    context_object_name = "project"

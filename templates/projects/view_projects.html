@@ -18,7 +18,11 @@
     {% for project in projects %}
     <div class="card shadow-sm rounded-4 mb-3">
         <div class="card-body">
-            <h2 class="h5">{{ project.title }}</h2>
+              <h2 class="h5">
+            <a href="{% url 'detail-projects' project.id %}" class="text-decoration-none">
+                {{ project.title }}
+            </a>
+        </h2>
             <small class="text-muted">
                 Created: {{ project.created_at|date:"Y-m-d" }}
             </small>
