@@ -68,9 +68,11 @@ The system includs also user roles that is decided by the admin account, admin c
 
 - *Equipment fault reporting, students can report faults on diffrent equipment, caretaker will be able to view the reported fault.*
 
-- *Uploading Equipment images, caretakers can upload images and pdf files.*
+- *Uploading Equipment images, caretakers can upload images.*
 
 - *Guides can be created by caretaker for equipment types, and viewed by students*
+
+- *Students can create projects on equipment-types*
 
 **Non-Functional Requirements**
 - *Security, system have the right auth permission for the right roles: "students and caretakers".*
@@ -497,7 +499,7 @@ Mobile screens examples:
   #### 2. Create and activate virtual enviorment.
   * python -m venv .venv
   * Run .venv\Scripts\Activate to activate the virtual enviorment.
-  * To deactivate, run deactivate to close the terminal for the virtual enviorment
+  * To deactivate, run deactivate to deactivate for the virtual enviorment
   * Windows: .venv\Scripts\activate
   * Mac/Linux source: .venv/bin/activate
  
@@ -512,6 +514,9 @@ Mobile screens examples:
   * SECRET_KEY = your-secret-key
 
   * CLOUDINARY_URL = your cloudinary secret api key 
+
+  #### 5 Static files and uploaded images
+  Project requires Cloudinary secret api to display the images correctly, the uploaded images will be uploaded to a cloud that is accessed by an image url link, create an account in Cloudinary and copy your secret api key in the CLOUDINARY_URL.
 
 
 ### Running the app first time
