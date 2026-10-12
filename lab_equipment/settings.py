@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "bookings",
     "profiles",
     "repairs",
+    "projects",
 ]
 
 MIDDLEWARE = [

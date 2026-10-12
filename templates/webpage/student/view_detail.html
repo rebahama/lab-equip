@@ -142,10 +142,14 @@
                             </strong>
                         </div>
                     </div>
-                    <div class="mt-3">
+                    <div class="mt-3 d-flex flex-wrap gap-2">
                         <a href="{% url 'view-guide-all' equipment.equipment_type.id %}" class="btn btn-outline-primary rounded-pill equipment-button">
                             <i class="fa-solid fa-book-open"></i>
-                            View instructions for this equipment type
+                            View instructions
+                        </a>
+                        <a href="{% url 'show-projects' equipment.equipment_type.id %}" class="btn btn-outline-primary rounded-pill equipment-button">
+                            <i class="fa-solid fa-diagram-project"></i>
+                            View projects
                         </a>
                     </div>
                     {% if known_problems %}
@@ -243,6 +247,11 @@
                     class="btn btn-primary rounded-pill equipment-button">
                         <i class="fa-solid fa-calendar-days"></i>
                         Book
+                    </a>
+                    <a href="{% url 'create-project' equipment.pk %}"
+                    class="btn btn-primary rounded-pill equipment-button">
+                        <i class="fa-solid fa-plus"></i>
+                        Create project
                     </a>
                 {% elif equipment.status == "on_loan" and available_count > 0 %}
                     <a href="{% url 'show-student' %}?equipment_type={{ equipment.equipment_type.pk }}&status=available"

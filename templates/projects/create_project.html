@@ -1,0 +1,48 @@
+{% extends "webpage/base.html" %}
+{% block title %}Create project{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-7">
+                <div class="card border-0 shadow-sm rounded-4">
+                    <div class="card-body p-4 p-md-5">
+                        <div class="mb-4">
+                            <h1 class="h3 fw-bold mb-2">Create a Project</h1>
+                            <p class="text-muted mb-0"> Document your finished project and the equipment you used. </p>
+                        </div> {% if messages %} {% for message in messages %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert"> {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        <div class="bg-light rounded-3 p-3 mb-4">
+                            <div class="small text-muted mb-1"> Project library for: </div>
+                            <div class="fw-semibold"> Type: {{ equipment.equipment_type }} </div>
+                            <div class="fw-semibold"> Serial-number: {{ equipment.serial_number }} </div>
+                            <div class="fw-semibold"> ID: {{ equipment.id }} </div>
+                        </div>
+                        <form method="post"> {% csrf_token %}
+                            <div class="mb-4">
+                                <label for="title" class="form-label fw-semibold"> Project title </label>
+                                <input type="text" name="title" id="title" class="form-control form-control-lg"
+                                    maxlength="200" placeholder="Enter your project title" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="description" class="form-label fw-semibold"> Project description </label>
+                                <textarea name="description" id="description" class="form-control" rows="5"
+                                    placeholder="Describe what you built and how you used the equipment..."
+                                    required></textarea>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn equipment-button"> <i
+                                        class="fa-solid fa-floppy-disk"></i> Save Project </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
