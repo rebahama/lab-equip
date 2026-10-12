@@ -4,13 +4,15 @@
 <div class="container py-5">
     <h1 class="mb-3 text-center">My Projects</h1>
     {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-success alert-dismissible fade show rounded-3" role="alert">
-                <i class="fa-solid fa-circle-check me-2"></i>
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        {% endfor %}
+    {% for message in messages %}
+    {% if message.message == "Project created successfully!" %}
+    <div class="alert alert-success alert-dismissible fade show rounded-3" role="alert">
+        <i class="fa-solid fa-circle-check me-2"></i>
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    {% endfor %}
     {% endif %}
     <p class="text-muted text-center">
         Equipment type: {{ equipment_type.name }}
@@ -18,16 +20,16 @@
     {% for project in projects %}
     <div class="card shadow-sm rounded-4 mb-3">
         <div class="card-body">
-              <h2 class="h5">
-            <a href="{% url 'detail-projects' project.id %}" class="text-decoration-none">
-                {{ project.title }}
-            </a>
-        </h2>
+            <h2 class="h5">
+                <a href="{% url 'detail-projects' project.id %}" class="text-decoration-none">
+                    {{ project.title }}
+                </a>
+            </h2>
             <small class="text-muted">
                 Created: {{ project.created_at|date:"Y-m-d" }}
             </small>
 
-              <small class="text-muted">
+            <small class="text-muted">
                 By user: {{ project.student }}
             </small>
         </div>

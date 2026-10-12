@@ -4,10 +4,10 @@
 <div class="container py-5">
     <div class="caretaker-dashboard-header text-center mb-5">
         <h1>
-            All bookings
+            My page
         </h1>
         <p>
-            Check your current and history bookings.
+            Check your current and history bookings, you can also check your created projects.
         </p>
     </div>
     <div class="row g-4 justify-content-center">
@@ -39,6 +39,22 @@
                     View your returned history bookings
                 </p>
                 <a href="{% url 'student-history' %}" class="caretaker-dashboard-button">
+                    Show
+                </a>
+            </div>
+        </div>
+         <div class="col-12 col-md-4">
+            <div class="caretaker-dashboard-card">
+                <div class="caretaker-dashboard-icon">
+                    <i class="fa-solid fa-diagram-project"></i>
+                </div>
+                <h4>
+                    View projects
+                </h4>
+                <p>
+                    View your personal projects
+                </p>
+                <a href="{% url 'my-projects' %}" class="caretaker-dashboard-button">
                     Show
                 </a>
             </div>

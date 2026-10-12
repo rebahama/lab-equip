@@ -54,3 +54,14 @@ class ViewDetaliedProjects(StudentRequiredMixin, DetailView):
     model = Project
     template_name = "projects/view_detail_project.html"
     context_object_name = "project"
+
+
+class ViewMyProjects(StudentRequiredMixin, TemplateView):
+    template_name = "projects/view_projects.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["projects"] = Project.objects.filter(student=self.request.user)
+
+        return context
