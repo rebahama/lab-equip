@@ -66,6 +66,8 @@ The system includs also user roles that is decided by the admin account, admin c
 
 - *Equipment search and filtering, students must be able to search by name and filter by category*
 
+- *Guides and projects searching, students must be able to search by guides and projects.
+
 - *Equipment fault reporting, students can report faults on diffrent equipment, caretaker will be able to view the reported fault.*
 
 - *Uploading Equipment images, caretakers can upload images.*
@@ -275,6 +277,8 @@ Caretaker edit category page:
 
 * Users can filter and render equipment based on categories and status such as: avalible, on loan and repair.
 
+* Users can search guides and projects.
+
 
 Search on equipment type:
 
@@ -283,6 +287,23 @@ Search on equipment type:
 Search on serial number:
 
 ![Search serial](docs/webpage/search-02.png)
+
+Search on guides:
+
+![Search guides](docs/webpage/search-12.png)
+
+![Search guides](docs/webpage/search-10.png)
+
+![Search guides](docs/webpage/search-11.png)
+
+
+Search on projects:
+
+![Search projects](docs/webpage/search-09.png)
+
+![Search projects](docs/webpage/search-07.png)
+
+![Search projects](docs/webpage/search-08.png)
 
 Filter status that are: "on loan":
 
