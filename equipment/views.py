@@ -82,7 +82,7 @@ class ViewAllStudent(LoginRequiredMixin, TemplateView):
 
         equipment = Equipment.objects.filter(
         status__in=["available", "on_loan", "in_repair","out_of_service"]
-        ).order_by("-created_at")
+        ).distinct()
 
         if query:
             equipment = equipment.filter(
@@ -90,6 +90,9 @@ class ViewAllStudent(LoginRequiredMixin, TemplateView):
                 | Q(serial_number__icontains=query)
                 | Q(equipment_type__name__icontains=query)
                 | Q(equipment_type__category__name__icontains=query)
+                | Q(equipment_type__equipmentguide__title__icontains=query)
+                | Q(equipment_type__category__name__icontains=query)
+                | Q(projects__title__icontains=query)
             )
 
         if equipment_type:
@@ -100,6 +103,7 @@ class ViewAllStudent(LoginRequiredMixin, TemplateView):
 
         if category:
             equipment = equipment.filter(equipment_type__category__name=category)
+
 
         context["equipment"] = equipment
 
