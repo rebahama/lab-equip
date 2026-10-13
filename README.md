@@ -509,28 +509,27 @@ Mobile screens examples:
 ## User manual
 
 ### Installing
-- Python 3.14.2
-- Git
-- Visual studio code
+- Python 3.14.2 is used for this project
 
   #### 1. Clone the repository
   * git clone https://github.com/dipt-pa1493-ht26/pa1493-reah23-lekh-zda
-  * cd project name
+  * cd pa1493-reah23-lekh-zda
 
   #### 2. Create and activate virtual enviorment.
-  * python -m venv .venv
-  * Run .venv\Scripts\Activate to activate the virtual enviorment.
-  * To deactivate, run deactivate to deactivate for the virtual enviorment
-  * Windows: .venv\Scripts\activate
-  * Mac/Linux source: .venv/bin/activate
+  * run **python -m venv .venv** in the terminal to create virtual enivorment.
+  * Run **.venv\Scripts\Activate** to activate the virtual enviorment.
+  * If using windows: **.venv\Scripts\activate**
+  * If using Mac/Linux source: **.venv/bin/activate**
+  * To deactivate, run **deactivate** in the terminal
  
 
   #### 3. Install dependencies
-  * When virtual enviorment is green and activated run the following: pip install -r requirements.txt to install all the dependencies.
+  * When virtual enviorment is green and activated run the following in the root project terminal:
+   **pip install -r requirements.txt** to install all the dependencies for the project.
 
   
   #### 4 Enviorment variables
-  Project requires Django enviorment variables. Create an env.py file in the same folder as manage.py and add the following:
+  Project requires Django environment variables. Create an env.py file in the same folder as manage.py and add the following:
   
   * SECRET_KEY = your-secret-key
 
@@ -540,15 +539,19 @@ Mobile screens examples:
   Project requires Cloudinary secret api to display the images correctly, the uploaded images will be uploaded to a cloud that is accessed by an image url link, create an account in Cloudinary and copy your secret api key in the CLOUDINARY_URL.
 
 
-### Running the app first time
+### Running the application for first time
 
-  * Apply database migration first by running "python manage.py migrate in the root folder (same folder as manage.py)"
+1. First make sure you have installed the dependencies and created the environment variables by following the [installing instructions](#installing).
 
-  * Create admin account by running "python manage.py createsuperuser"
 
-  * To start the application run: "python manage.py runserver" in the root folder.
+2. Apply database migration first by running **python manage.py migrate** in the root folder (same folder as manage.py)" This creates default data in order for the application to run without errors,
 
-  * When migrations are completed only "python manage.py runserver" is needed to run the application in the root folder.
+
+3. Create admin account after database migration by running: **python manage.py createsuperuser**. Follow the instructions in the terminal, after admin account creation you can use the admin account to login.
+
+4. To start the application run: **python manage.py runserver** in the root folder.
+
+5. When creating an account inside the webapplication page, the default accounts have student permissions, in order to change role to caretaker, login to admin account and click "manage accounts" to change the roles and view diffrent functionality for the diffrent account roles.
 
 
 ### Used Technology
