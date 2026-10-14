@@ -533,10 +533,17 @@ Mobile screens examples:
   
   * SECRET_KEY = your-secret-key
 
-  * CLOUDINARY_URL = your cloudinary secret api key 
+  * CLOUDINARY_URL = your cloudinary API KEY and API SECRET.
 
   #### 5 Static files and uploaded images
   Project requires Cloudinary secret api to display the images correctly, the uploaded images will be uploaded to a cloud that is accessed by an image url link, create an account in Cloudinary and copy your secret api key in the CLOUDINARY_URL.
+  
+  [Click here](https://cloudinary.com/) here to create a free account with Cloudinary.
+
+  * Create a free account.
+  * Sign in to your account.
+  * Open dashboard.
+  * Copy API KEY and API SECRET
 
 
 ### Running the application for first time
@@ -556,36 +563,20 @@ Mobile screens examples:
 
 ### Used Technology
 
-1. Django==6.1.1
+*  Django==6.1.1 - **Webframe used for building the application, models, views url and database functions.**
 
-* Webframe used for building the application, models, views url and database functions.
+* django-allauth==65.19.3 - **Used for handling authentication**
 
-2. django-allauth==65.19.3
+* django-cloudinary-storage==0.3.0 - **Used for connection Django files and imagefileds for storing uploaded media files.**
 
-* Used for handling authentication
+* pillow==12.3.0 - **Used for Python image handling to upload and process.**
 
-3. django-cloudinary-storage==0.3.0
-* Used for connection Django files and imagefileds for storing uploaded media files.
-4. pillow==12.3.0
+* cloudinary==1.46.2 - **Cloudbased media service for storing images.**
 
-* Used for Python image handling to upload and process.
+* HTML5 - **Used for structuring the application pages.**
 
-5. cloudinary==1.46.2
+* CSS3 - **Used for custom styles for the application.**
 
-* Cloudbased media service for storing images.
+* whitenoise==6.12.0 - **Used for serving static files such as, Javascript, CSS and other static files.**
 
-6. HTML5
-
-* Used for structuring the application pages.
-
-7. CSS3
-
-* Used for custom styles for the application.
-
-8. whitenoise==6.12.0 
-
-* Used for serving static files such as, Javascript, CSS and other static files.
-
-9. Bootstrap
-
-* Used for responsiv mobile design and some styling.
+* Bootstrap - **Used for responsiv mobile design and some styling.**
