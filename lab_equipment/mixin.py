@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import TemplateView
+from django.shortcuts import render
 
 
 class CaretakerRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
@@ -14,9 +14,11 @@ class CaretakerRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
         ).exists()
 
     def handle_no_permission(self):
-        return TemplateView.as_view(
-            template_name="webpage/no_permission.html"
-        )(self.request)
+        return render(
+            self.request,
+            "webpage/no_permission.html",
+            status=403,
+        )
 
 
 class StudentRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
@@ -31,6 +33,8 @@ class StudentRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
         ).exists()
 
     def handle_no_permission(self):
-        return TemplateView.as_view(
-            template_name="webpage/no_permission.html"
-        )(self.request)
+        return render(
+            self.request,
+            "webpage/no_permission.html",
+            status=403,
+        )
