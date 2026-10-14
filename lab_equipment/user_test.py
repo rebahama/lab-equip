@@ -17,6 +17,10 @@ class BaseEquipmentTestCase(TestCase):
             username="student",
             password="testpassword123",
         )
+        self.student2 = User.objects.create_user(
+            username="student2",
+            password="testpassword"
+        )
         self.student.groups.add(self.student_group)
 
         self.caretaker = User.objects.create_user(
