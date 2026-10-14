@@ -1,23 +1,37 @@
 {% extends "webpage/base.html" %} {% block title %}Report fault{% endblock %} {% block content %}
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <h1 class="mb-4"> <i class="fa-solid fa-screwdriver-wrench"></i> Report Fault </h1>
-            <p class="text-muted"> Report a problem with: {{ equipment.equipment_type }}, Serial number:
-                {{ equipment.serial_number }} </p>
-            <form method="post"> {% csrf_token %} <div class="mb-3">
-                 <label for="problem" class="form-label">
-                        <strong>Describe the problem</strong>
-                 </label>
-                    <textarea name="problem" id="problem" class="form-control" rows="5"
-                        placeholder="Describe what is wrong with the equipment..." required></textarea>
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <h3 class="mb-4"> <i class="fa-solid fa-screwdriver-wrench"></i> Report Fault </h3>
+                    <p class="text-muted"> Report a problem with: {{ equipment.equipment_type }}, Serial number:
+                        {{ equipment.serial_number }} </p>
+                    <form method="post"> {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="problem" class="form-label">
+                                <strong>Describe the problem</strong>
+                            </label>
+                            <textarea name="problem" id="problem" class="form-control" rows="5"
+                                placeholder="Describe what is wrong with the equipment..." required></textarea>
+                        </div>
+                        <div class="report-fault-btn">
+                            <button type="submit" class=" btn-sm w-100 rounded-pill equipment-button"> <i
+                                    class="fa-solid fa-paper-plane"></i>
+                                Report Fault
+                            </button>
+                            <a href="{% url 'show-detail' equipment.pk %}"
+                                class="btn btn-primary rounded-pill equipment-button">
+                                <i class="fa-solid fa-arrow-left-long"></i>
+                                Back
+                            </a>
+                        </div>
+                    </form>
                 </div>
-                <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-primary rounded-pill"> <i class="fa-solid fa-paper-plane"></i>
-                        Report Fault </button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}

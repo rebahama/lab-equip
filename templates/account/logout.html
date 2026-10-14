@@ -4,9 +4,16 @@
         <div class="logout-card">
             <h1>Logout</h1>
             <p>Are you sure you want to log out?</p>
-            <form method="post" action="{% url 'account_logout' %}"> {% csrf_token %} <button type="submit"
-                    class="logout-button"> <i class="fa-solid fa-right-from-bracket"></i> Logout </button> </form> <a
-                href="/" class="cancel-link"> <i class="fa-solid fa-circle-xmark"></i> Cancel </a>
+            <div class="logout-button-area">
+                <form method="post" action="{% url 'account_logout' %}"> {% csrf_token %}
+                    <a href="/" class="btn btn-secondary rounded-pill px-4">
+                        <i class="fa-solid fa-arrow-left"></i> Back </a>
+                    <button type="submit" class="btn btn-success rounded-pill px-4"> <i
+                            class="fa-solid fa-right-from-bracket"></i>
+                        Logout
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-</div> {% endblock %}
+    {% endblock %}
