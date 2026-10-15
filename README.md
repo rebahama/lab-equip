@@ -561,6 +561,15 @@ Mobile screens examples:
 5. When creating an account inside the webapplication page, the default accounts have student permissions, in order to change role to caretaker, login to admin account and click "manage accounts" to change the roles and view diffrent functionality for the diffrent account roles.
 
 
+### Tests
+
+Tests are divided in the following folders, bookings, equipment, projects and repairs. To run a test for equipment put the following in the terminal:
+
+ * **python manage.py test equipment  --settings=lab_equipment.settings_test**
+
+ This will run the tests for equipment folder, and if you want to run tests for repairs, change the "equipment" to "repairs" in the test command above. A seperate database will be created when running the test and destroyed automatically when test is completed.
+
+
 ### Used Technology
 
 *  Django==6.1.1 - **Webframe used for building the application, models, views url and database functions.**
