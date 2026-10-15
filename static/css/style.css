@@ -16,7 +16,7 @@ main {
 }
 
 .site-footer {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #667eea, #311d12);
     color: white;
     text-align: center;
     padding: 15px 0;
@@ -66,7 +66,7 @@ main {
 
 /*navbar*/
 .newnavbar {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #667eea, #311d12);
     padding: 12px 0;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
 }
@@ -145,34 +145,17 @@ main {
     color: #6b7280;
 }
 
-.logout-button {
-    width: 100%;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    background-color: #dc3545;
-    color: #ffffff;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s ease;
+.logout-button-area {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
 }
 
-.logout-button:hover {
-    background-color: #bb2d3b;
-}
 
 .logout-button i {
     margin-right: 6px;
 }
 
-.cancel-link {
-    display: inline-block;
-    margin-top: 20px;
-    color: #6b7280;
-    text-decoration: none;
-    transition: 0.2s ease;
-}
 
 .cancel-link:hover {
     color: #212529;
@@ -180,4 +163,9 @@ main {
 
 .cancel-link i {
     margin-right: 5px;
+}
+
+.report-fault-btn {
+    display: flex;
+    flex-direction: column;
 }

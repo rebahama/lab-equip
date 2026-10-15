@@ -2,6 +2,7 @@ from django.views.generic import TemplateView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 from equipment.models import Equipment
 from .models import Repair
 
@@ -42,6 +43,8 @@ class CreateRepairFault(LoginRequiredMixin, CreateView):
         return context
 
     def handle_no_permission(self):
-        return TemplateView.as_view(template_name="webpage/no_permission.html")(
-            self.request
+        return render(
+            self.request,
+            "webpage/no_permission.html",
+            status=403,
         )
