@@ -66,7 +66,7 @@ The system includs also user roles that is decided by the admin account, admin c
 
 - *Equipment search and filtering, students must be able to search by name and filter by category*
 
-- *Guides and projects searching, students must be able to search by guides and projects.
+- *Guides and projects searching, students must be able to search by guides and projects.*
 
 - *Equipment fault reporting, students can report faults on diffrent equipment, caretaker will be able to view the reported fault.*
 
@@ -517,7 +517,7 @@ Mobile screens examples:
 
   #### 2. Create and activate virtual enviorment.
   * run **python -m venv .venv** in the terminal to create virtual enivorment.
-  * Run **.venv\Scripts\Activate** to activate the virtual enviorment.
+  * Run **.venv\Scripts\Activate** to activate the virtual enviorment in the terminal.
   * If using windows: **.venv\Scripts\activate**
   * If using Mac/Linux source: **.venv/bin/activate**
   * To deactivate, run **deactivate** in the terminal
@@ -525,7 +525,7 @@ Mobile screens examples:
 
   #### 3. Install dependencies
   * When virtual enviorment is green and activated run the following in the root project terminal:
-   **pip install -r requirements.txt** to install all the dependencies for the project.
+   **pip install -r requirements.txt** to install all the dependencies for the project. The dependencies versions can be found in the **requirements.txt** that is located in the root folder of this project.
 
   
   #### 4 Enviorment variables
@@ -537,11 +537,11 @@ Mobile screens examples:
 
   Your SECRET_KEY can be any random combination that you want, your env.py should look like this before starting the application:
 
-  ![View crud buttons](docs/env.png)
+  ![Env file](docs/env.png)
 
 
   #### 5 Static files and uploaded images
-  Project requires Cloudinary secret api to display the images correctly, the uploaded images will be uploaded to a cloud that is accessed by an image url link, create an account in Cloudinary and copy your secret api key in the CLOUDINARY_URL.
+  Project can start without CLOUDINARY_URL but requires CLOUDINARY_URL to create equipment and display the images correctly if CLODUINARY_URL is not present then error will display when trying to upload images, the uploaded images will be uploaded to a cloud that is accessed by an image url link, create an account in Cloudinary and copy your secret api key in the CLOUDINARY_URL.
   
   [Click here](https://cloudinary.com/) here to create a free account with Cloudinary.
 
@@ -554,27 +554,29 @@ Mobile screens examples:
 
 ### Running the application for first time
 
-1. First make sure you have installed the dependencies and created the environment variables by following the [installing instructions](#installing).
+1. First make sure you have installed the dependencies and created the environment variables by following the [installing instructions](#installing). Make also sure that your virtual enviorment is green and activated before running the **python** commands below. 
 
 
-2. Apply database migration first by running **python manage.py migrate** in the root folder (same folder as manage.py)" This creates default data in order for the application to run without errors,
+2. Apply database migration first by running **python manage.py migrate** in the root folder terminal (same folder as manage.py)" This creates default data in order for the application to run without errors,
 
 
-3. Create admin account after database migration by running: **python manage.py createsuperuser**. A text will appear in terminal, follow the instructions:
-* Username will appear in the terminal, type in your username that you want.
+3. Create admin account after database migration by running: **python manage.py createsuperuser** in the root folder terminal. A text will appear in terminal, follow the instructions:
 
-* Email adress will appear in the terminal, you don´t have to put in email, you can just press enter.
+    * Username will appear in the terminal, type in your username that you want.
 
-* Password will appear in terminal, put in a password that you will use, when typing in your password in the terminal it will not show the text that you are typing at the moment. But it will register it, so make sure that you type it in correctly. After you have put in password, press enter.
+    * Email adress will appear in the terminal, you don´t have to put in email, you can just press enter.
 
-* Password (again) will appear in the terminal, put in the same password that you put in earlier to confirm, it will also show up blank here as you are typing the password, but you can be sure that the temrinal is registering it.
+    * Password will appear in terminal, put in a password that you will use, when typing in your password in the terminal it will not show the text that you are typing at the moment. But it will register it, so make sure that you type it in correctly. After you have put in password, press enter.
 
-* After you have put in password again a message will appear "Superuser created successfully". You can now use this account to login to the webapplication and manage diffrent user roles, but before you can manage diffrent roles you need to create an account inside the webapplication so that you can choose the created account and give it a student or caretaker role.
+    * Password (again) will appear in the terminal, put in the same password that you put in earlier to confirm, it will also show up blank here as you are typing the password, but you can be sure that the temrinal is registering it.
+
+    * After you have put in password again a message will appear "Superuser created successfully". You can now use this account to login to the webapplication and manage diffrent user roles, but before you can manage diffrent roles you need to create an account inside the webapplication so that you can choose the created account and give it a student or caretaker role.
 
 
-4. To start the application run: **python manage.py runserver** in the root folder.
+4. To start the application run: **python manage.py runserver** in the root folder terminal. You can acess the page by visiting or typing: **http://localhost:8000** in your browser url.
 
-5. When creating an account inside the webapplication page, the default accounts have student permissions, in order to change role to caretaker, login to admin account in webapplication and click "manage accounts" to change the roles and view diffrent functionality for the diffrent account roles. You need to create an account first inside the webapplication in order to use the features.
+5. When creating an account inside the webapplication page, the default accounts have student permissions, in order to change role to caretaker, login to admin account in webapplication and click "manage accounts" to change the roles and view diffrent functionality for the diffrent account roles. You need to create an account first inside the webapplication in order to use the features. Admin user can not access student and caretaker functions.
+
 
 
 ### Tests
