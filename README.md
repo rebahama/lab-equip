@@ -535,6 +535,11 @@ Mobile screens examples:
 
   * CLOUDINARY_URL = your cloudinary API KEY and API SECRET.
 
+  Your SECRET_KEY can be any random combination that you want, your env.py should look like this before starting the application:
+
+  ![View crud buttons](docs/env.png)
+
+
   #### 5 Static files and uploaded images
   Project requires Cloudinary secret api to display the images correctly, the uploaded images will be uploaded to a cloud that is accessed by an image url link, create an account in Cloudinary and copy your secret api key in the CLOUDINARY_URL.
   
@@ -543,7 +548,8 @@ Mobile screens examples:
   * Create a free account.
   * Sign in to your account.
   * Open dashboard.
-  * Copy API KEY and API SECRET
+  * Copy API KEY and API SECRET.
+  * Paste the API KEY and API SECRET to the CLOUDINARY_URL env variable.
 
 
 ### Running the application for first time
@@ -554,11 +560,21 @@ Mobile screens examples:
 2. Apply database migration first by running **python manage.py migrate** in the root folder (same folder as manage.py)" This creates default data in order for the application to run without errors,
 
 
-3. Create admin account after database migration by running: **python manage.py createsuperuser**. Follow the instructions in the terminal, after admin account creation you can use the admin account to login.
+3. Create admin account after database migration by running: **python manage.py createsuperuser**. A text will appear in terminal, follow the instructions:
+* Username will appear in the terminal, type in your username that you want.
+
+* Email adress will appear in the terminal, you don´t have to put in email, you can just press enter.
+
+* Password will appear in terminal, put in a password that you will use, when typing in your password in the terminal it will not show the text that you are typing at the moment. But it will register it, so make sure that you type it in correctly. After you have put in password, press enter.
+
+* Password (again) will appear in the terminal, put in the same password that you put in earlier to confirm, it will also show up blank here as you are typing the password, but you can be sure that the temrinal is registering it.
+
+* After you have put in password again a message will appear "Superuser created successfully". You can now use this account to login to the webapplication and manage diffrent user roles, but before you can manage diffrent roles you need to create an account inside the webapplication so that you can choose the created account and give it a student or caretaker role.
+
 
 4. To start the application run: **python manage.py runserver** in the root folder.
 
-5. When creating an account inside the webapplication page, the default accounts have student permissions, in order to change role to caretaker, login to admin account and click "manage accounts" to change the roles and view diffrent functionality for the diffrent account roles.
+5. When creating an account inside the webapplication page, the default accounts have student permissions, in order to change role to caretaker, login to admin account in webapplication and click "manage accounts" to change the roles and view diffrent functionality for the diffrent account roles. You need to create an account first inside the webapplication in order to use the features.
 
 
 ### Tests
