@@ -8,6 +8,20 @@
 
 **Student Full Name:** *Rebaz Mohammad Ahmad*
 
+## Table of contents
+* [Project description and software requirements](#project-description)
+
+* [Back log](#backlog)
+
+* [Database relations and modeling](#database-relations-and-modeling)
+
+* [Features and functionality](#features-and-functionality)
+
+* [User manual and installing](#user-manual)
+
+* [Test and used technology](#tests)
+
+
 
 
 ## Project Description
@@ -589,7 +603,7 @@ Mobile screens examples:
 
 
 
-### Tests
+## Tests
 
 Tests are divided in the following folders, bookings, equipment, projects and repairs. To run a test for equipment put the following in the terminal:
 
