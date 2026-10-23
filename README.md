@@ -557,7 +557,10 @@ Mobile screens examples:
 1. First make sure you have installed the dependencies and created the environment variables by following the [installing instructions](#installing). Make also sure that your virtual enviorment is green and activated before running the **python** commands below. 
 
 
-2. Apply database migration first by running **python manage.py migrate** in the root folder terminal (same folder as manage.py)" This creates default data in order for the application to run without errors,
+2. Apply database migration first by running **python manage.py migrate** in the root folder terminal (same folder as manage.py)" This creates default data in order for the application to run without errors, a test account with caretaker role will also be created when running migrate to add the default data. The login information can be found below:
+
+    * Username:testcaretaker
+    * Password:Testing
 
 
 3. Create admin account after database migration by running: **python manage.py createsuperuser** in the root folder terminal. A text will appear in terminal, follow the instructions:
@@ -575,7 +578,7 @@ Mobile screens examples:
 
 4. To start the application run: **python manage.py runserver** in the root folder terminal. You can acess the page by visiting or typing: **http://localhost:8000** in your browser url.
 
-5. When creating an account inside the webapplication page, the default accounts have student permissions, in order to change role to caretaker, login to admin account in webapplication and click "manage accounts" to change the roles and view diffrent functionality for the diffrent account roles. You need to create an account first inside the webapplication in order to use the features. Admin user can not access student and caretaker functions.
+5. When creating an account inside the webapplication page, the default accounts have student permissions, in order to change role to caretaker, login to admin account in webapplication and click "manage accounts" to change the roles and view diffrent functionality for the diffrent account roles. Admin user can not access student and caretaker functions.
 
 
 
