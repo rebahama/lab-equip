@@ -8,15 +8,17 @@
             <p> Are you sure you want to delete <strong>{{ equipment.equipment_type.name }}</strong> with serial nr: {{ equipment.serial_number}}? </p>
             <form method="post">
                 {% csrf_token %}
-                <button type="submit" class="logout-button">
+                <div class="logout-button-area">
+                <button type="submit" class="logout-button btn btn-danger rounded-pill px-4">
                     <i class="fa-solid fa-trash"></i>
                     Delete
                 </button>
             </form>
-            <a href="{% url 'show-detail' equipment.pk %}" class="cancel-link">
+            <a href="{% url 'show-detail' equipment.pk %}" class="btn btn-secondary rounded-pill px-4">
                 <i class="fa-solid fa-arrow-left"></i>
-                Back to equipment
+                Back
             </a>
+            </div>
         </div>
     </div>
 </div>
