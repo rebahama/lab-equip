@@ -511,16 +511,20 @@ Mobile screens examples:
 ### Installing
 - Python 3.14.2 is used for this project
 
+- Visual studio code was used as code editor
+
   #### 1. Clone the repository
   * git clone https://github.com/dipt-pa1493-ht26/pa1493-reah23-lekh-zda
   * cd pa1493-reah23-lekh-zda
 
   #### 2. Create and activate virtual enviorment.
   * run **python -m venv .venv** in the terminal to create virtual enivorment.
-  * Run **.venv\Scripts\Activate** to activate the virtual enviorment in the terminal.
-  * If using windows: **.venv\Scripts\activate**
+
+  * If using windows run: **.venv\Scripts\activate** to activate the virtual enviorment in the terminal.
+
   * If using Mac/Linux source: **.venv/bin/activate**
-  * To deactivate, run **deactivate** in the terminal
+
+  * If you need to deactivate the virtual enviorment, run **deactivate** in the terminal
  
 
   #### 3. Install dependencies
@@ -529,7 +533,10 @@ Mobile screens examples:
 
   
   #### 4 Enviorment variables
-  Project requires Django environment variables. Create an env.py file in the same folder as manage.py and add the following:
+  Project requires Django environment variables. CLOUDINARY_URL is not necessary to start project but is required if uploading images when creating equipments or displaying images, more info can be found in: **"5 Static files and uploaded images below"**.
+  
+  
+  Create an env.py file in the same folder as manage.py and add the following:
   
   * SECRET_KEY = your-secret-key
 
@@ -541,7 +548,7 @@ Mobile screens examples:
 
 
   #### 5 Static files and uploaded images
-  Project can start without CLOUDINARY_URL but requires CLOUDINARY_URL to create equipment and display the images correctly if CLODUINARY_URL is not present then error will display when trying to upload images, the uploaded images will be uploaded to a cloud that is accessed by an image url link, create an account in Cloudinary and copy your secret api key in the CLOUDINARY_URL.
+  Project can start without CLOUDINARY_URL but requires CLOUDINARY_URL to upload images to created equipment and display the images correctly. If CLODUINARY_URL is not present then an error will display when trying to upload images or displaying images, the uploaded images will be uploaded to a cloud that is accessed by an image url link, create an account in Cloudinary and copy your secret api key in the CLOUDINARY_URL.
   
   [Click here](https://cloudinary.com/) here to create a free account with Cloudinary.
 
@@ -557,13 +564,13 @@ Mobile screens examples:
 1. First make sure you have installed the dependencies and created the environment variables by following the [installing instructions](#installing). Make also sure that your virtual enviorment is green and activated before running the **python** commands below. 
 
 
-2. Apply database migration first by running **python manage.py migrate** in the root folder terminal (same folder as manage.py)" This creates default data in order for the application to run without errors, a test account with caretaker role will also be created when running migrate to add the default data. The login information can be found below:
+2. Apply database migration first by running **python manage.py migrate** in the root folder terminal (same folder as manage.py)" This creates default data in order for the application to run without errors, a test account with caretaker role will also be created when running migrate to add the default data. The login information for the test account can be found below:
 
-    * Username:testcaretaker
-    * Password:Testing
+    * Username:**testcaretaker**
+    * Password:**Testing**
 
 
-3. Create admin account after database migration by running: **python manage.py createsuperuser** in the root folder terminal. A text will appear in terminal, follow the instructions:
+3. If you want to manage user roles you need an admin account, after the database migration run: **python manage.py createsuperuser** in the root folder terminal. A text will appear in terminal, follow the instructions:
 
     * Username will appear in the terminal, type in your username that you want.
 
