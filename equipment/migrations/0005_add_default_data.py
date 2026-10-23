@@ -94,10 +94,9 @@ def add_default_data(apps, schema_editor):
             "good",
             "available",
         ),
-        # ESP32
         (
             "ESP 32-01",
-            "A good microcontroller aasasasa",
+            "A good microcontroller used for diffrent projects",
             "M-01",
             "ESP32",
             "SHELF-B",
@@ -113,7 +112,6 @@ def add_default_data(apps, schema_editor):
             "excellent",
             "on_loan",
         ),
-
         (
             "Prusa MK4-01",
             "Used for tech",
@@ -123,14 +121,22 @@ def add_default_data(apps, schema_editor):
             "good",
             "on_loan",
         ),
-
         (
             "Prusa MINI+-01",
-            "a good example",
+            "A good example",
             "PR-PLUS-01",
             "Prusa MINI+",
             "SHELF-E",
             "good",
+            "available",
+        ),
+        (
+            "Logitech C920-01",
+            "A camera used for the web",
+            "W-01",
+            "Logitech C920",
+            "SHELF-D",
+            "excellent",
             "available",
         ),
     ]
