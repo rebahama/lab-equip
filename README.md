@@ -1,4 +1,4 @@
-# PA1493 Software Development Project (Distance) HT26
+# The lab equipment system project
 
 ---
 
