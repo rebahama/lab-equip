@@ -1,12 +1,6 @@
-# The lab equipment system project
+# The lab-equipment system project
 
----
 
-**Project Name:** *Lab Equipment Knowledge Hub (LEKH)*
-
-**Customer Name:** *Zeth Danielsson*
-
-**Student Full Name:** *Rebaz Mohammad Ahmad*
 
 ## Table of contents
 * [Project description and software requirements](#project-description)
